@@ -6,195 +6,166 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<title>Service Line Response Form</title>
 	<link rel="stylesheet" href="CXoneWebForm.css" />
-	<!-- <link rel="stylesheet" href="cunard-theme.css"> -->
 </head>
 
 <body>
-	<div class="wrap">
-		<div class="card" id="app" data-theme="telecom">
-			<header class="brand">
-				<div class="brand">
-    				<div class="brand-logo"></div>
-				</div>
+	<div class="card">
+		<header class="brand">
+			<div class="brand">
+				<div class="brand-logo"></div>
+			</div>
 
-				<div class="header-controls">
-					<div class="small">
-						<!-- Cruise line: -->
-						<select id="serviceSelector" aria-label="Select cruise line">
-							<option value="holland">Holland America (HAL)</option>
-							<option value="princess">Princess Cruise (PCL)</option>
-							<option value="seabourn">Seabourn (SBN)</option>
-							<option value="cunard">Cunard (CUN)</option>
+			<div class="header-controls">
+				<div>
+					<select id="serviceSelector" aria-label="Select cruise line">
+						<option value="holland">Holland America (HAL)</option>
+						<option value="princess">Princess Cruise (PCL)</option>
+						<option value="seabourn">Seabourn (SBN)</option>
+						<option value="cunard">Cunard (CUN)</option>
+					</select>
+				</div>
+				<div style="display:flex;align-items:center;gap:12px;">
+					<div id="authChip" class="chip auth-chip" aria-live="polite"></div>
+				</div>
+			</div>
+		</header>
+
+		<main>
+			<div>
+				<div class="panel" aria-labelledby="contactHeading">
+					<h3 id="contactHeading"><span>Contact / Authentication</span></h3>
+					<div class="short-row">
+						<div class="field">
+							<label for="callerName">Name</label>
+							<input type="text" id="callerName" placeholder="Caller name (from IVR)" />
+						</div>
+						<div class="field">
+							<label for="ccn">CCN</label>
+							<input type="text" id="ccn" placeholder="Customer CCN" />
+						</div>
+						<div class="field">
+							<label for="phone">Phone</label>
+							<input type="tel" id="phone" placeholder="+1 555-123-4567" />
+						</div>
+						<div class="field">
+							<label for="email">Email</label>
+							<input type="email" id="email" placeholder="name@example.com" />
+						</div>
+						<div class="field">
+							<label for="customerId">Customer ID</label>
+							<input type="text" id="customerId" placeholder="Registered customer id (if any)" />
+						</div>
+						<div class="field" id="travelAdvisorArea" style="display:none">
+							<label>Travel Advisor</label>
+							<div style="display:flex;align-items:center;gap:8px">
+								<div id="travelAdvisorLogo"
+									style="width:42px;height:28px;background:#f1f5f9;border-radius:6px;display:flex;align-items:center;justify-content:center">
+									TA</div>
+								<div id="travelAdvisorName" class="muted">Advisor name</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="field">
+					<div class="chip" id="regChip">Registered: <span id="registeredVal">No</span></div>
+				</div>
+				<div class="field">
+					<button id="btnCheckAuth" class="btn-ghost">Check / Update Auth</button>
+				</div>
+			</div>
+
+			<div class="panel" style="margin-top:12px;" aria-labelledby="intentHeading">
+				<h3 id="intentHeading"><span>Intent & Booking</span></h3>
+				<div class="field">
+					<label for="intent">Customer intent</label>
+					<select id="intent">
+						<option value="">-- Select intent --</option>
+						<option value="billing">Billing Issue</option>
+						<option value="outage">Report Outage</option>
+						<option value="upgrade">Upgrade Request</option>
+						<option value="support">Product Support</option>
+						<option value="booking">Booking / Appointment</option>
+					</select>
+				</div>
+				<div class="short-row">
+					<div class="field">
+						<label for="rating">Rating</label>
+						<select id="rating">
+							<option value="">--</option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
 						</select>
 					</div>
-					<div style="display:flex;align-items:center;gap:12px;">
-						<div id="authChip" class="chip auth-chip" aria-live="polite"></div>
-					</div>
-				</div>
-			</header>
-
-			<main>
-				<div class="grid">
-					<div>
-						<div class="panel" aria-labelledby="contactHeading">
-							<h3 id="contactHeading">Contact / Authentication</h3>
-							<div class="field">
-								<label for="callerName">Name</label>
-								<input type="text" id="callerName" placeholder="Caller name (from IVR)" />
-							</div>
-							<div class="field">
-								<label for="ccn">CCN</label>
-								<input type="text" id="ccn" placeholder="Customer CCN" />
-							</div>
-							<div class="field">
-								<label for="phone">Phone</label>
-								<input type="tel" id="phone" placeholder="+1 555-123-4567" />
-							</div>
-							<div class="field">
-								<label for="email">Email</label>
-								<input type="email" id="email" placeholder="name@example.com" />
-							</div>
-							<div class="field">
-								<label for="customerId">Customer ID</label>
-								<input type="text" id="customerId" placeholder="Registered customer id (if any)" />
-							</div>
-							<div class="field" id="travelAdvisorArea" style="display:none">
-								<label>Travel Advisor</label>
-								<div style="display:flex;align-items:center;gap:8px">
-									<div id="travelAdvisorLogo"
-										style="width:42px;height:28px;background:#f1f5f9;border-radius:6px;display:flex;align-items:center;justify-content:center">
-										TA</div>
-									<div id="travelAdvisorName" class="muted">Advisor name</div>
-								</div>
-							</div>
-							<div class="field meta-row">
-								<div class="chip" id="regChip">Registered: <span id="registeredVal">No</span></div>
-								<div class="chip auth-chip" id="authChip" aria-live="polite"> <!-- content set by JS -->
-								</div>
-							</div>
-							<div class="field">
-								<button id="btnCheckAuth" class="btn-ghost">Check / Update Auth</button>
-							</div>
-						</div>
-
-						<div class="panel" style="margin-top:12px;" aria-labelledby="intentHeading">
-							<h3 id="intentHeading">Intent & Booking</h3>
-							<div class="field">
-								<label for="intent">Customer intent</label>
-								<select id="intent">
-									<option value="">-- Select intent --</option>
-									<option value="billing">Billing Issue</option>
-									<option value="outage">Report Outage</option>
-									<option value="upgrade">Upgrade Request</option>
-									<option value="support">Product Support</option>
-									<option value="booking">Booking / Appointment</option>
-								</select>
-							</div>
-							<div class="short-row">
-								<div class="field">
-									<label for="rating">Rating</label>
-									<select id="rating">
-										<option value="">--</option>
-										<option>1</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
-										<option>5</option>
-									</select>
-								</div>
-								<div class="field">
-									<label>Satisfied?</label>
-									<div style="display:flex;gap:8px;align-items:center">
-										<label style="font-weight:500"><input type="radio" name="satisfied" value="yes" id="satisfiedYes" /> Yes</label>
-										<label style="font-weight:500"><input type="radio" name="satisfied" value="no" id="satisfiedNo" /> No</label>
-									</div>
-								</div>
-								<div class="field">
-									<label>Media</label>
-									<div id="mediaTypeLabel" class="muted">—</div>
-								</div>
-							</div>
-							<div class="field">
-								<label for="transcript">IVR Transcript</label>
-								<textarea id="transcript" placeholder="Transcript from IVR"></textarea>
-							</div>
-							<div id="bookingSection" style="display:none">
-								<div class="field">
-									<label for="bookingId">Booking ID</label>
-									<input type="text" id="bookingId" />
-								</div>
-								<div class="field">
-									<label for="bookingDate">Booking date</label>
-									<input type="text" id="bookingDate" placeholder="2025-11-01 10:00" />
-								</div>
-							</div>
-							<div class="field">
-								<label for="notes">Agent notes</label>
-								<textarea id="notes" placeholder="Notes or IVR transcript..."></textarea>
-							</div>
-						</div>
-
-						<div class="panel" style="margin-top:12px;" aria-labelledby="communicationHeading">
-							<h3 id="communicationHeading">Communication & Transfer</h3>
-							<div class="field">
-								<label>Communication routes</label>
-								<div class="meta-row">
-									<label><input type="checkbox" id="routeEmail" /> <span id="iconRouteEmail"
-											class="icon" aria-hidden="true"></span> Email</label>
-									<label><input type="checkbox" id="routePhone" /> <span id="iconRoutePhone"
-											class="icon" aria-hidden="true"></span> Phone</label>
-									<label><input type="checkbox" id="routeSMS" /> <span id="iconRouteSMS" class="icon"
-											aria-hidden="true"></span> SMS</label>
-									<label><input type="checkbox" id="routeChat" /> <span id="iconRouteChat"
-											class="icon" aria-hidden="true"></span> Chat</label>
-								</div>
-							</div>
-
-							<div class="field" id="askOtherChannels" style="display:none">
-								<label>May we contact the guest by:</label>
-								<label><input type="checkbox" id="addSMS" /> SMS</label>
-								<label><input type="checkbox" id="addEmailContact" /> Email</label>
-								<label><input type="checkbox" id="addChat" /> Chat</label>
-							</div>
-							<div class="field">
-								<label for="transferTo">Call transfer (if any)</label>
-								<input type="text" id="transferTo" placeholder="Transfer to queue or agent" />
-							</div>
-							<div class="field">
-								<label><input type="checkbox" id="acceptTerms" /> Accept terms and conditions</label>
-							</div>
+					<div class="field">
+						<label for="satisfied">Satisfied?</label>
+						<div class="radio-group">
+							<label for="satisfiedYes"><input type="radio" name="satisfied" value="yes"
+									id="satisfiedYes" /> Yes</label>
+							<label for="satisfiedNo"><input type="radio" name="satisfied" value="no" id="satisfiedNo" />
+								No</label>
 						</div>
 					</div>
-
-					<aside>
-						<div class="panel">
-							<div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
-								<h3 style="margin:0">IVR Payload (JSON)</h3>
-								<button id="ivrToggle" class="btn-ghost" aria-expanded="true"
-									aria-controls="ivrPayload">Toggle IVR</button>
-							</div>
-							<p class="muted">Paste the IVR JSON payload here or use sample to auto-populate the form.
-							</p>
-							<textarea id="ivrPayload" rows="10" style="height: 200px;"
-								placeholder='{"intent":"billing","phone":"+15551234567","email":"a@b.com","customerId":"C123","booking":{}}'></textarea>
-								<div id="fetchStatus" class="muted" style="margin-top:6px;"> </div>
-							<style>
-								aside.collapsed {
-									display: none
-								}
-							</style>
-							<hr style="margin:12px 0" />
-							<h3>Form Summary</h3>
-							<div class="muted" id="summary">No data yet</div>
-						</div>
-					</aside>
+					<div class="field">
+						<label>Media</label>
+						<div id="mediaTypeLabel" class="muted">—</div>
+					</div>
 				</div>
-			</main>
+				<div class="field">
+					<label for="transcript">IVR Transcript</label>
+					<textarea id="transcript" placeholder="Transcript from IVR"></textarea>
+				</div>
+				<div id="bookingSection" style="display:none">
+					<div class="field">
+						<label for="bookingId">Booking ID</label>
+						<input type="text" id="bookingId" />
+					</div>
+					<div class="field">
+						<label for="bookingDate">Booking date</label>
+						<input type="text" id="bookingDate" placeholder="2025-11-01 10:00" />
+					</div>
+				</div>
+				<div class="field">
+					<label for="notes">Agent notes</label>
+					<textarea id="notes" placeholder="Notes or IVR transcript..."></textarea>
+				</div>
+			</div>
 
-			<div class="controls">
-				<div class="footer-note" style="flex:1">© <span id="copyrightYear"></span> <span
-						id="serviceFooterName">Service Line</span> — <span id="serviceFooterTagline">We connect
-						you</span></div>
+			<div class="panel" style="margin-top:12px;" aria-labelledby="communicationHeading">
+				<h3 id="communicationHeading"><span>Communication & Transfer</span></h3>
+				<div class="field">
+					<label>Communication routes</label>
+					<div class="checkbox-group">
+						<label><input type="checkbox" id="routeEmail" /> Email</label>
+						<label><input type="checkbox" id="routePhone" /> Phone</label>
+						<label><input type="checkbox" id="routeSMS" /> SMS</label>
+						<label><input type="checkbox" id="routeChat" /> Chat</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="field" id="askOtherChannels" style="display:none">
+				<label>May we contact the guest by:</label>
+				<label><input type="checkbox" id="addSMS" /> SMS</label>
+				<label><input type="checkbox" id="addEmailContact" /> Email</label>
+				<label><input type="checkbox" id="addChat" /> Chat</label>
+			</div>
+			<div class="field">
+				<label for="transferTo">Call transfer (if any)</label>
+				<input type="text" id="transferTo" placeholder="Transfer to queue or agent" />
+			</div>
+			<div class="field">
+				<label><input type="checkbox" id="acceptTerms" /> Accept terms and conditions</label>
+			</div>
+		</main>
+
+		<div class="controls">
+			<div class="footer-note" style="flex:1">© <span id="copyrightYear"></span> <span
+					id="serviceFooterName">Service Line</span> — <span id="serviceFooterTagline">We connect
+					you</span></div>
+			<div class="control-buttons">
 				<button id="btnCancel" class="btn-ghost">Cancel</button>
 				<button id="btnSave" class="btn-save">Save</button>
 				<button id="btnNext" class="btn-next" disabled>Next</button>

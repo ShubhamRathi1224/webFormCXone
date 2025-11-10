@@ -203,15 +203,6 @@ const SERVICES = {
 	cunard: {name:'Cunard', tag:'Leaders in luxury ocean travel', theme:'theme-cun', short:'CUN'}
 };
 
-// Inline brand logos (simple SVG placeholders). Replace these with official logo assets (local or CDN)
-// Recommended: host official SVG/PNG files in your app and change BRAND_LOGOS to point at those URLs.
-const BRAND_LOGOS = {
-	holland: '<svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="40" rx="6" fill="#006064"/><text x="14" y="26" font-family="Segoe UI, Roboto, Arial" font-size="14" fill="#fff">Holland America</text></svg>',
-	princess: '<svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="40" rx="6" fill="#0b6efd"/><text x="14" y="26" font-family="Segoe UI, Roboto, Arial" font-size="14" fill="#fff">Princess Cruises</text></svg>',
-	seabourn: '<svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="40" rx="6" fill="#6b0b9e"/><text x="14" y="26" font-family="Segoe UI, Roboto, Arial" font-size="14" fill="#fff">Seabourn</text></svg>',
-	cunard: '<svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="40" rx="6" fill="#c21807"/><text x="14" y="26" font-family="Segoe UI, Roboto, Arial" font-size="14" fill="#fff">Cunard</text></svg>'
-};
-
 // Set language flag based on lang code such as en-DE, de-DE, nl-NL
 function setLangFlag(lang){
 	const el = document.getElementById('langFlag');
@@ -234,14 +225,6 @@ function applyService(s){
 	// serviceName.textContent = meta.name;
 	serviceFooterName.textContent = meta.name;
 	document.getElementById('serviceFooterTagline').textContent = meta.tag;
-	// // simple SVG tint via inline fill (logo svg present)
-	// const svg = logo.querySelector('svg');
-	// if(svg) svg.style.fill = getComputedStyle(document.documentElement).getPropertyValue('--brand');
-	// if(window.BRAND_LOGOS && BRAND_LOGOS[meta.short]){
-	// 	logo.innerHTML = BRAND_LOGOS[meta.short];
-	// } else {
-	// 	logo.textContent = meta.short;
-	// }
 }
 
 // Update summary

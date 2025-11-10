@@ -214,7 +214,10 @@ button.primary:hover {
 }
 
 .icon.check {
-  color: #10b981
+  color: #10b981;
+  background-color: #10b981;
+  border-radius: 50%;
+  padding: 2px;
 }
 
 .icon.cross {

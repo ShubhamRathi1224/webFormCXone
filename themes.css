@@ -155,3 +155,23 @@ button.primary:hover {
   opacity: 0.8;
   text-align: right;
 }
+
+
+
+
+
+
+
+/* default blue */
+/* --brand:#0b6efd;  */
+/* :root {
+  --brand-contrast: #fff;
+  --bg: #f4f7fb;
+  --card: #ffffff;
+  --radius: 12px;
+  --pad: 20px;
+  --input-height: 44px;
+  font-family: Inter, 'Segoe UI', Roboto, system-ui, -apple-system, 'Helvetica Neue', Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} */
