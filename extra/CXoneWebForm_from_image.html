@@ -76,7 +76,7 @@
 
               <input id="intent" type="hidden" value="direct">
 
-              <div class="intent-controls" style="display:flex;align-items:center;justify-content:flex-end;gap:12px;">
+              <div class="intent-controls">
                 <div class="muted">Rating</div>
                 <div id="starRating" role="radiogroup" aria-label="Rating">
                   <button type="button" data-value="1" aria-pressed="false" aria-label="1 star">★</button>
@@ -87,11 +87,13 @@
                 </div>
                 <input id="rating" type="hidden" value="4">
 
-                <label class="switch" title="Satisfied">
-                  <input id="satisfiedYes" type="checkbox" aria-label="Satisfied">
-                  <span class="slider" aria-hidden></span>
-                  <span class="muted" style="margin-left:8px;">Satisfied</span>
-                </label>
+                <div>
+                  <label class="switch" title="Satisfied">
+                    <input id="satisfiedYes" type="checkbox" aria-label="Satisfied">
+                    <span class="slider" aria-hidden></span>
+                    <span class="muted" style="margin-left:8px;">Satisfied</span>
+                  </label>
+                </div>
               </div>
             </form>
           </div>
@@ -119,7 +121,7 @@
             </label>
           </div>
 
-          <div class="col" style="display:flex;flex-direction:column;align-items:flex-end;">
+          <div class="col" style="display:flex;flex-direction:column;">
             <h3>Media Type:</h3>
             <div class="media-group">
               <label><input id="routePhone" type="checkbox"> Call</label>
@@ -142,60 +144,18 @@
       </div>
       <!-- small status/summary area used by existing JS -->
       <div style="padding:12px 24px;border-top:1px solid #f0f2f4;">
-        <pre id="summary"
-          style="margin:0;font-size:12px;color:#3b4250;white-space:pre-wrap;">Summary will appear here</pre>
-        <span id="serviceFooterName">Cunard </span> - 
-            <span id="serviceFooterTagline">We connect
-            you</span>
-        <div style="display:none">© <span id="copyrightYear"></span></div>
+        © <span id="copyrightYear"></span>, <span id="serviceFooterName">Cunard </span> -
+        <span id="serviceFooterTagline">We connect
+          you</span> 
       </div>
     </div>
     <!-- Hidden controls expected by existing JS (acceptTerms, check auth, next) -->
-    <button id="btnCheckAuth" style="display:none">Check Auth</button>
+    <!-- <button id="btnCheckAuth" style="display:none">Check Auth</button> -->
     <input id="acceptTerms" type="checkbox" style="display:none" checked />
     <button id="btnNext" style="display:none" type="button">Next</button>
 
-    <script src="CXoneWebForm_from_image.js"></script>
-    <script>
-      // Small glue to wire the interactive star rating and ensure accessibility.
-      (function () {
-        function setStars(n) {
-          const buttons = document.querySelectorAll('#starRating button');
-          buttons.forEach(b => { const v = Number(b.getAttribute('data-value')); b.setAttribute('aria-pressed', v <= n ? 'true' : 'false'); });
-          const rating = document.getElementById('rating'); if (rating) rating.value = n;
-          // update summary if the main script provided updateSummary
-          if (typeof updateSummary === 'function') updateSummary();
-        }
-        const buttons = document.querySelectorAll('#starRating button');
-        buttons.forEach(b => {
-          b.addEventListener('click', (ev) => { const v = Number(b.getAttribute('data-value')); setStars(v); });
-          b.addEventListener('keydown', (ev) => {
-            if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); b.click(); }
-            if (ev.key === 'ArrowLeft' || ev.key === 'ArrowDown') { ev.preventDefault(); const prev = b.previousElementSibling; if (prev) prev.focus(); }
-            if (ev.key === 'ArrowRight' || ev.key === 'ArrowUp') { ev.preventDefault(); const next = b.nextElementSibling; if (next) next.focus(); }
-          });
-        });
-        // Initialize to 4 stars (matching earlier default)
-        setStars(Number(document.getElementById('rating')?.value || 4));
-
-        // Make the visible intent radios update the hidden #intent element (in case JS wasn't wired yet)
-        document.querySelectorAll('input[name="intent_radio"]').forEach(r => r.addEventListener('change', () => {
-          const h = document.getElementById('intent'); if (h) { const sel = document.querySelector('input[name="intent_radio"]:checked'); if (sel) { h.value = sel.value; h.dispatchEvent(new Event('change')); } }
-        }));
-
-        // Ensure toggles update summary
-        const toggles = document.querySelectorAll('#satisfiedYes, #routePhone, #routeChat, #routeSMS');
-        toggles.forEach(t => t.addEventListener('change', () => { if (typeof updateSummary === 'function') updateSummary(); }));
-
-        // Make Save button also trigger Next after saving (small UX convenience)
-        const saveBtn = document.getElementById('btnSave');
-        const nextBtn = document.getElementById('btnNext');
-        if (saveBtn && nextBtn) {
-          saveBtn.addEventListener('click', () => { setTimeout(() => { if (!nextBtn.disabled) nextBtn.click(); }, 140); });
-        }
-      })();
-    </script>
   </div>
+  <script src="CXoneWebForm_from_image.js"></script>
 </body>
 
 </html>

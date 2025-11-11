@@ -6,12 +6,12 @@ body {
     color: #1a2a3a;
 }
 .service-log-container {
-    max-width: 600px;
     margin: 32px auto;
     background: #fff;
     border-radius: 16px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.08);
     padding: 0 0 32px 0;
+    margin: 32px;
 }
 .service-log-header {
     background: #223a57;
@@ -28,7 +28,6 @@ body {
 }
 .service-log-logos img {
     height: 36px;
-    max-width: 120px;
     object-fit: contain;
     filter: brightness(0) invert(1);
 }

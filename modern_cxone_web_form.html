@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CXone Web Form - Modern Layout</title>
     <link rel="stylesheet" href="modern_cxone_web_form.css">
-    <link rel="stylesheet" href="themes.css">
+    <link rel="stylesheet" href="index.css">
     <style>
         body {
             background: #f7fafc;
             font-family: 'Segoe UI', Arial, sans-serif;
         }
         .cxone-container {
-            max-width: 500px;
             margin: 40px auto;
             background: #fff;
             border-radius: 22px;
             box-shadow: 0 8px 32px rgba(60, 120, 200, 0.08);
             padding: 32px 28px 28px 28px;
+            margin: 24px;
             position: relative;
         }
         .cxone-header {
@@ -26,7 +26,7 @@
             margin-bottom: 18px;
         }
         .cxone-logo {
-            width: 44px;
+            width: 150px;
             margin-right: 10px;
         }
         .cxone-title {
@@ -122,9 +122,13 @@
         }
         .cxone-actions {
             display: flex;
-            flex-direction: column;
+            /* flex-direction: column; */
             gap: 12px;
             margin-top: 10px;
+        }
+        .cxone-actions button {
+            width: fit-content;
+            padding: 10px 20px;
         }
         .cxone-btn-primary {
             background: linear-gradient(90deg, #1a7ff0 60%, #1ed0f0 100%);
@@ -179,7 +183,6 @@
     <div class="cxone-container">
         <div class="cxone-header">
             <img src="assets/logos/princess.svg" alt="CXone Logo" class="cxone-logo">
-            <span class="cxone-title">CXone</span>
         </div>
         <div class="cxone-status">
             <span class="cxone-status-dot"></span> Live: Active
@@ -206,15 +209,26 @@
                 <div class="cxone-tab-desc">Chat transcript</div>
             </div>
         </div>
-        <button class="cxone-arrow-btn" title="Next">
+        <!-- <button class="cxone-arrow-btn" title="Next">
             <span style="font-size:1.3rem;">&#8594;</span>
-        </button>
+        </button> -->
         <form class="cxone-form-area">
+            <label>Customer Name</label>
+            <input type="text" id="custName" placeholder="Enter name" />
+
+            <label>Contact Number</label>
+            <input type="text" id="contactNo" placeholder="Enter contact number" />
+
+            <label>Email</label>
+            <input type="email" id="email" placeholder="Enter email address" />
+
+            <label>Notes</label>
             <textarea class="cxone-textarea" placeholder="Type your message or request here..."></textarea>
         </form>
         <div class="cxone-actions">
+            <button class="cxone-btn-secondary" type="button">Cancel</button>
+            <!-- <button class="cxone-btn-secondary" type="button">Chat Now</button> -->
             <button class="cxone-btn-primary" type="submit">Submit Request</button>
-            <button class="cxone-btn-secondary" type="button">Chat Now</button>
         </div>
     </div>
     <script src="modern_cxone_web_form.js"></script>
@@ -226,15 +240,15 @@
                 this.classList.add('selected');
             });
         });
-        // Arrow button (can be extended for navigation)
-        document.querySelector('.cxone-arrow-btn').addEventListener('click', function() {
-            // Example: go to next tab (optional logic)
-            const tabs = Array.from(document.querySelectorAll('.cxone-tab'));
-            let idx = tabs.findIndex(t => t.classList.contains('selected'));
-            tabs[idx].classList.remove('selected');
-            idx = (idx + 1) % tabs.length;
-            tabs[idx].classList.add('selected');
-        });
+        // // Arrow button (can be extended for navigation)
+        // document.querySelector('.cxone-arrow-btn').addEventListener('click', function() {
+        //     // Example: go to next tab (optional logic)
+        //     const tabs = Array.from(document.querySelectorAll('.cxone-tab'));
+        //     let idx = tabs.findIndex(t => t.classList.contains('selected'));
+        //     tabs[idx].classList.remove('selected');
+        //     idx = (idx + 1) % tabs.length;
+        //     tabs[idx].classList.add('selected');
+        // });
     </script>
 </body>
 </html>

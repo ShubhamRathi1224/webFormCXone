@@ -1,0 +1,147 @@
+/* =====================================================
+   Cruise Line Themes (Compiled to CSS variables)
+   ===================================================== */
+
+/* Default theme */
+:root {
+  --color-primary: #A41E35;
+  --color-accent: #2D2A26;
+  --gradient: linear-gradient(135deg, #A41E35, #2D2A26);
+  --bg-color: #ffffff;
+  --text-color: #1b1b1b;
+  --border-color: #e5e5e5;
+  --logo-url: url('assets/logos/cunard.svg');
+}
+
+/* Cunard */
+:root[data-theme='cunard'] {
+  --color-primary: #A41E35;
+  --color-accent: #2D2A26;
+  --gradient: linear-gradient(135deg, #A41E35, #7B1326);
+  --logo-url: url('assets/logos/cunard.svg');
+  --accent-bg: radial-gradient(circle at top left, #A41E35 0%, #2D2A26 100%);
+  --header-pattern: url('assets/patterns/cunard-fabric.svg'); /* optional subtle textile */
+}
+
+/* Holland America Line */
+:root[data-theme='holland'] {
+  --color-primary: #1A2857;
+  --color-accent: #004488;
+  --gradient: linear-gradient(135deg, #1A2857, #002B6A);
+  --logo-url: url('assets/logos/holland.svg');
+  --accent-bg: radial-gradient(circle at bottom right, #1A2857 0%, #001F4E 100%);
+  --header-pattern: url('assets/patterns/holland-wave.svg');
+}
+
+/* Princess Cruises */
+:root[data-theme='princess'] {
+  --color-primary: #00538B;
+  --color-accent: #0090D9;
+  --gradient: linear-gradient(135deg, #00538B, #0090D9);
+  --logo-url: url('assets/logos/princess.svg');
+  --accent-bg: linear-gradient(180deg, rgba(0,83,139,0.9), rgba(0,144,217,0.8)), 
+                url('assets/patterns/princess-waves.svg');
+  --header-pattern: url('assets/patterns/princess-waves.svg');
+}
+
+/* Seabourn */
+:root[data-theme='seabourn'] {
+  --color-primary: #E3CE66;
+  --color-accent: #9A7B2F;
+  --gradient: linear-gradient(135deg, #9A7B2F, #E3CE66);
+  --logo-url: url('assets/logos/seabourn.svg');
+  --accent-bg: linear-gradient(180deg, #f9f7f1, #efe3b0);
+  --header-pattern: url('assets/patterns/seabourn-gold.svg');
+}
+
+
+/* -------------------------------
+   Base styles
+-------------------------------- */
+body {
+  font-family: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  line-height: 1.6;
+  margin: 0;
+}
+
+header.brand {
+  background: var(--gradient);
+  background-image: var(--header-pattern), var(--gradient);
+  background-blend-mode: overlay;
+  background-size: cover;
+  color: #fff;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header .brand-logo {
+  background-image: var(--logo-url);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 160px;
+  height: 40px;
+}
+
+.section {
+  background: var(--bg-color);
+  border-radius: 8px;
+  padding: 24px;
+  margin: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Accent section (optional background area) */
+.section.accent {
+  background: var(--accent-bg);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.section.accent h2 {
+  color: #fff;
+}
+
+h2 {
+  color: var(--color-primary);
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  font-weight: 500;
+}
+
+input, select, textarea {
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+}
+
+button.primary {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button.primary:hover {
+  background-color: var(--color-accent);
+}

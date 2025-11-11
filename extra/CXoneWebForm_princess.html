@@ -10,12 +10,12 @@
             background: #f4f7fa;
         }
         .pc-form-container {
-            max-width: 420px;
             margin: 48px auto;
             background: #fff;
             border-radius: 18px;
             box-shadow: 0 4px 24px 0 rgba(0,32,128,0.08);
             padding: 0 0 24px 0;
+            margin: 24px;
             font-family: 'Segoe UI', Arial, sans-serif;
         }
         .pc-form-header {
@@ -194,7 +194,7 @@
         }
         .pc-form-booking .media-type {
             display: flex;
-            flex-direction: column;
+            /* flex-direction: column; */
             gap: 4px;
             align-items: flex-end;
         }
@@ -269,21 +269,24 @@
                             <span class="pc-form-value" id="bookingCustomer">Jane Doe</span>
                         </div>
                     </div>
-                    <div class="right">
-                        <span class="pc-form-label">Media Type:</span>
-                        <div class="media-type">
-                            <label><input type="radio" name="mediaType" value="Call" checked> Call</label>
-                            <label><input type="radio" name="mediaType" value="Chat"> Chat</label>
-                            <label><input type="radio" name="mediaType" value="SMS"> SMS</label>
-                        </div>
+                </div>
+            </div>
+            <div class="pc-form-section">
+                <h3>Media Type</h3>
+                <div class="pc-form-booking">
+                    <div class="media-type">
+                        <label><input type="radio" name="mediaType" value="Call" checked> Call</label>
+                        <label><input type="radio" name="mediaType" value="Chat"> Chat</label>
+                        <label><input type="radio" name="mediaType" value="SMS"> SMS</label>
                     </div>
                 </div>
             </div>
-            <div class="pc-form-footer">
-                <button type="button" class="pc-form-btn cancel">Cancel</button>
-                <button type="submit" class="pc-form-btn save">Save &amp; Next</button>
-            </div>
         </form>
+        <hr>
+        <div class="pc-form-footer">
+            <button type="button" class="pc-form-btn cancel">Cancel</button>
+            <button type="submit" class="pc-form-btn save">Save &amp; Next</button>
+        </div>
         <div style="text-align:center; margin-top:18px; color:#1a397b; font-size:0.98rem;">
             <span style="font-weight:600;">PRINCESS CRUISES</span><br>
             <span style="font-size:0.92rem; color:#6b7280;">Escape Completely.</span>

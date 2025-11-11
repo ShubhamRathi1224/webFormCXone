@@ -1,27 +1,26 @@
 /* CXoneWebForm_new.css */
 body {
-    background: url('assets/shared image (1).jpg') center/cover no-repeat fixed;
     min-height: 100vh;
     margin: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
 }
 .cxone-form-container {
-    width: 370px;
-    margin: 40px auto;
+    /* width: 1200px; */
+    margin: 40px;
     background: rgba(10, 40, 90, 0.98);
     border-radius: 18px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-    padding: 0 0 18px 0;
+    padding: 18px;
     position: relative;
     border-top: 5px solid #ffe082;
     overflow: hidden;
 }
 .cxone-form-header {
     text-align: center;
-    padding: 28px 0 10px 0;
+    padding: 10px 0 10px 0;
 }
 .cxone-logo {
-    width: 54px;
+    width: 150px;
     margin-bottom: 6px;
 }
 .cxone-form-header h2 {
