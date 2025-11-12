@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CXone Web Form - Modern Layout</title>
     <link rel="stylesheet" href="modern_cxone_web_form.css">
+    <!-- <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    /> -->
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+/>
 </head>
 
 <body>
@@ -17,7 +28,7 @@
 
 			<div class="header-controls">
 				<div>
-					<select id="userSelector" aria-label="Select cruise line">
+					<select id="customerSelector" aria-label="Select cruise line">
 						<option value="C-0001">Customer 1</option>
 						<option value="C-0002">Customer 2</option>
 						<option value="C-0003">Customer 3</option>
@@ -41,36 +52,32 @@
 				<div style="display:flex;align-items:center;gap:12px;">
 					<div id="authChip" class="chip auth-chip" aria-live="polite"></div>
 				</div>
+                <div id="phoneType"></div>
                 <div id="langFlag"></div>
 			</div>
 		</header>
         
         <main>
             <div class="cxone-tabs" id="cxoneTabs">
-                <div class="cxone-tab selected" data-tab="contact">
+                <div class="cxone-tab" data-tab="customer" id="customerInfoTab">
                     <div class="cxone-tab-icon">👥</div>
-                    <div class="cxone-tab-title">Contact</div>
-                    <div class="cxone-tab-desc">Contact details and info</div>
+                    <div class="cxone-tab-title">Customer</div>
+                    <div class="cxone-tab-desc">Customer Information</div>
                 </div>
-                <div class="cxone-tab" data-tab="travelAdvisor">
+                <div class="cxone-tab" data-tab="travelAdvisor" id="travelAdvisorTab">
                     <div class="cxone-tab-icon">💬</div>
                     <div class="cxone-tab-title">Travel advisor</div>
-                    <div class="cxone-tab-desc">Cosco travels</div>
+                    <div class="cxone-tab-desc">Travel advisor Information</div>
                 </div>
-                <div class="cxone-tab" data-tab="booking">
-                    <div class="cxone-tab-icon">📅</div>
-                    <div class="cxone-tab-title">Booking</div>
-                    <div class="cxone-tab-desc">Booking details</div>
-                </div>
-                <div class="cxone-tab" data-tab="intent">
+                <div class="cxone-tab" data-tab="intent" id="intentTab">
                     <div class="cxone-tab-icon">📝</div>
-                    <div class="cxone-tab-title">Intent</div>
-                    <div class="cxone-tab-desc">Purpose of request</div>
+                    <div class="cxone-tab-title">Contact Intent</div>
+                    <div class="cxone-tab-desc">Contact Intent & Purpose of request</div>
                 </div>
-                <div class="cxone-tab" data-tab="transcript">
-                    <div class="cxone-tab-icon">💬</div>
-                    <div class="cxone-tab-title">Transcript</div>
-                    <div class="cxone-tab-desc">Chat transcript</div>
+                <div class="cxone-tab" data-tab="booking" id="bookingTab">
+                    <div class="cxone-tab-icon">📅</div>
+                    <div class="cxone-tab-title">Booking Details</div>
+                    <div class="cxone-tab-desc">Booking details</div>
                 </div>
                 <div class="cxone-tab" data-tab="pcc">
                     <div class="cxone-tab-icon">💬</div>
@@ -84,13 +91,8 @@
                 </div>
             </div>
             <div class="cxone-form-area">
-                <!-- contact panel -->
-                <div class="cxone-form-panel short-row" data-tab="contact">
-                    <div class="field">
-                        <label for="customerId">Customer ID</label>
-                        <input type="text" id="customerId" placeholder="Registered customer id (if any)" />
-                    </div>
-    
+                <!-- customer panel -->
+                <div class="cxone-form-panel short-row" data-tab="customer" style="display:none" >
                     <div class="field">
                         <label for="callerName">Customer Name</label>
                         <input type="text" id="callerName" placeholder="Enter name" />
@@ -100,46 +102,95 @@
                         <label for="ccn">CCN</label>
                         <input type="text" id="ccn" placeholder="Customer CCN" />
                     </div>
-                    
-                    <div class="field">
-                        <label for="contactNo">Contact Number</label>
-                        <input type="text" id="contactNo" placeholder="Enter contact number" />
-                    </div>
-    
-                    <div class="field">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" placeholder="+1 555-123-4567" />
-                    </div>
-                    
-                    <div class="field">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="Enter email address" />
-                    </div>
                 </div>
     
                 <!-- travel advisor panel -->
-                <div class="cxone-form-panel short-row" data-tab="travelAdvisor" style="display:none">
-                    <div class="field">
-                        <label for="iata">IATA</label>
-                        <input type="text" id="iata" placeholder="IATA" />
+                <div class="cxone-form-panel" data-tab="travelAdvisor" style="display:none">
+                    <div class="short-row">
+                        <div class="field">
+                            <label for="iata">IATA</label>
+                            <input type="text" id="iata" placeholder="IATA" />
+                        </div>
+                        
+                        <div class="field">
+                            <label for="clia">CLIA</label>
+                            <input type="text" id="clia" />
+                        </div>
+                        
+                        <div class="field">
+                            <label for="agencyId">Agency Id</label>
+                            <input type="text" id="agencyId" />
+                        </div>
+                        
+                        <div class="field">
+                            <label for="agencyName">Agency Name</label>
+                            <input type="text" id="agencyName" />
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- intent panel -->
+                <div class="cxone-form-panel" data-tab="intent" style="display:none">
+                    <div class="short-row">
+                        <div class="field">
+                            <label for="intent">Intent</label>
+                            <select id="intent">
+                                <option value="">-- Select intent --</option>
+                                <option value="newBooking">New Booking</option>
+                                <option value="modifyBooking">Modify Booking</option>
+                                <option value="cancelBooking">Cancel Booking</option>
+                                <option value="billingIssue">Billing Issue</option>
+                                <option value="luggageLost">Luggage Lost</option>
+                            </select>
+                        </div>
+                        
+                        <div class="field">
+                            
+                            <div class="thumb-group" id="satisfiedGroup">
+                                <i class="fa-solid fa-thumbs-up thumb" data-value="yes" id="thumbYes"></i>
+                                <i class="fa-solid fa-thumbs-down thumb" data-value="no" id="thumbNo"></i>
+                            </div>
+                            <input type="hidden" name="satisfied" id="satisfied" value="" />
+                        </div>
                     </div>
                     
-                    <div class="field">
-                        <label for="clia">CLIA</label>
-                        <input type="text" id="clia" />
-                    </div>
+                    <div class="short-row">
                     
-                    <div class="field">
-                        <label for="agencyId">Agency Id</label>
-                        <input type="text" id="agencyId" />
+                        <!-- <div class="field">
+                            <label for="rating">Rating</label>
+                            <select id="rating">
+                                <option value="">--</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div> -->
+        
+                        <div class="field">
+                            <label for="transcript">Transcript</label>
+                            <textarea id="transcript" class="cxone-textarea"
+                                placeholder="Paste transcript or chat history..."></textarea>
+                        </div>
+                            
+                        <!-- <div class="field">
+                            <label for="satisfied">Satisfied?</label>
+                            <div class="radio-group">
+                                <p for="satisfiedYes"><input type="radio" name="satisfied" value="yes"
+                                        id="satisfiedYes" /> Yes</p>
+                                <p for="satisfiedNo"><input type="radio" name="satisfied" value="no" id="satisfiedNo" />
+                                    No</p>
+                            </div>
+                        </div> -->
                     </div>
                 </div>
     
                 <!-- booking panel -->
                 <div class="cxone-form-panel short-row" data-tab="booking" style="display:none">
                     <div class="field">
-                        <label for="bookingId">Booking ID</label>
-                        <input type="text" id="bookingId" placeholder="Booking or reservation ID" />
+                        <label for="bookingNumber">Booking Number</label>
+                        <input type="text" id="bookingNumber" placeholder="Booking or reservation Number" />
                     </div>
                     
                     <div class="field">
@@ -151,56 +202,6 @@
                         <label for="notes">Booking Notes</label>
                         <textarea id="notes" class="cxone-textarea"
                             placeholder="Additional booking details..."></textarea>
-                    </div>
-                </div>
-    
-                <!-- intent panel -->
-                <div class="cxone-form-panel short-row" data-tab="intent" style="display:none">
-                    <div class="field">
-                        <label for="intent">Intent</label>
-                        <select id="intent">
-                            <option value="">-- Select intent --</option>
-                            <option value="billing">Billing Issue</option>
-                            <option value="support">Product Support</option>
-                            <option value="booking">Booking / Appointment</option>
-                        </select>
-                    </div>
-                    
-                    <div class="field">
-                        <label for="rating">Rating</label>
-                        <select id="rating">
-                            <option value="">--</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
-    
-                    <div class="field">
-                        <label for="intentNotes">Details</label>
-                        <textarea id="intentNotes" class="cxone-textarea"
-                            placeholder="Describe the customer's intent..."></textarea>
-                    </div>
-                        
-                    <div class="field">
-                        <label for="satisfied">Satisfied?</label>
-                        <div class="radio-group">
-                            <label for="satisfiedYes"><input type="radio" name="satisfied" value="yes"
-                                    id="satisfiedYes" /> Yes</label>
-                            <label for="satisfiedNo"><input type="radio" name="satisfied" value="no" id="satisfiedNo" />
-                                No</label>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- transcript panel -->
-                <div class="cxone-form-panel short-row" data-tab="transcript" style="display:none">
-                    <div class="field">
-                        <label for="transcript">Transcript</label>
-                        <textarea id="transcript" class="cxone-textarea"
-                            placeholder="Paste transcript or chat history..."></textarea>
                     </div>
                 </div>
     
@@ -217,16 +218,13 @@
                     <div class="field">
                         <label>Communication routes</label>
                         <div class="checkbox-group">
-                            <label><input type="checkbox" id="routeEmail" /> Email</label>
-                            <label><input type="checkbox" id="routePhone" /> Phone</label>
-                            <label><input type="checkbox" id="routeSMS" /> SMS</label>
-                            <label><input type="checkbox" id="routeChat" /> Chat</label>
+                            <p><input type="checkbox" id="routeEmail" /> Email</p>
+                            <p><input type="checkbox" id="routePhone" /> Phone</p>
+                            <p><input type="checkbox" id="routeSMS" /> SMS</p>
+                            <p><input type="checkbox" id="routeChat" /> Chat</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="field">
-                <label><input type="checkbox" id="acceptTerms" /> Accept terms and conditions</label>
             </div>
         </main>
         <div class="controls">
@@ -239,16 +237,17 @@
             </div>
         </div>
     </div>
-    <script src="modern_cxone_web_form.js"></script>
+    <script type="module" src="modern_cxone_web_form.js"></script>
     <script>
         // Tab selection and dynamic panel showing
         const tabs = document.querySelectorAll('.cxone-tab');
         const panels = document.querySelectorAll('.cxone-form-panel');
+        const formArea = document.querySelector(".cxone-form-area");
 
         function showPanel(name) {
             panels.forEach(p => {
                 if (p.dataset.tab === name) {
-                    p.style.display = '';
+                    p.style.display = 'block';
                 } else {
                     p.style.display = 'none';
                 }
@@ -273,6 +272,43 @@
         // ensure initial visible panel matches selected tab
         const initialTab = document.querySelector('.cxone-tab.selected');
         if (initialTab) showPanel(initialTab.dataset.tab);
+
+
+        // Move panels dynamically on resize
+        function repositionPanels() {
+            const isMobile = window.innerWidth < 768;
+            // const isMobile = window.innerWidth < 900;
+
+            panels.forEach(panel => {
+            const tab = document.querySelector(`.cxone-tab[data-tab="${panel.dataset.tab}"]`);
+            if (isMobile) {
+                // move panel right after tab
+                tab.insertAdjacentElement("afterend", panel);
+            } else {
+                // move panel back into main form area
+                formArea.appendChild(panel);
+            }
+            });
+        }
+
+        window.addEventListener("resize", repositionPanels);
+        repositionPanels(); // initial call
+
+        
+        const thumbs = document.querySelectorAll(".thumb");
+        const hiddenInput = document.getElementById("satisfied");
+
+        thumbs.forEach(thumb => {
+        thumb.addEventListener("click", () => {
+            // Remove selection from both
+            thumbs.forEach(t => t.classList.remove("selected"));
+            // Add to clicked one
+            thumb.classList.add("selected");
+            // Update hidden input
+            hiddenInput.value = thumb.dataset.value;
+            console.log("Satisfied:", hiddenInput.value);
+        });
+        });
     </script>
 </body>
 
