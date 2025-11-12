@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CXone Web Form - Modern Layout</title>
+    <link rel="stylesheet" href="modern_cxone_web_form-2.css">
+    <!-- <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    /> -->
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+/>
+</head>
+
+<body>
+    <div class="card">        
+		<header class="brand">
+			<div class="brand">
+				<div class="brand-logo"></div>
+			</div>
+
+			<div class="header-controls">
+				<div>
+					<select id="customerSelector" aria-label="Select cruise line">
+						<option value="C-0001">Customer 1</option>
+						<option value="C-0002">Customer 2</option>
+						<option value="C-0003">Customer 3</option>
+						<option value="C-0004">Customer 4</option>
+						<option value="C-0005">Customer 5</option>
+						<option value="C-0006">Customer 6</option>
+						<option value="C-0007">Customer 7</option>
+						<option value="C-0008">Customer 8</option>
+						<option value="C-0009">Customer 9</option>
+						<option value="C-0010">Customer 10</option>
+					</select>
+				</div>
+				<div>
+					<select id="serviceSelector" aria-label="Select cruise line">
+						<option value="holland">Holland America (HAL)</option>
+						<option value="princess">Princess Cruise (PCL)</option>
+						<option value="seabourn">Seabourn (SBN)</option>
+						<option value="cunard">Cunard (CUN)</option>
+					</select>
+				</div>
+				<div style="display:flex;align-items:center;gap:12px;">
+					<div id="authChip" class="chip auth-chip" aria-live="polite"></div>
+				</div>
+                <div id="phoneType"></div>
+                <div id="langFlag"></div>
+			</div>
+		</header>
+        
+        <main>
+            <div class="cxone-tabs" id="cxoneTabs">
+                <div class="cxone-tab" data-tab="customer" id="customerInfoTab">
+                    <div class="cxone-tab-icon">👥</div>
+                    <div class="cxone-tab-title">Customer</div>
+                    <div class="cxone-tab-desc">Customer Information</div>
+                </div>
+                <div class="cxone-tab" data-tab="travelAdvisor" id="travelAdvisorTab">
+                    <div class="cxone-tab-icon">💬</div>
+                    <div class="cxone-tab-title">Travel advisor</div>
+                    <div class="cxone-tab-desc">Travel advisor Information</div>
+                </div>
+                <div class="cxone-tab" data-tab="intent" id="intentTab">
+                    <div class="cxone-tab-icon">📝</div>
+                    <div class="cxone-tab-title">Contact Intent</div>
+                    <div class="cxone-tab-desc">Contact Intent & Purpose of request</div>
+                </div>
+                <div class="cxone-tab" data-tab="booking" id="bookingTab">
+                    <div class="cxone-tab-icon">📅</div>
+                    <div class="cxone-tab-title">Booking Details</div>
+                    <div class="cxone-tab-desc">Booking details</div>
+                </div>
+                <div class="cxone-tab" data-tab="pcc">
+                    <div class="cxone-tab-icon">💬</div>
+                    <div class="cxone-tab-title">PCC</div>
+                    <div class="cxone-tab-desc">PCC</div>
+                </div>
+                <div class="cxone-tab" data-tab="mediaType">
+                    <div class="cxone-tab-icon">💬</div>
+                    <div class="cxone-tab-title">Media type</div>
+                    <div class="cxone-tab-desc">Phone type & Authorization</div>
+                </div>
+            </div>
+
+            <!-- Modal container -->
+            <div id="cxoneModal" class="cxone-modal">
+                <div class="cxone-modal-content">
+                    <span class="cxone-close">&times;</span>
+                    <div id="cxoneModalBody">
+                        <div class="cxone-form-area">
+                            <!-- customer panel -->
+                            <div class="cxone-form-panel" data-tab="customer" style="display:none">
+                                <div class="short-row">
+                                    <div class="field">
+                                        <label for="callerName">Customer Name</label>
+                                        <input type="text" id="callerName" placeholder="Enter name" />
+                                    </div>
+                    
+                                    <div class="field">
+                                        <label for="ccn">CCN</label>
+                                        <input type="text" id="ccn" placeholder="Customer CCN" />
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <!-- travel advisor panel -->
+                            <div class="cxone-form-panel" data-tab="travelAdvisor" style="display:none">
+                                
+                                <!-- Travel advisor pill like screenshot -->
+                                <div class="field" style="margin-bottom:16px">
+                                    <button type="button" class="advisor-chip" id="travelAdvisor">🏢 Travel Advisor: Cosco Travel</button>
+                                </div>
+                                <div class="short-row">
+                                    <div class="field">
+                                        <label for="iata">IATA</label>
+                                        <input type="text" id="iata" placeholder="IATA" />
+                                    </div>
+                                    
+                                    <div class="field">
+                                        <label for="clia">CLIA</label>
+                                        <input type="text" id="clia" />
+                                    </div>
+                                    
+                                    <div class="field">
+                                        <label for="agencyId">Agency Id</label>
+                                        <input type="text" id="agencyId" />
+                                    </div>
+                                    
+                                    <div class="field">
+                                        <label for="agencyName">Agency Name</label>
+                                        <input type="text" id="agencyName" />
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <!-- intent panel -->
+                            <div class="cxone-form-panel" data-tab="intent" style="display:none">
+                                <div class="short-row">
+                                    <div class="field">
+                                        <label for="intent">Intent</label>
+                                        <select id="intent">
+                                            <option value="">-- Select intent --</option>
+                                            <option value="newBooking">New Booking</option>
+                                            <option value="modifyBooking">Modify Booking</option>
+                                            <option value="cancelBooking">Cancel Booking</option>
+                                            <option value="billingIssue">Billing Issue</option>
+                                            <option value="luggageLost">Luggage Lost</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="field">
+                                        
+                                        <div class="thumb-group" id="satisfiedGroup">
+                                            <i class="fa-solid fa-thumbs-up thumb" data-value="yes" id="thumbYes"></i>
+                                            <i class="fa-solid fa-thumbs-down thumb" data-value="no" id="thumbNo"></i>
+                                        </div>
+                                        <input type="hidden" name="satisfied" id="satisfied" value="" />
+                                    </div>
+                                </div>
+                                
+                                <div class="short-row">
+                                
+                                    <!-- <div class="field">
+                                        <label for="rating">Rating</label>
+                                        <select id="rating">
+                                            <option value="">--</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div> -->
+                    
+                                    <div class="field">
+                                        <label for="transcript">Transcript</label>
+                                        <textarea id="transcript" class="cxone-textarea"
+                                            placeholder="Paste transcript or chat history..."></textarea>
+                                    </div>
+                                        
+                                    <!-- <div class="field">
+                                        <label for="satisfied">Satisfied?</label>
+                                        <div class="radio-group">
+                                            <p for="satisfiedYes"><input type="radio" name="satisfied" value="yes"
+                                                    id="satisfiedYes" /> Yes</p>
+                                            <p for="satisfiedNo"><input type="radio" name="satisfied" value="no" id="satisfiedNo" />
+                                                No</p>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                
+                            <!-- booking panel -->
+                            <div class="cxone-form-panel" data-tab="booking" style="display:none">
+                                
+                                <!-- Travel advisor pill like screenshot -->
+                                <div class="field" style="margin-bottom:16px">
+                                    <button type="button" class="advisor-chip" id="travelAdvisor">🏢 Voyage Type: World Cruise</button>
+                                </div>
+                                
+                                <div class="short-row">
+                                    <div class="field">
+                                        <label for="bookingNumber">Booking Number</label>
+                                        <input type="text" id="bookingNumber" placeholder="Booking or reservation Number" />
+                                    </div>
+                                    
+                                    <div class="field">
+                                        <label for="bookingDate">Booking Date</label>
+                                        <input type="datetime-local" id="bookingDate" />
+                                    </div>
+                                    
+                                    <div class="field">
+                                        <label for="notes">Booking Notes</label>
+                                        <textarea id="notes" class="cxone-textarea"
+                                            placeholder="Additional booking details..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <!-- PCC panel -->
+                            <div class="cxone-form-panel" data-tab="pcc" style="display:none">
+                                <div class="short-row">
+                                    <div class="field">
+                                        <label for="transferTo">Call transfer (if any)</label>
+                                        <input type="text" id="transferTo" placeholder="Transfer to queue or agent" />
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <!-- PCC panel -->
+                            <div class="cxone-form-panel" data-tab="mediaType" style="display:none">
+                                <!-- <div class="field">
+                                    <label>Communication routes</label>
+                                    <div class="checkbox-group">
+                                        <p><input type="checkbox" id="routeEmail" /> Email</p>
+                                        <p><input type="checkbox" id="routePhone" /> Phone</p>
+                                        <p><input type="checkbox" id="routeSMS" /> SMS</p>
+                                        <p><input type="checkbox" id="routeChat" /> Chat</p>
+                                    </div>
+                                </div> -->
+                                <section class="panel" aria-labelledby="mediaType">
+                                    <h3 id="mediaType">Media Type</h3>
+                                    <div style="margin-top:8px; display:flex; gap:12px; align-items:center;">
+                                        <button type="button" class="btn-save" id="mediaCall"> EMail</button>
+                                        <button type="button" class="btn-ghost" id="mediaChat">💬 Chat</button>
+                                        <button type="button" class="btn-ghost" id="mediaSMS">📱 SMS</button>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div class="controls">
+			<div class="footer-note" style="flex:1">© <span id="copyrightYear"></span> <span
+					id="serviceFooterName">Service Line</span> — <span id="serviceFooterTagline">We connect
+					you</span></div>
+			<div class="control-buttons">
+                <button id="btnCancel" class="btn-ghost cxone-btn-secondary" type="button">Cancel</button>
+                <button id="btnNext" class="btn-next cxone-btn-primary" type="button">Save & Next</button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="modern_cxone_web_form-2.js"></script>
+    <script>
+        
+        const tabs = document.querySelectorAll(".cxone-tab");
+        const panels = document.querySelectorAll(".cxone-form-panel");
+        const modal = document.getElementById("cxoneModal");
+        const modalBody = document.getElementById("cxoneModalBody");
+        const closeBtn = document.querySelector(".cxone-close");
+
+        function showPanel(name) {
+            panels.forEach(p => {
+                p.style.display = p.dataset.tab === name ? 'block' : 'none';
+            });
+            const panel = document.querySelector(`.cxone-form-panel[data-tab="${name}"]`);
+            if (panel) {
+                const first = panel.querySelector('input, textarea, select');
+                if (first) first.focus();
+            }
+        }
+
+        tabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                const tabName = tab.getAttribute("data-tab");
+                console.log('tabName: ', tabName);
+                showPanel(tabName);
+                modal.style.display = "block"; // show modal
+            });
+        });
+
+        // Close modal
+        closeBtn.onclick = () => (modal.style.display = "none");
+        window.onclick = e => {
+            if (e.target === modal) modal.style.display = "none";
+        };
+
+        // ensure initial visible panel matches selected tab
+        const initialTab = document.querySelector('.cxone-tab.selected');
+        if (initialTab) showPanel(initialTab.dataset.tab);
+        
+        const thumbs = document.querySelectorAll(".thumb");
+        const hiddenInput = document.getElementById("satisfied");
+
+        thumbs.forEach(thumb => {
+        thumb.addEventListener("click", () => {
+            // Remove selection from both
+            thumbs.forEach(t => t.classList.remove("selected"));
+            // Add to clicked one
+            thumb.classList.add("selected");
+            // Update hidden input
+            hiddenInput.value = thumb.dataset.value;
+            console.log("Satisfied:", hiddenInput.value);
+        });
+        });
+    </script>
+</body>
+
+</html>
