@@ -550,30 +550,8 @@ button {
   }
 
   .cxone-tabs {
-    /* display: grid;
-    grid-template-columns: 1fr; */
     display: block;
   }
-
-  /* .cxone-tab {
-    margin-bottom: 0.5rem;
-  }
-
-  .cxone-tab + .cxone-form-panel {
-    display: none;
-  }
-
-  .cxone-tab.active + .cxone-form-panel {
-    display: block;
-    padding: 1rem;
-    border-left: 3px solid var(--brand, #0b6efd);
-    background: #f9fafb;
-    border-radius: 0 0 8px 8px;
-  }
-
-  .cxone-form-area {
-    display: none; /* Hide global form area in mobile */
-  } */
 }
 
 @media (max-width:520px) {
