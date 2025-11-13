@@ -1,57 +1,30 @@
-import { SAMPLE_API_RESPONSE, BRANDS, SAMPLE_API_RESPONSES } from "./data.js";
+import { BRANDS, customerIntents, cxOneAgents, deliverModes, SAMPLE_API_RESPONSES } from "./data.js";
 
 // Elements
 const serviceSelector = document.getElementById("serviceSelector");
 const authChip = document.getElementById("authChip");
 const customerInfoTab = document.getElementById("customerInfoTab");
 const travelAdvisorTab = document.getElementById("travelAdvisorTab");
+const travelAdvisorChip = document.getElementById("travelAdvisorChip");
 const intentTab = document.getElementById("intentTab");
-const intent = document.getElementById("intent");
+const intentSelector = document.getElementById("intentSelector");
 const bookingTab = document.getElementById("bookingTab");
+const voyageTypeChip = document.getElementById("voyageTypeChip");
 const bookingNumber = document.getElementById("bookingNumber");
 const bookingDate = document.getElementById("bookingDate");
-const notes = document.getElementById("notes");
+const bookingNotes = document.getElementById("bookingNotes");
 const transcript = document.getElementById("transcript");
 const btnNext = document.getElementById("btnNext");
 const btnCancel = document.getElementById("btnCancel");
 const serviceFooterName = document.getElementById("serviceFooterName");
 
 // --- ENV and Sample API Response ---
-let ENV_API_URL = "";
-// Load environment file when served over http/https; skip when opened via file:// to avoid CORS issues
-if (location.protocol === "http:" || location.protocol === "https:") {
-  fetch("cxone.env")
-    .then((r) => r.text())
-    .then((txt) => {
-      const match = txt.match(/^API_URL=(.*)$/m);
-      if (match) ENV_API_URL = match[1].trim();
-    })
-    .catch((err) => {
-      // ignore missing env file or network errors
-      console.warn("Could not load cxone.env:", err);
-    });
-} else {
-  // running from file:// – skip loading env to avoid CORS errors
-  console.info("Skipping cxone.env fetch when running from file://");
-}
+let customer = "";
 
 (function init() {
   document.getElementById("copyrightYear").textContent =
     new Date().getFullYear();
-
   setCustomer();
-
-  // const urlParams = new URLSearchParams(window.location.search);
-  // const bookingIdParam = urlParams.get("bookingNumber");
-  // if (bookingIdParam && customerIdParam) {
-  //   bookingNumber.value = bookingIdParam;
-  //   fetchFromApi({
-  //     bookingNumber: bookingIdParam,
-  //   }).then((data) => {
-  //     console.log("data: ", data);
-  //     setCustomer();
-  //   });
-  // }
 })();
 
 function setTheme(name = "holland") {
@@ -71,19 +44,21 @@ function setTheme(name = "holland") {
 
 function loadSavedTheme() {
   const saved = localStorage.getItem("theme");
-  console.log('saved: ', saved);
   setTheme(saved);
 }
 
 function setCustomer(customerId = "C-0001") {
-  const customer = SAMPLE_API_RESPONSES.find((c => c.customerId === customerId));
-  console.log("customer: ", customer);
+  customer = SAMPLE_API_RESPONSES.find((c => c.customerId === customerId));
+  
+  populateDropdown("intentSelector", customerIntents);
+  
   if(customer.callerType=="D"){
     customerInfoTab.style.display="block";
     travelAdvisorTab.style.display="none";
     setTabDetails(customerInfoTab, "/assets/directGuest.png", "Direct Guest");
   } else {
     travelAdvisorTab.style.display="block";
+    travelAdvisorChip.textContent = `🏢 Travel Advisor: ${customer.travelAdvisor}`;
     customerInfoTab.style.display="none";
     setTabDetails(travelAdvisorTab, customer.travelAdvisorImage, customer.travelAdvisor);
   }
@@ -91,6 +66,7 @@ function setCustomer(customerId = "C-0001") {
     setTabDetails(intentTab, customer.intentImage, customer.intent);
   }
   if(customer.booking){
+    voyageTypeChip.textContent = `🏢 Voyage Type: ${customer.voyageType}`;
     setTabDetails(bookingTab, customer.voyageTypeImage, customer.voyageType);
   }
 
@@ -99,7 +75,36 @@ function setCustomer(customerId = "C-0001") {
   populateFromIVR(customer);
   if (customer.lang) setLangFlag(customer.lang, customer.langFlag);
   setPhoneType(customer.phoneType, customer.phoneTypeImage);
+  populateDeliverModes(customer);
   updateNextEnabled();
+}
+
+function populateDeliverModes(customer) {
+  var deliverModesOption = [...deliverModes];
+  if(!(customer.routeEmail || customer.routeSMS || customer.routeChat)){
+    deliverModesOption = deliverModesOption.filter(mode => mode.value === 'spoken');
+  }
+  const group = document.getElementById("deliverModeGroup");
+  group.innerHTML = "";
+
+  deliverModesOption.forEach(mode => {
+    const wrapper = document.createElement("p");
+    wrapper.className = "radio-option";
+    wrapper.style.display = "block";
+    wrapper.style.cursor = "pointer";
+
+    const input = document.createElement("input");
+    input.type = "radio";
+    input.name = "deliverMode";
+    input.value = mode.value;
+    input.id = `deliverMode_${mode.value}`;
+
+    const text = document.createTextNode(" " + mode.label);
+
+    wrapper.appendChild(input);
+    wrapper.appendChild(text);
+    group.appendChild(wrapper);
+  });
 }
 
 function setTabDetails(selectedTab,src = "/assets/directGuest.png",alt){
@@ -115,7 +120,6 @@ function setTabDetails(selectedTab,src = "/assets/directGuest.png",alt){
     img.height = 200;
     img.style.objectFit = "contain";
     iconDiv.appendChild(img);
-
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -188,21 +192,25 @@ function setLangFlag(lang = "en-US", langFlag) {
 
 function applyService(s) {
   const meta = BRANDS[s] || Object.values(BRANDS)[0];
-  console.log("meta: ", meta);
   serviceFooterName.textContent = meta.name;
   document.getElementById("serviceFooterTagline").textContent = meta.tag;
 }
 
 function updateNextEnabled() {
-  btnNext.disabled = !intent.value;
+  btnNext.disabled = !intentSelector.value;
 }
 
 function populateFromIVR(payload) {
   if (!payload) return;
   if (payload.brand) serviceSelector.value = payload.brand;
+  console.log('payload: ', payload);
   if (payload.intent) {
-    intent.value = payload.intent;
+    console.log('payload.intent: ', payload.intent);
+    intentSelector.value = payload.intent;
     handleIntentChange();
+  } else {
+    intentSelector.value = '';
+
   }
   if (payload.booking) {
     bookingNumber.value = payload.booking.id || "";
@@ -210,7 +218,7 @@ function populateFromIVR(payload) {
     bookingTab.style.display = "block";
   }
   transcript.value = payload.transcript || "";
-  if (payload.notes) notes.value = payload.notes;
+  bookingNotes.value = payload.bookingNotes;
 }
 
 function handleIntentChange() {
@@ -219,10 +227,9 @@ function handleIntentChange() {
 
 // Events
 serviceSelector.addEventListener("change", () => {
-  console.log("serviceSelector: ");
   applyService(serviceSelector.value);
 });
-intent.addEventListener("change", handleIntentChange);
+intentSelector.addEventListener("change", handleIntentChange);
 
 btnCancel.addEventListener("click", () => {
   if (confirm("Discard changes?")) {
@@ -234,18 +241,43 @@ btnNext.addEventListener("click", () => {
   if (btnNext.disabled) return;
   const data = {
     brand: serviceSelector.value,
-    intent: intent.value,
+    intent: intentSelector.value,
     booking: { id: bookingNumber.value, date: bookingDate.value },
-    notes: notes.value,
+    bookingNotes: bookingNotes.value,
     routes: {
-      email: document.getElementById("routeEmail").checked,
-      phone: document.getElementById("routePhone").checked,
-      sms: document.getElementById("routeSMS").checked,
-      chat: document.getElementById("routeChat").checked,
+      email: document.getElementById("mediaMail").checked,
+      email: document.getElementById("mediaMessage").checked,
+      sms: document.getElementById("mediaChat").checked,
+      chat: document.getElementById("mediaSMS").checked,
     },
     transferTo: document.getElementById("transferTo").value,
     timestamp: new Date().toISOString(),
   };
+  
+  // const submission = {
+  //   brand: service,
+  //   customerId,
+  //   callerName,
+  //   ccn,
+  //   travelAdvisor: customer.travelAdvisor || null,
+  //   iata,
+  //   clia,
+  //   agencyId,
+  //   agencyName,
+  //   intent,
+  //   satisfied,
+  //   transcript,
+  //   booking: { id: bookingNumber, date: bookingDate },
+  //   bookingNotes,
+  //   transferTo,
+  //   mediaType,
+  //   routes,
+  //   phoneType: customer.phoneType || null,
+  //   lang: customer.lang || null,
+  //   authenticated: customer.authenticated || false,
+  //   timestamp: new Date().toISOString(),
+  // };
+  console.log('data:', data);
   localStorage.setItem("cxone-form-draft", JSON.stringify(data));
   alert("Saved locally");
 
@@ -280,42 +312,164 @@ btnNext.addEventListener("click", () => {
 });
 
 
+// searchable autocomplete multi-select dropdown start
+
+const input = document.getElementById("termSearch");
+const optionsList = document.getElementById("termOptions");
+const selectedTagsContainer = document.getElementById("selectedTags");
+
+let selectedTerms = [];
+
+function renderOptions(filter = "") {
+  optionsList.innerHTML = "";
+  const filtered = customer.termsAndConditions.filter(t => t.label.toLowerCase().includes(filter.toLowerCase()) && !selectedTerms.some(term => term.label === t.label));
+  filtered.forEach(term => {
+    const div = document.createElement("div");
+    div.className = "option-item";
+    div.textContent = term.label;
+    div.onclick = () => selectTerm(term);
+    optionsList.appendChild(div);
+  });
+  optionsList.style.display = filtered.length ? "block" : "none";
+}
+
+function selectTerm(term) {
+  selectedTerms.push(term);
+  renderTags();
+  input.value = "";
+  renderOptions();
+}
+
+function renderTags() {
+  selectedTagsContainer.innerHTML = "";
+  selectedTerms.forEach(term => {
+    const tag = document.createElement("span");
+    tag.className = "tag";
+    tag.textContent = term.label;
+    const icon = document.createElement("i");
+    icon.className = "fa fa-times";
+    icon.onclick = () => removeTerm(term);
+    tag.appendChild(icon);
+    selectedTagsContainer.appendChild(tag);
+  });
+}
+
+function removeTerm(term) {
+  selectedTerms = selectedTerms.filter(t => t.label !== term.label);
+  renderTags();
+  renderOptions();
+}
+
+input.addEventListener("focus", () => renderOptions());
+input.addEventListener("input", e => renderOptions(e.target.value));
+document.addEventListener("click", e => {
+  if (!e.target.closest("#termSearch")) {
+    optionsList.style.display = "none";
+    input.value = "";
+  }
+});
+
+// searchable autocomplete multi-select dropdown end
 
 
+// searchable autocomplete single-select dropdown start
+
+const searchInput = document.getElementById("transferSearch");
+const optionsContainer = document.getElementById("transferOptions");
+const hiddenSelect = document.getElementById("transferTo");
+
+// Render all options initially
+function renderOptions1(filter = "") {
+  optionsContainer.innerHTML = "";
+  const filtered = cxOneAgents.filter(a =>
+    a.label.toLowerCase().includes(filter.toLowerCase())
+  );
+  filtered.forEach(a => {
+    const div = document.createElement("div");
+    div.className = "option-item";
+    div.textContent = a.label;
+    div.dataset.value = a.value;
+    div.addEventListener("click", () => selectOption(a));
+    optionsContainer.appendChild(div);
+  });
+  optionsContainer.style.display = filtered.length ? "block" : "none";
+}
+
+function selectOption(agent) {
+  searchInput.value = agent.label;
+  hiddenSelect.value = agent.value;
+  optionsContainer.style.display = "none";
+}
+
+// Filter as user types
+searchInput.addEventListener("input", e => {
+  renderOptions1(e.target.value);
+});
+
+// Open options on focus
+searchInput.addEventListener("focus", () => renderOptions1(""));
+
+// Close options when clicking outside
+document.addEventListener("click", e => {
+  if (!e.target.closest("#transferSearch")) {
+    optionsContainer.style.display = "none";
+  }
+});
+
+// searchable autocomplete single-select dropdown start
 
 
-// // Build API URL by appending known params if base is provided
-// function buildApiUrl(base, params) {
-//   if (!base) return null;
-//   try {
-//     const url = new URL(base, location.href);
-//     Object.keys(params).forEach((k) => {
-//       if (params[k]) url.searchParams.set(k, params[k]);
-//     });
-//     return url.toString();
-//   } catch (e) {
-//     // base might be a raw string - try simple concatenation
-//     const qs = Object.keys(params)
-//       .filter((k) => params[k])
-//       .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(params[k]))
-//       .join("&");
-//     return base + (base.includes("?") ? "&" : "?") + qs;
-//   }
-// }
+function populateDropdown(selectId, data) {
+  const select = document.getElementById(selectId);
+  select.innerHTML = '<option value="" disabled>-- Select --</option>';
+  data.forEach(item => {
+    const opt = document.createElement("option");
+    opt.value = item.value;
+    opt.textContent = item.label;
+    select.appendChild(opt);
+  });
+}
 
-// async function fetchFromApi(params) {
-//   console.log("ENV_API_URL: ", ENV_API_URL);
-//   try {
-//     if (ENV_API_URL) {
-//       const url = buildApiUrl(ENV_API_URL, params);
-//       const resp = await fetch(url, { method: "GET", credentials: "omit" });
-//       if (!resp.ok) throw new Error("HTTP " + resp.status);
-//       const data = await resp.json();
-//       return data;
-//     } else {
-//       return SAMPLE_API_RESPONSE;
-//     }
-//   } catch (err) {
-//     return null;
-//   }
-// }
+
+const mediaButtons = document.querySelectorAll(".media-toggle-group .media-type");
+const selectedMedia = new Set();
+
+mediaButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const value = btn.dataset.value;
+
+    // Toggle active state
+    btn.classList.toggle("active");
+
+    // Manage selected values
+    if (selectedMedia.has(value)) {
+      selectedMedia.delete(value);
+    } else {
+      selectedMedia.add(value);
+    }
+
+    console.log("Selected media:", Array.from(selectedMedia));
+  });
+});
+
+
+const subscriptionButtons = document.querySelectorAll(".subscription-toggle-group .subscription-type");
+const selectedSubscription = new Set();
+
+subscriptionButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const value = btn.dataset.value;
+
+    // Toggle active state
+    btn.classList.toggle("active");
+
+    // Manage selected values
+    if (selectedSubscription.has(value)) {
+      selectedSubscription.delete(value);
+    } else {
+      selectedSubscription.add(value);
+    }
+
+    console.log("Selected media:", Array.from(selectedSubscription));
+  });
+});

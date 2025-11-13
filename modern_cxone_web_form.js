@@ -1,4 +1,4 @@
-import { SAMPLE_API_RESPONSE, BRANDS, SAMPLE_API_RESPONSES } from "./data.js";
+import { BRANDS, SAMPLE_API_RESPONSES } from "./data.js";
 
 // Elements
 const serviceSelector = document.getElementById("serviceSelector");
@@ -313,7 +313,7 @@ btnNext.addEventListener("click", () => {
 //       const data = await resp.json();
 //       return data;
 //     } else {
-//       return SAMPLE_API_RESPONSE;
+//       return SAMPLE_API_RESPONSES[0];
 //     }
 //   } catch (err) {
 //     return null;

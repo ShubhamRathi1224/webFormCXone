@@ -43,5 +43,3 @@ export const SAMPLE_API_RESPONSES = [
     notes: '',
   },
 ];
-
-export const SAMPLE_API_RESPONSE = SAMPLE_API_RESPONSES[0];

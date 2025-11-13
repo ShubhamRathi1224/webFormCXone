@@ -171,36 +171,6 @@ if (location.protocol === "http:" || location.protocol === "https:") {
   console.info("Skipping cxone.env fetch when running from file://");
 }
 
-const SAMPLE_API_RESPONSE = {
-    brand: "cunard",
-    logo: "/assets/logos/cunard.png",
-    phone: "+15551234567",
-    email: "sample@email.com",
-    customerId: "C-0001",
-    callerName: "John Doe",
-    ccn: "CCN-12345",
-    callerType: "D",
-    callerTypeLogo: "/assets/icons/guest.png",
-    travelAdvisor: "Jane Smith",
-    intent: "billing",
-    intentImage: "/assets/intents/billing.png",
-    rating: "5",
-    satisfied: "yes",
-    booking: { id: "B-123", date: "2025-11-05 09:30" },
-    notes: "Sample notes for the agent.",
-    mediaType: "Voice",
-    authenticated: true,
-    lang: "en-US",
-    langFlag: "/assets/flags/english.png",
-    transcript: "Sample IVR transcript",
-    transferTo: "Support Queue",
-    routeEmail: true,
-    routePhone: true,
-    routeSMS: false,
-    routeChat: true,
-    acceptTerms: true,
-};
-
 const SAMPLE_API_RESPONSES = [
   {
     brand: "cunard",
@@ -505,7 +475,7 @@ async function fetchFromApi(params) {
       const data = await resp.json();
       return data;
     } else {
-      const data = SAMPLE_API_RESPONSE;
+      const data = SAMPLE_API_RESPONSES[0];
       return data;
     }
   } catch (err) {
