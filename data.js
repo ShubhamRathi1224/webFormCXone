@@ -52,9 +52,9 @@ export const cxOneAgents = [
 
 // Example: Deliver mode options
 export const deliverModes = [
-  { value: "spoken", label: "Spoken" },
-  { value: "text", label: "Text" },
-  { value: "both", label: "Both Spoken and Text" }
+  { value: "spoken", label: "Spoken", isTextIncluded: false },
+  { value: "text", label: "Text", isTextIncluded: true },
+  { value: "both", label: "Both Spoken and Text", isTextIncluded: true },
 ];
 
 export const SAMPLE_API_RESPONSES = [

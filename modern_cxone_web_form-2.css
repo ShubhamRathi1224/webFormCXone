@@ -102,18 +102,11 @@ header .brand-logo {
   background-repeat: no-repeat
 }
 
-#langFlag img {
+#langFlagDiv img {
   width: 50px;
   height: 30px;
   object-fit: cover;
   border-radius: 4px;
-}
-
-#phoneType img {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 50%;
 }
 
 h2 {
@@ -215,14 +208,17 @@ button.primary:hover {
 
 .icon.check {
   background-color: #10b981;
+  color: var(--brand);
+  text-align: center;
 }
 
 .icon.cross {
   background-color: #ef4444;
+  color: #ccd5e4;
+  text-align: center;
 }
-
-.icon.warn {
-  background-color: #f59e0b
+.icon.check svg, .icon.cross svg{
+  font-size: 16px;
 }
 
 .card {
@@ -324,6 +320,15 @@ main {
 .checkbox-group {
   display: flex;
   flex-direction: column;
+  gap: 8px;
+}
+
+.subscription-toggle-group p, .media-toggle-group p {
+  cursor: pointer;
+}
+
+.subscription-toggle-group p input[type="checkbox"], .media-toggle-group p input[type="checkbox"] {
+  display: none;
 }
 
 .transcript {
@@ -381,7 +386,10 @@ button {
   border: 1px solid #e3e8f0;
   padding: 8px 12px;
   border-radius: 10px;
+  width: max-content;
 }
+
+
 
 
 .btn-ghost:hover {
@@ -513,7 +521,11 @@ button {
   opacity: 0.9;
 }
 
-#phoneType img {
+#phoneTypeDiv img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
   transform: scale(1);
   animation: pulse 2s infinite;
 }
@@ -532,6 +544,8 @@ button {
 
 .tab-details-chip {
   margin-bottom: 32px;
+  background: var(--gradient);
+  color: white;
 }
 
 /* modal styles */
