@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cunard Work Item Form</title>
+    <link rel="stylesheet" href="cunard_form.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="cunard-logo">CUNARD</div>
+            </div>
+            <div class="user-section">
+                <span class="user-icon">👤</span>
+                <span class="user-name" id="userName">Senior Agent: Jane Doe (U12345)</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Panel -->
+        <aside class="left-panel">
+            <!-- Work Item Details -->
+            <div class="panel-card">
+                <div class="panel-header">WORK ITEM DETAILS</div>
+                <div class="panel-content">
+                    <div class="menu-item" onclick="toggleMenu(this)">
+                        <span class="menu-text">Cancellation Waive Fee</span>
+                        <span class="menu-icon">ⓘ</span>
+                    </div>
+                    <div class="menu-item" onclick="toggleMenu(this)">
+                        <span class="menu-text">🔗 Air Cancel Fee</span>
+                        <span class="menu-arrow">›</span>
+                    </div>
+                    <div class="menu-item" onclick="toggleMenu(this)">
+                        <span class="menu-text">📋 Package Cancel Fee</span>
+                        <span class="menu-icon">ⓘ</span>
+                    </div>
+                    <div class="menu-item" onclick="toggleMenu(this)">
+                        <span class="menu-text">Transfer Cancel Fee</span>
+                    </div>
+                    <div class="menu-item" onclick="toggleMenu(this)">
+                        <span class="menu-text">Transfer Cancel Fee</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Employee & Reviewer Details -->
+            <div class="panel-card">
+                <div class="panel-header">EMPLOYEE & REVIEWER DETAILS</div>
+                <div class="panel-content">
+                    <div class="detail-item">
+                        <span class="detail-label">Agent:</span>
+                        <span class="detail-value">John Smith</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Team:</span>
+                        <span class="detail-value">Dev</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Role:</span>
+                        <span class="detail-value">Reservation Specialist</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Reviewer:</span>
+                        <span class="detail-value">Jane Doe</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Center Panel -->
+        <div class="center-panel">
+            <!-- Tab Navigation -->
+            <div class="tabs-container">
+                <button class="tab-button active" data-tab="passenger-1" onclick="switchTab(0)">
+                    PASSENGER 1: JOHN SMITH
+                </button>
+                <button class="tab-button" data-tab="passenger-2" onclick="switchTab(1)">
+                    PASSENGER 1: JOHN SMITH
+                </button>
+            </div>
+
+            <!-- Form Content -->
+            <div class="form-content">
+                <!-- Voyage & Booking Details Section -->
+                <section class="form-section">
+                    <h3 class="section-header">Voyage & Booking Details</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="voyageNumber">Voyage Number</label>
+                            <input type="text" id="voyageNumber" name="voyageNumber" placeholder="Enter voyage number">
+                        </div>
+                        <div class="form-group">
+                            <label for="bookingFee">Booking Fee</label>
+                            <input type="text" id="bookingFee" name="bookingFee" value="230.0" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="totalFee">Total Fee</label>
+                            <input type="text" id="totalFee" name="totalFee" value="$36.0" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="bookingNumber">Booking Number</label>
+                            <input type="text" id="bookingNumber" name="bookingNumber" placeholder="Enter booking number">
+                        </div>
+                        <div class="form-group">
+                            <label for="currency">Currency</label>
+                            <input type="text" id="currency" name="currency" value="$36.0" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="text" id="amount" name="amount" value="$6.0" readonly>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Currentent Section -->
+                <section class="form-section">
+                    <h3 class="section-header">Current</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="totalCancelFee">Total Cancel Fee</label>
+                            <input type="text" id="totalCancelFee" name="totalCancelFee" value="$00" readonly class="highlight-red">
+                        </div>
+                        <div class="form-group">
+                            <label for="totalWaived">Total Waived</label>
+                            <input type="text" id="totalWaived" name="totalWaived" placeholder="Enter waived amount">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Waiver & Cancellation Reasons Section -->
+                <section class="form-section">
+                    <h3 class="section-header">Waiver & Cancellation Reasons</h3>
+                    <div class="form-group">
+                        <label for="waiverReason">Waive Reason CD: COVID-19</label>
+                        <p class="help-text">Global pandemic related cancellation</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="waiverDescription">Waiver Reason Description:</label>
+                        <textarea id="waiverDescription" name="waiverDescription" placeholder="Enter waiver reason description"></textarea>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="cancelCode">Cancel Code</label>
+                            <input type="text" id="cancelCode" name="cancelCode" value="CAL" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="cancelAmount">Amount</label>
+                            <input type="text" id="cancelAmount" name="cancelAmount" value="$00" readonly>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Dates & Notes Section -->
+                <section class="form-section">
+                    <h3 class="section-header">Dates & Notes</h3>
+                    <div class="form-group full-width">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" name="notes" placeholder="Add your notes here..."></textarea>
+                    </div>
+                </section>
+
+                <!-- Air & Package Fees Section -->
+                <section class="form-section">
+                    <h3 class="section-header">Air & Package Fees</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="nonRefundable">Non-Refundable Premium</label>
+                            <input type="text" id="nonRefundable" name="nonRefundable" placeholder="Enter amount">
+                        </div>
+                        <div class="form-group">
+                            <label for="fremits">Fremits</label>
+                            <input type="text" id="fremits" name="fremits" value="$0" readonly>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <aside class="right-panel">
+            <button class="action-btn success-btn" onclick="handlePassReview()">
+                <span class="btn-label">PASS REVIEW</span>
+            </button>
+            <button class="action-btn warning-btn" onclick="handleCorrectionRequest()">
+                <span class="btn-label">CORRECTION REQUEST</span>
+            </button>
+            <button class="action-btn info-btn" onclick="handleCoachingRequest()">
+                <span class="btn-label">COACHING REQUEST</span>
+            </button>
+            <button class="action-btn danger-btn" onclick="handleExitQueue()">
+                <span class="btn-label">EXIT WORK QUEUE</span>
+            </button>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <div class="footer-tagline">The Cunard Experience: A World Awaits</div>
+            <div class="footer-buttons">
+                <button class="footer-btn cancel-btn" onclick="handleCancel()">CANCEL</button>
+                <button class="footer-btn save-btn" onclick="handleSave()">SAVE</button>
+                <button class="footer-btn next-btn" onclick="handleNext()">NEXT ➤</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for confirmations -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <h3 class="modal-title" id="modalTitle">Confirm Action</h3>
+            <p class="modal-message" id="modalMessage">Are you sure?</p>
+            <div class="modal-buttons">
+                <button class="modal-btn cancel" onclick="closeModal()">Cancel</button>
+                <button class="modal-btn confirm" onclick="confirmAction()">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="cunard_form.js"></script>
+</body>
+</html>

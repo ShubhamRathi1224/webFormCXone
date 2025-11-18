@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seabourn Work Item Form</title>
+    <link rel="stylesheet" href="seabourn_form.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <svg class="seabourn-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10 Q60 15 70 20 Q65 25 60 30 Q70 35 80 40 Q70 40 60 38 Q65 45 70 55 L30 55 Q35 45 40 38 Q30 40 20 40 Q30 35 40 30 Q35 25 30 20 Q40 15 50 10 Z" fill="#C9A77C"/>
+                </svg>
+                <span class="logo-text">SEABOURN</span>
+            </div>
+            <div class="user-section">
+                <span class="user-avatar">👤</span>
+                <span class="user-name">Senior Agent: Jane Doe (U12345)</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Left Panel -->
+        <aside class="left-panel">
+            <!-- Work Item Details -->
+            <div class="panel-card work-item-card">
+                <div class="card-header">WORK ITEM DETAILS</div>
+                <div class="card-content">
+                    <div class="work-item-name">CANCELLATION WAIVE FEE</div>
+                    <div class="work-item-info">
+                        <ul class="info-list">
+                            <li>Air Cancel Fee <span class="info-icon">ⓘ</span></li>
+                            <li>Package Cancel Fee Transfer Cancel Fee <span class="info-icon">📋</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Employee & Reviewer Details -->
+            <div class="panel-card employee-card">
+                <div class="card-header">EMPLOYEE & REVIEWER DETAILS</div>
+                <div class="card-content">
+                    <div class="employee-info">
+                        <p><strong>Agent:</strong> <span>John Smith</span></p>
+                        <p><strong>Team:</strong> <span>Dev</span></p>
+                        <p><strong>Role:</strong> <span>Reservation Specialist</span></p>
+                        <p><strong>Reviewer:</strong> <span>Jane Doe</span></p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Center Panel -->
+        <div class="center-panel">
+            <!-- Passenger Tabs -->
+            <div class="passenger-tabs">
+                <button class="tab-btn active" onclick="switchPassenger(1, this)">
+                    PASSENGER 1: JOHN SMITH
+                </button>
+                <button class="tab-btn" onclick="switchPassenger(2, this)">
+                    PASSENGER 2: MARY JOHNSON
+                </button>
+            </div>
+
+            <!-- Form Sections -->
+            <div class="form-sections">
+                <!-- Financial Summary -->
+                <section class="collapsible-section expanded" id="financialSection">
+                    <div class="section-header" onclick="toggleSection('financialSection')">
+                        <h3>FINANCIAL SUMMARY</h3>
+                        <div class="toggle-indicator">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                    <div class="section-body">
+                        <div class="financial-display">
+                            <div class="financial-row">
+                                <span class="label">Total Cancel Fee</span>
+                                <span class="value">$1500</span>
+                            </div>
+                            <div class="financial-row highlight">
+                                <span class="label">Total Cancel Fee</span>
+                                <span class="value">$1000</span>
+                            </div>
+                            <div class="financial-row">
+                                <span class="label">Net Cancelled Fee</span>
+                                <span class="value">$500</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Voyage & Booking Details -->
+                <section class="collapsible-section" id="voyageSection">
+                    <div class="section-header" onclick="toggleSection('voyageSection')">
+                        <h3>VOYAGE & BOOKING DETAILS</h3>
+                        <span class="toggle-arrow">›</span>
+                    </div>
+                    <div class="section-body">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="voyageNumber">Voyage Number</label>
+                                <input type="text" id="voyageNumber" placeholder="Enter voyage number">
+                            </div>
+                            <div class="form-group">
+                                <label for="bookingNumber">Booking Number</label>
+                                <input type="text" id="bookingNumber" placeholder="Enter booking number">
+                            </div>
+                            <div class="form-group">
+                                <label for="departureDate">Departure Date</label>
+                                <input type="date" id="departureDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="returnDate">Return Date</label>
+                                <input type="date" id="returnDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="destination">Destination</label>
+                                <input type="text" id="destination" placeholder="Enter destination">
+                            </div>
+                            <div class="form-group">
+                                <label for="shipName">Ship Name</label>
+                                <input type="text" id="shipName" placeholder="Enter ship name">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Total Waived -->
+                <section class="collapsible-section" id="waivedSection">
+                    <div class="section-header" onclick="toggleSection('waivedSection')">
+                        <h3>TOTAL WAIVED</h3>
+                        <span class="toggle-arrow">›</span>
+                    </div>
+                    <div class="section-body">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="totalWaived">Total Waived Amount</label>
+                                <input type="text" id="totalWaived" placeholder="Enter waived amount">
+                            </div>
+                            <div class="form-group">
+                                <label for="waiverNotes">Waiver Notes</label>
+                                <textarea id="waiverNotes" rows="4" placeholder="Enter notes about waiver..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Waiver Reason -->
+                <section class="collapsible-section" id="waiverReasonSection">
+                    <div class="section-header" onclick="toggleSection('waiverReasonSection')">
+                        <h3>WAIVER REASON</h3>
+                        <span class="toggle-arrow">›</span>
+                    </div>
+                    <div class="section-body">
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="waiverReasonCode">Waiver Reason Code</label>
+                                <select id="waiverReasonCode" onchange="handleWaiverReasonChange()">
+                                    <option value="">Select a reason</option>
+                                    <option value="COVID-19">COVID-19 - Pandemic</option>
+                                    <option value="MEDICAL">Medical Emergency</option>
+                                    <option value="PERSONAL">Personal Emergency</option>
+                                    <option value="WORK">Work Related</option>
+                                    <option value="OTHER">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="waiverReasonDescription">Reason Description</label>
+                                <textarea id="waiverReasonDescription" rows="5" placeholder="Enter detailed waiver reason..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="cancelCode">Cancel Code</label>
+                                <input type="text" id="cancelCode" placeholder="Enter cancel code">
+                            </div>
+                            <div class="form-group">
+                                <label for="refundAmount">Refund Amount</label>
+                                <input type="text" id="refundAmount" placeholder="Enter refund amount">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Air & Package Fees -->
+                <section class="collapsible-section" id="airPackageSection">
+                    <div class="section-header" onclick="toggleSection('airPackageSection')">
+                        <h3>AIR & PACKAGE FEES</h3>
+                        <span class="toggle-arrow">›</span>
+                    </div>
+                    <div class="section-body">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="airFee">Air Fee</label>
+                                <input type="text" id="airFee" placeholder="Enter air fee">
+                            </div>
+                            <div class="form-group">
+                                <label for="packageFee">Package Fee</label>
+                                <input type="text" id="packageFee" placeholder="Enter package fee">
+                            </div>
+                            <div class="form-group">
+                                <label for="nonRefundableFee">Non-Refundable Fee</label>
+                                <input type="text" id="nonRefundableFee" placeholder="Enter non-refundable fee">
+                            </div>
+                            <div class="form-group">
+                                <label for="insuranceFee">Insurance Fee</label>
+                                <input type="text" id="insuranceFee" placeholder="Enter insurance fee">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Additional Waiver Reason (duplicate as shown in image) -->
+                <section class="collapsible-section" id="additionalWaiverSection">
+                    <div class="section-header" onclick="toggleSection('additionalWaiverSection')">
+                        <h3>WAIVER REASON</h3>
+                        <span class="toggle-arrow">›</span>
+                    </div>
+                    <div class="section-body">
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="additionalNotes">Additional Notes</label>
+                                <textarea id="additionalNotes" rows="4" placeholder="Enter additional notes..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Right Panel - Senior Actions -->
+        <aside class="right-panel">
+            <div class="senior-actions-header">SENIOR ACTIONS</div>
+            
+            <button class="action-btn pass-review" onclick="handlePassReview()">
+                PASS REVIEW
+            </button>
+
+            <button class="action-btn correction-request" onclick="handleCorrectionRequest()">
+                CORRECTION REQUEST
+            </button>
+
+            <button class="action-btn coaching-request" onclick="handleCoachingRequest()">
+                COACHING REQUEST
+            </button>
+
+            <button class="action-btn exit-queue" onclick="handleExitQueue()">
+                EXIT WORK QUEUE
+            </button>
+
+            <div class="action-divider"></div>
+
+            <div class="footer-actions-mobile">
+                <button class="action-btn cancel-btn" onclick="handleCancel()">
+                    CANCEL
+                </button>
+                <button class="action-btn save-btn" onclick="handleSave()">
+                    SAVE
+                </button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <svg class="footer-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10 Q60 15 70 20 Q65 25 60 30 Q70 35 80 40 Q70 40 60 38 Q65 45 70 55 L30 55 Q35 45 40 38 Q30 40 20 40 Q30 35 40 30 Q35 25 30 20 Q40 15 50 10 Z" fill="#C9A77C"/>
+                </svg>
+                <span class="footer-tagline">This is My Ocean</span>
+            </div>
+            <div class="footer-buttons">
+                <button class="footer-btn cancel-btn" onclick="handleCancel()">CANCEL</button>
+                <button class="footer-btn save-btn" onclick="handleSave()">SAVE</button>
+                <button class="footer-btn next-btn" onclick="handleNext()">NEXT ✦</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-dialog">
+            <h3 class="modal-title" id="modalTitle">Confirm Action</h3>
+            <p class="modal-message" id="modalMessage">Are you sure?</p>
+            <div class="modal-actions">
+                <button class="modal-btn secondary" onclick="closeModal()">Cancel</button>
+                <button class="modal-btn primary" onclick="confirmAction()">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="notification" id="notification"></div>
+
+    <script src="seabourn_form.js"></script>
+</body>
+</html>

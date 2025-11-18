@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Princess Cruises Work Item Form</title>
+    <link rel="stylesheet" href="princess_form.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <svg class="princess-logo" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10 L55 20 L50 25 L45 20 Z M35 35 L65 35 L65 50 Q65 55 60 55 L40 55 Q35 55 35 50 Z" fill="#0099ff"/>
+                </svg>
+                <span class="logo-text">PRINCESS CRUISES</span>
+            </div>
+            <div class="user-info">
+                <span class="user-icon">👤</span>
+                <span class="user-name">Senior Agent: Jane Doe (U12345)</span>
+            </div>
+        </div>
+        <div class="header-divider"></div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Panel -->
+        <aside class="left-panel">
+            <!-- Work Item Details -->
+            <div class="card work-item-card">
+                <div class="card-header">WORK ITEM DETAILS</div>
+                <div class="card-body">
+                    <div class="work-item-type">
+                        <p class="label">Work Item Processing</p>
+                        <p class="title">WORK ITEM: CANCELLATION WAIVE FEE</p>
+                    </div>
+                    <div class="sub-items">
+                        <div class="sub-item">
+                            <span class="icon">›</span>
+                            <span>Air Cancel Fee</span>
+                        </div>
+                        <div class="sub-item">
+                            <span class="icon">📋</span>
+                            <span>Package Cancel Fee</span>
+                        </div>
+                        <div class="sub-item">
+                            <span class="icon">📋</span>
+                            <span>Transfer Cancel Fee</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Employee & Reviewer Details -->
+            <div class="card employee-card">
+                <div class="card-header">EMPLOYEE & REVIEWER DETAILS</div>
+                <div class="card-body">
+                    <div class="employee-info">
+                        <p><span class="label">Agent:</span> <span class="value">John Smith</span></p>
+                        <p><span class="label">Team:</span> <span class="value">Dev</span></p>
+                        <p><span class="label">Role:</span> <span class="value">Reservation Specialist</span></p>
+                        <p><span class="label">Reviewer:</span> <span class="value">Jane Doe</span></p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Center Panel -->
+        <div class="center-panel">
+            <!-- Passenger Tabs -->
+            <div class="passenger-tabs">
+                <button class="tab-btn active" onclick="switchPassenger(1, this)">
+                    PASSENGER 1: JOHN SMITH
+                </button>
+                <button class="tab-btn" onclick="switchPassenger(2, this)">
+                    PASSENGER 2: MARY JOHNSON
+                </button>
+            </div>
+
+            <!-- Voyage & Booking Details -->
+            <section class="info-section">
+                <h3 class="section-title">VOYAGE & BOOKING DETAILS</h3>
+                <div class="section-content">
+                    <div class="info-grid">
+                        <div class="info-group">
+                            <label>Voyage Number</label>
+                            <input type="text" id="voyageNumber" placeholder="Enter voyage number" value="ABC123456">
+                        </div>
+                        <div class="info-group">
+                            <label>Booking Number</label>
+                            <input type="text" id="bookingNumber" placeholder="Enter booking number" value="AB7890">
+                        </div>
+                        <div class="info-group">
+                            <label>Sailing Date</label>
+                            <input type="date" id="sailingDate">
+                        </div>
+                        <div class="info-group">
+                            <label>Return Date</label>
+                            <input type="date" id="returnDate">
+                        </div>
+                        <div class="info-group">
+                            <label>Destination</label>
+                            <input type="text" id="destination" placeholder="Enter destination">
+                        </div>
+                        <div class="info-group">
+                            <label>Ship Name</label>
+                            <input type="text" id="shipName" placeholder="Enter ship name">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Financial Summary -->
+            <section class="info-section">
+                <h3 class="section-title">FINANCIAL SUMMARY</h3>
+                <div class="section-content">
+                    <div class="financial-grid">
+                        <div class="financial-item">
+                            <span class="currency-label">Currency: USD</span>
+                            <span class="currency-value">Currency: USD</span>
+                        </div>
+                        <div class="financial-item">
+                            <span class="amount-label">Total Cancel Fee</span>
+                            <span class="amount-value">$1500</span>
+                        </div>
+                        <div class="financial-item">
+                            <span class="amount-label">Currency: USD</span>
+                            <span class="amount-value">$1000</span>
+                        </div>
+                        <div class="financial-item">
+                            <span class="amount-label">Total Waived</span>
+                            <span class="amount-value">500</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Waiver Reason -->
+            <section class="info-section">
+                <h3 class="section-title">WAIVER REASON</h3>
+                <div class="section-content">
+                    <div class="reason-item">
+                        <p class="reason-label">Waive Reason CD: COVID-19</p>
+                        <p class="reason-description">Waiver Reason Description: Global/pandemic related cancellation</p>
+                        <span class="reason-amount">$1000</span>
+                        <span class="reason-code">CXL</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cancel Code -->
+            <section class="info-section">
+                <h3 class="section-title">CANCEL CODE</h3>
+                <div class="section-content">
+                    <div class="cancel-item">
+                        <div class="cancel-label-group">
+                            <p class="cancel-label">Total Waived</p>
+                            <p class="cancel-label">Net Cancelled Fee</p>
+                        </div>
+                        <div class="cancel-value-group">
+                            <span class="cancel-value">$1500</span>
+                            <span class="cancel-code-value">CXL</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Right Panel -->
+        <aside class="right-panel">
+            <h3 class="panel-title">SENIOR ACTIONS</h3>
+
+            <button class="action-btn pass-review" onclick="handlePassReview()">
+                ✓ PASS REVIEW
+            </button>
+
+            <button class="action-btn correction-request" onclick="handleCorrection()">
+                CORRECTION REQUEST
+            </button>
+
+            <button class="action-btn eareview" onclick="handleEAReview()">
+                ✏️ EAREVIEW
+                <span class="chat-icon">💬</span>
+            </button>
+
+            <button class="action-btn coaching-request" onclick="handleCoaching()">
+                COACHING REQUEST
+            </button>
+
+            <button class="action-btn exit-queue" onclick="handleExit()">
+                EXIT WORK QUEUE
+            </button>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <span class="footer-tagline">Escape to the Sea</span>
+            </div>
+            <div class="footer-buttons">
+                <button class="footer-btn cancel-btn" onclick="handleCancel()">CANCEL</button>
+                <button class="footer-btn save-btn" onclick="handleSave()">SAVE</button>
+                <button class="footer-btn save-next-btn" onclick="handleSaveNext()">SAVE & NEXT</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <h3 class="modal-title" id="modalTitle">Confirm Action</h3>
+            <p class="modal-message" id="modalMessage">Are you sure?</p>
+            <div class="modal-buttons">
+                <button class="modal-btn secondary" onclick="closeModal()">Cancel</button>
+                <button class="modal-btn primary" onclick="confirmAction()">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="notification" id="notification"></div>
+
+    <script src="princess_form.js"></script>
+</body>
+</html>

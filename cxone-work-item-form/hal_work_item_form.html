@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAL Work Item Form - Holland America Line</title>
+    <link rel="stylesheet" href="hal_work_item_form.css">
+</head>
+<body>
+    <!-- ================================================
+         HEADER
+         ================================================ -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <svg class="hal-logo" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                    <!-- HAL Logo -->
+                    <circle cx="30" cy="20" r="8" fill="#FF6633"/>
+                    <circle cx="40" cy="15" r="5" fill="#FF6633"/>
+                    <path d="M 35 25 Q 38 28 35 30" stroke="#FF6633" stroke-width="2" fill="none"/>
+                    <text x="45" y="30" font-size="24" font-weight="bold" fill="#FF6633">HAL</text>
+                </svg>
+                <span class="logo-text">Holland America Line</span>
+            </div>
+            <div class="user-info">
+                <span class="user-icon">👤</span>
+                <span id="userDisplay">Senior Agent: Jane Doe (U12345)</span>
+            </div>
+        </div>
+        <div class="header-divider"></div>
+    </header>
+
+    <!-- ================================================
+         MAIN CONTENT
+         ================================================ -->
+    <main class="main-container">
+        <!-- LEFT PANEL: WORK ITEM & EMPLOYEE DETAILS -->
+        <aside class="left-panel">
+            <!-- Work Item Details Card -->
+            <div class="card">
+                <div class="card-header">Work Item Details</div>
+                <div class="card-body">
+                    <div class="work-item-type">
+                        <div class="label">Work Item: Cancellation Waive Fee</div>
+                        <div class="title">Sub-Items</div>
+                    </div>
+                    <div class="sub-items">
+                        <div class="sub-item">
+                            <span class="icon">✓</span>
+                            <span>Air Cancel Fee</span>
+                        </div>
+                        <div class="sub-item">
+                            <span class="icon">✓</span>
+                            <span>Package Cancel Fee</span>
+                        </div>
+                        <div class="sub-item">
+                            <span class="icon">✓</span>
+                            <span>Transfer Cancel Fee</span>
+                        </div>
+                    </div>
+                    <div class="work-item-icon" title="Cancellation-related work item">✈️ 🏨 🚗</div>
+                </div>
+            </div>
+
+            <!-- Employee & Reviewer Details Card -->
+            <div class="card">
+                <div class="card-header">Employee & Reviewer Details</div>
+                <div class="card-body">
+                    <div class="employee-info">
+                        <p><span class="label">Agent:</span> <span class="value">John Smith</span></p>
+                        <p><span class="label">Team:</span> <span class="value">Devl</span></p>
+                        <p><span class="label">Dept:</span> <span class="value">Dev</span></p>
+                        <p><span class="label">Role:</span> <span class="value">Reservation Specialist</span></p>
+                        <p><span class="label">Reviewer:</span> <span class="value">Jane Doe</span></p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- CENTER PANEL: PASSENGER & FORM DETAILS -->
+        <section class="center-panel">
+            <!-- Passenger Tabs -->
+            <div class="passenger-section">
+                <div class="passenger-tabs">
+                    <button class="tab-btn active" data-passenger="1">
+                        <span class="passenger-label">PASSENGER 1:</span>
+                        <span class="passenger-name">JOHN SMITH</span>
+                    </button>
+                    <button class="tab-btn" data-passenger="2">
+                        <span class="passenger-label">PASSENGER 2:</span>
+                        <span class="passenger-name">MARY JOHNSON</span>
+                    </button>
+                    <button class="tab-btn" data-passenger="3">
+                        <span class="passenger-label">PASSENGER 3:</span>
+                        <span class="passenger-name">ROBERT DAVIS</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Voyage Details Section -->
+            <div class="info-section">
+                <div class="section-title">Voyage Details</div>
+                <div class="section-content">
+                    <div class="info-grid">
+                        <div class="info-group">
+                            <label>Voyage Number</label>
+                            <input type="text" id="voyageNumber" placeholder="e.g., ABC123456" class="voyage-detail-input">
+                        </div>
+                        <div class="info-group">
+                            <label>Booking Number</label>
+                            <input type="text" id="bookingNumber" placeholder="e.g., ABC123456" class="voyage-detail-input">
+                        </div>
+                        <div class="info-group">
+                            <label>Currency</label>
+                            <input type="text" id="currency" placeholder="e.g., USD" class="voyage-detail-input" value="USD">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cancellation Fees Section -->
+            <div class="info-section">
+                <div class="section-title">Cancellation Fees</div>
+                <div class="section-content">
+                    <div class="fees-grid">
+                        <div class="fee-item">
+                            <span class="fee-label">Tier 1 Cancel Fee</span>
+                            <span class="fee-value">$1900</span>
+                        </div>
+                        <div class="fee-item">
+                            <span class="fee-label">Tier 2 Cancel Fee</span>
+                            <span class="fee-value">$1000</span>
+                        </div>
+                        <div class="fee-item">
+                            <span class="fee-label">Net Cancelled Fee</span>
+                            <span class="fee-value">$500</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Waiver & Cancellation Section -->
+            <div class="info-section">
+                <div class="section-title">Waiver & Cancellation Details</div>
+                <div class="section-content">
+                    <div class="waiver-grid">
+                        <div class="waiver-item">
+                            <span class="waiver-label">Waiver Open Date</span>
+                            <span class="waiver-value" id="waiverOpenDate">2023-03-01</span>
+                        </div>
+                        <div class="waiver-item">
+                            <span class="waiver-label">Waiver Reason CD</span>
+                            <input type="text" id="waiverReasonCode" placeholder="e.g., ILLNESS" class="waiver-input">
+                        </div>
+                        <div class="waiver-item">
+                            <span class="waiver-label">Waiver Reason Description</span>
+                            <input type="text" id="waiverReasonDesc" placeholder="e.g., COVID-19" class="waiver-input">
+                        </div>
+                        <div class="waiver-item">
+                            <span class="waiver-label">Cancel Code</span>
+                            <input type="text" id="cancelCode" placeholder="e.g., CXL" class="waiver-input">
+                        </div>
+                        <div class="waiver-item">
+                            <span class="waiver-label">Notes in Ref Item</span>
+                            <input type="text" id="refNotes" placeholder="e.g., Global pandemic" class="waiver-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Passengers Section -->
+            <div class="info-section">
+                <div class="section-title">Other Passengers</div>
+                <div class="section-content">
+                    <div class="other-passengers">
+                        <div class="passenger-card">
+                            <div class="passenger-header">PASSENGER 1: JOHN SMITH</div>
+                            <div class="passenger-details">
+                                <p><strong>Voyage Number:</strong> ABC123456</p>
+                                <p><strong>Booking Number:</strong> ABC123456</p>
+                                <p><strong>Visiting Number:</strong> USD</p>
+                                <p><strong>Total Cancel Fee:</strong> $500</p>
+                                <p><strong>Waived Amount:</strong> $0</p>
+                                <p><strong>Waiver Reason CD:</strong> COVID-19</p>
+                                <p><strong>Waiver Reason Description:</strong> Global pandemic related cancellation</p>
+                                <p><strong>Cancel Code:</strong> CXL</p>
+                                <p><strong>Notes in Ref Item:</strong> $0</p>
+                                <p><strong>Waiver Open Date:</strong> 2023-03-01</p>
+                            </div>
+                        </div>
+
+                        <div class="passenger-card">
+                            <div class="passenger-header">PASSENGER 2: MARY JOHNSON</div>
+                            <div class="passenger-details">
+                                <p><strong>Voyage Number:</strong> AB123456</p>
+                                <p><strong>Booking Number:</strong> AB123456</p>
+                                <p><strong>Visiting Number:</strong> USD</p>
+                                <p><strong>Total Cancel Fee:</strong> $500</p>
+                                <p><strong>Waived Amount:</strong> $0</p>
+                                <p><strong>Waiver Reason CD:</strong> COVID-19</p>
+                                <p><strong>Waiver Reason Description:</strong> Global pandemic related cancellation</p>
+                                <p><strong>Cancel Code:</strong> CXL</p>
+                                <p><strong>Notes in Ref Item:</strong> $0</p>
+                                <p><strong>Waiver Open Date:</strong> 2023-03-01</p>
+                            </div>
+                        </div>
+
+                        <div class="passenger-card">
+                            <div class="passenger-header">PASSENGER 3: ROBERT DAVIS</div>
+                            <div class="passenger-details">
+                                <p><strong>Voyage Number:</strong> BCF123456</p>
+                                <p><strong>Booking Number:</strong> BCF123456</p>
+                                <p><strong>Visiting Number:</strong> USD</p>
+                                <p><strong>Total Cancel Fee:</strong> $500</p>
+                                <p><strong>Waived Amount:</strong> $0</p>
+                                <p><strong>Waiver Reason CD:</strong> COVID-19</p>
+                                <p><strong>Waiver Reason Description:</strong> Global pandemic related cancellation</p>
+                                <p><strong>Cancel Code:</strong> CXL</p>
+                                <p><strong>Notes in Ref Item:</strong> $0</p>
+                                <p><strong>Waiver Open Date:</strong> 2023-03-01</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RIGHT PANEL: SENIOR ACTIONS -->
+        <aside class="right-panel">
+            <div class="panel-title">Senior Actions</div>
+            
+            <button class="action-btn pass-review" id="passReviewBtn">
+                <span>🔒 PASS REVIEW</span>
+            </button>
+
+            <button class="action-btn correction-request" id="correctionBtn">
+                <span>📝 CORRECTION REQUEST</span>
+            </button>
+
+            <button class="action-btn coaching-request" id="coachingBtn">
+                <span>📧 COACHING REQUEST</span>
+            </button>
+
+            <button class="action-btn cancel-btn" id="cancelBtn">
+                <span>❌ CANCEL</span>
+            </button>
+
+            <button class="action-btn exit-queue" id="exitQueueBtn">
+                <span>🚪 EXIT WORK QUEUE</span>
+            </button>
+        </aside>
+    </main>
+
+    <!-- ================================================
+         FOOTER
+         ================================================ -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <div class="footer-tagline">Holland America Line - Savor the Journey</div>
+            <div class="footer-buttons">
+                <button class="footer-btn" id="saveBtn">Save</button>
+                <button class="footer-btn save-next-btn" id="saveNextBtn">Save & Next</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================================================
+         MODAL & NOTIFICATIONS
+         ================================================ -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-title" id="modalTitle">Confirm Action</div>
+            <div class="modal-message" id="modalMessage">Are you sure you want to proceed?</div>
+            <div class="modal-buttons">
+                <button class="modal-btn secondary" id="cancelModalBtn">Cancel</button>
+                <button class="modal-btn primary" id="confirmBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <!-- ================================================
+         SCRIPTS
+         ================================================ -->
+    <script src="hal_work_item_form.js"></script>
+</body>
+</html>

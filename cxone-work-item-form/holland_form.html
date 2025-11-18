@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holland America Line - Work Item Form</title>
+    <link rel="stylesheet" href="holland_form.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="holland-logo">⚓ Holland America Line</div>
+            </div>
+            <div class="user-section">
+                <span class="user-avatar">👤</span>
+                <span class="user-name">Senior Agent: Jane Doe (U12345)</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Left Sidebar -->
+        <aside class="left-sidebar">
+            <div class="sidebar-indicator"></div>
+
+            <!-- Work Item Details -->
+            <div class="work-item-card">
+                <h3 class="card-title">WORK ITEM DETAILS</h3>
+                <div class="card-content">
+                    <div class="work-item-header">
+                        <div class="work-item-type">
+                            <p class="label">Work Item Type:</p>
+                            <p class="value">Sub-Ils</p>
+                        </div>
+                    </div>
+
+                    <div class="sub-items-section">
+                        <p class="label">Sub-Items:</p>
+                        <ul class="sub-items-list">
+                            <li>Air Cancel Fee</li>
+                            <li>Package Cancel Fee</li>
+                            <li>Transfer Cancel Fee</li>
+                        </ul>
+                    </div>
+
+                    <div class="status-circle">
+                        <svg viewBox="0 0 60 60" class="checkmark">
+                            <circle cx="30" cy="30" r="28" class="circle-bg"/>
+                            <polyline points="18,32 25,40 42,22" class="checkmark-path"/>
+                        </svg>
+                    </div>
+
+                    <div class="status-info">
+                        <p><span class="label">Status:</span> <span class="value">Reviewed</span></p>
+                        <p><span class="label">Status:</span> <span class="value">Reviewed</span></p>
+                        <p><span class="label">Reviewer:</span> <span class="value">Jane Doe</span></p>
+                        <p><span class="label">Date:</span> <span class="value">2023-10-26</span></p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Center Content -->
+        <div class="center-content">
+            <!-- Passenger Tabs -->
+            <div class="passenger-tabs">
+                <button class="tab-button" onclick="switchTab('passenger-1', this)">
+                    PASSENGER DETAILS
+                </button>
+                <button class="tab-button active" data-passenger="1" onclick="switchTab('passenger-1', this)">
+                    PASSENGER 1: JOHN SMITH
+                </button>
+                <button class="tab-button" data-passenger="2" onclick="switchTab('passenger-2', this)">
+                    MARY JOHNSON
+                </button>
+            </div>
+
+            <!-- Financial Summary Section -->
+            <section class="expandable-section" id="financialSection">
+                <div class="section-header" onclick="toggleSection('financialSection')">
+                    <span class="toggle-icon">›</span>
+                    <h3>FINANCIAL SUMMARY</h3>
+                </div>
+                <div class="section-content">
+                    <div class="financial-grid">
+                        <div class="financial-item">
+                            <p class="label">Total Cancel Fee:</p>
+                            <p class="value">$1500</p>
+                        </div>
+                        <div class="financial-item">
+                            <p class="label">Total Waived:</p>
+                            <p class="value">$1000</p>
+                        </div>
+                        <div class="financial-item">
+                            <p class="label">Net Cancelled Fee:</p>
+                            <p class="value">$500</p>
+                        </div>
+                        <div class="financial-item highlight">
+                            <p class="label">Total Cancel Fee:</p>
+                            <p class="value">$1500</p>
+                        </div>
+                        <div class="financial-item highlight">
+                            <p class="label">Total Waived:</p>
+                            <p class="value">$1000</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Voyage & Booking Details Section -->
+            <section class="expandable-section" id="voyageSection">
+                <div class="section-header" onclick="toggleSection('voyageSection')">
+                    <span class="toggle-icon">›</span>
+                    <h3>VOYAGE & BOOKING DETAILS</h3>
+                </div>
+                <div class="section-content">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="voyageNumber">Voyage Number</label>
+                            <input type="text" id="voyageNumber" placeholder="Enter voyage number">
+                        </div>
+                        <div class="form-group">
+                            <label for="bookingNumber">Booking Number</label>
+                            <input type="text" id="bookingNumber" placeholder="Enter booking number">
+                        </div>
+                        <div class="form-group">
+                            <label for="departureDate">Departure Date</label>
+                            <input type="date" id="departureDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="returnDate">Return Date</label>
+                            <input type="date" id="returnDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="destination">Destination</label>
+                            <input type="text" id="destination" placeholder="Enter destination">
+                        </div>
+                        <div class="form-group">
+                            <label for="ship">Ship</label>
+                            <input type="text" id="ship" placeholder="Enter ship name">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Waiver & Reason Codes Section -->
+            <section class="expandable-section" id="waiverSection">
+                <div class="section-header" onclick="toggleSection('waiverSection')">
+                    <span class="toggle-icon">›</span>
+                    <h3>WAIVER & REASON CODES</h3>
+                </div>
+                <div class="section-content">
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="waiverCode">Waiver Reason Code</label>
+                            <select id="waiverCode" onchange="updateWaiverDescription()">
+                                <option value="">Select a reason</option>
+                                <option value="COVID-19">COVID-19 - Pandemic</option>
+                                <option value="MEDICAL">Medical Emergency</option>
+                                <option value="PERSONAL">Personal Emergency</option>
+                                <option value="OTHER">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="waiverDescription">Waiver Reason Description</label>
+                            <textarea id="waiverDescription" rows="4" placeholder="Enter detailed reason for waiver..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="cancelCode">Cancel Code</label>
+                            <input type="text" id="cancelCode" placeholder="Enter cancel code">
+                        </div>
+                        <div class="form-group">
+                            <label for="waiverAmount">Waiver Amount</label>
+                            <input type="text" id="waiverAmount" placeholder="Enter waiver amount">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Air & Package Fees Section -->
+            <section class="expandable-section" id="feesSection">
+                <div class="section-header" onclick="toggleSection('feesSection')">
+                    <span class="toggle-icon">›</span>
+                    <h3>AIR & PACKAGE FEES</h3>
+                </div>
+                <div class="section-content">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="airFee">Air Fee</label>
+                            <input type="text" id="airFee" placeholder="Enter air fee">
+                        </div>
+                        <div class="form-group">
+                            <label for="packageFee">Package Fee</label>
+                            <input type="text" id="packageFee" placeholder="Enter package fee">
+                        </div>
+                        <div class="form-group">
+                            <label for="nonRefundable">Non-Refundable Premium</label>
+                            <input type="text" id="nonRefundable" placeholder="Enter amount">
+                        </div>
+                        <div class="form-group">
+                            <label for="insuranceFee">Insurance Fee</label>
+                            <input type="text" id="insuranceFee" placeholder="Enter insurance fee">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Right Sidebar - Senior Actions -->
+        <aside class="right-sidebar">
+            <h3 class="sidebar-title">SENIOR ACTIONS</h3>
+            
+            <button class="action-button pass-review" onclick="handlePassReview()">
+                <span class="button-icon">✓</span>
+                <span class="button-text">PASS REVIEW</span>
+            </button>
+
+            <button class="action-button correction-request" onclick="handleCorrectionRequest()">
+                <span class="button-icon">🔧</span>
+                <span class="button-text">CORRECTION REQUEST</span>
+            </button>
+
+            <button class="action-button coaching-request" onclick="handleCoachingRequest()">
+                <span class="button-icon">💬</span>
+                <span class="button-text">COACHING REQUEST</span>
+            </button>
+
+            <button class="action-button exit-queue" onclick="handleExitQueue()">
+                <span class="button-icon">🚪</span>
+                <span class="button-text">EXIT WORK QUEUE</span>
+            </button>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <div class="footer-logo">⚓ Holland America Line</div>
+                <span class="footer-tagline">Savor the Journey</span>
+            </div>
+            <div class="footer-buttons">
+                <button class="btn btn-cancel" onclick="handleCancel()">CANCEL</button>
+                <button class="btn btn-save" onclick="handleSave()">SAVE</button>
+                <button class="btn btn-save-next" onclick="handleSaveNext()">SAVE & NEXT</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <h3 class="modal-title" id="modalTitle">Confirm Action</h3>
+            <p class="modal-message" id="modalMessage">Are you sure?</p>
+            <div class="modal-buttons">
+                <button class="modal-btn cancel" onclick="closeModal()">Cancel</button>
+                <button class="modal-btn confirm" onclick="confirmAction()">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="notification" id="notification"></div>
+
+    <script src="holland_form.js"></script>
+</body>
+</html>

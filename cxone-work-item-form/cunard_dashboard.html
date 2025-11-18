@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cunard Work Item Dashboard</title>
+    <link rel="stylesheet" href="cunard_dashboard.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <svg class="cunard-logo" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 20 L15 10 L20 20 L25 10 L30 20 L35 10 L40 20 M50 15 Q50 10 55 10 Q60 10 60 15 L60 25 Q60 30 55 30 Q50 30 50 25 M70 10 L70 30 M75 10 L85 30 L80 25 M85 10 L75 30" stroke="white" stroke-width="1.5" fill="none"/>
+                </svg>
+                <span class="logo-text">Cunard</span>
+            </div>
+            <div class="user-info">
+                <span class="user-icon">👤</span>
+                <span class="user-name">Senior Agent: Jane Doe (U12345)</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard -->
+    <div class="dashboard-container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar-left">
+            <!-- Work Item Details -->
+            <div class="card work-item-card">
+                <div class="card-header">
+                    <h3>WORK ITEM DETAILS</h3>
+                    <button class="icon-btn settings-btn" onclick="openSettings()" title="Settings">⚙️</button>
+                </div>
+                <div class="card-content">
+                    <div class="work-item-title">WORK ITEM: CANCELLATION WAIVE FEE</div>
+                    <div class="work-item-list">
+                        <div class="work-item-row">
+                            <span class="item-name">Air Cancel Fee</span>
+                            <span class="item-badge">✓</span>
+                        </div>
+                        <div class="work-item-row">
+                            <span class="item-name">Package Cancel Fee</span>
+                            <span class="item-badge">⊙</span>
+                        </div>
+                        <div class="work-item-row">
+                            <span class="item-name">Transfer Cancel Fee</span>
+                            <span class="item-badge">⊙</span>
+                        </div>
+                    </div>
+                    <div class="employee-section">
+                        <p><strong>EMPLOYEE & REVIEWER DETAILS</strong></p>
+                        <p class="detail-text">Agent: John Smith</p>
+                        <p class="detail-text">Role: Reservation Specialist</p>
+                        <p class="detail-text">Reviewer: Jane Doe</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passenger Overview -->
+            <div class="card passenger-card">
+                <div class="card-header">
+                    <h3>PASSENGER OVERVIEW</h3>
+                </div>
+                <div class="card-content">
+                    <div class="passenger-tabs-sm">
+                        <button class="passenger-tab-sm active" onclick="switchPassengerTab(1, this)">
+                            PASSENGER 1: JOHN SMITH
+                        </button>
+                        <button class="passenger-tab-sm" onclick="switchPassengerTab(2, this)">
+                            PASSENGER 2: MARY JOHNSON
+                        </button>
+                    </div>
+                    <div class="passenger-details" id="passengerDetails1">
+                        <div class="passenger-info-row">
+                            <span class="label">Voyage:</span>
+                            <span class="value">ABC123456</span>
+                        </div>
+                        <div class="passenger-info-row">
+                            <span class="label">Total Fee:</span>
+                            <span class="value">$1500</span>
+                        </div>
+                        <div class="passenger-info-row">
+                            <span class="label">Booking:</span>
+                            <span class="value">BK123456</span>
+                        </div>
+                        <div class="passenger-info-row">
+                            <span class="label">Total Fee:</span>
+                            <span class="value">$1500</span>
+                        </div>
+                        <div class="passenger-info-row">
+                            <span class="label">Reservation Specialist</span>
+                            <span class="value">Waived: $1,000</span>
+                        </div>
+                    </div>
+                    <div class="passenger-details" id="passengerDetails2" style="display: none;">
+                        <div class="passenger-info-row">
+                            <span class="label">Voyage:</span>
+                            <span class="value">ABC123457</span>
+                        </div>
+                        <div class="passenger-info-row">
+                            <span class="label">Total Fee:</span>
+                            <span class="value">$2000</span>
+                        </div>
+                        <div class="passenger-info-row">
+                            <span class="label">Booking:</span>
+                            <span class="value">BK123457</span>
+                        </div>
+                        <div class="passenger-info-row">
+                            <span class="label">Total Fee:</span>
+                            <span class="value">$2000</span>
+                        </div>
+                        <div class="passenger-info-row">
+                            <span class="label">Reservation Specialist</span>
+                            <span class="value">Waived: $1,500</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Document Upload/View -->
+            <div class="card document-card">
+                <div class="card-header">
+                    <h3>DOCUMENT UPLOAD/VIEW</h3>
+                    <button class="icon-btn add-btn" onclick="addDocument()" title="Add Document">+</button>
+                </div>
+                <div class="card-content">
+                    <div class="document-item">
+                        <span class="doc-icon">📎</span>
+                        <span class="doc-name">Invoice_P1_ABC123456.pdf</span>
+                    </div>
+                    <div class="document-item">
+                        <span class="doc-icon">📎</span>
+                        <span class="doc-name">Waiver_Form_Signed.png</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Center Panel -->
+        <div class="panel-center">
+            <!-- Financial Summary -->
+            <div class="card financial-card">
+                <div class="card-header">
+                    <h3>FINANCIAL SUMMARY</h3>
+                    <button class="icon-btn expand-btn" onclick="toggleCard(this)" title="Expand/Collapse">⊕</button>
+                </div>
+                <div class="card-content">
+                    <div class="financial-item highlight">
+                        <span class="financial-label">TOTAL CANCEL FEE: <strong>$1500</strong></span>
+                    </div>
+                    <div class="financial-item highlight">
+                        <span class="financial-label">TOTAL WAIVED</span>
+                    </div>
+                    <div class="financial-item">
+                        <span class="financial-label">NET CANCELLED FEE</span>
+                        <span class="financial-value">$500</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reason Codes & Notes -->
+            <div class="card reason-card">
+                <div class="card-header">
+                    <h3>REASON CODES & NOTES</h3>
+                    <button class="icon-btn expand-btn" onclick="toggleCard(this)" title="Expand/Collapse">⊕</button>
+                </div>
+                <div class="card-content">
+                    <div class="form-section">
+                        <label>WAIVER REASON</label>
+                        <p class="reason-text">COVID-19 - Global pandemic related cancellation</p>
+                        <button class="icon-btn add-note-btn" onclick="addNote()" title="Add Note">+</button>
+                    </div>
+                    <div class="form-section">
+                        <label>CANCEL CODE</label>
+                        <input type="text" id="cancelCode" placeholder="Enter cancel code" class="form-input">
+                        <button class="icon-btn up-btn" onclick="moveUp()" title="Move Up">⬆</button>
+                    </div>
+                    <div class="form-section">
+                        <label>CANCEL CODE</label>
+                        <textarea id="reviwerNotes" placeholder="Enter reviewer notes" class="form-textarea"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar - Action Center -->
+        <aside class="sidebar-right">
+            <div class="action-center-header">
+                <h3>ACTION CENTER</h3>
+                <button class="customize-btn" onclick="customizeLayout()">Customize Layout</button>
+            </div>
+
+            <div class="action-buttons">
+                <button class="action-btn pass-review-btn" onclick="handlePassReview()">
+                    ✓ PASS REVIEW
+                </button>
+
+                <button class="action-btn correction-btn" onclick="handleCorrection()">
+                    › CORRECTION REQUEST
+                </button>
+
+                <button class="action-btn coaching-btn" onclick="handleCoaching()">
+                    ⊡ COACHING REQUEST
+                </button>
+
+                <div class="action-divider"></div>
+
+                <button class="action-btn exit-btn" onclick="handleExit()">
+                    EXIT WORK QUEUE
+                </button>
+            </div>
+
+            <div class="footer-actions">
+                <button class="footer-btn cancel-btn" onclick="handleCancel()">CANCEL</button>
+                <button class="footer-btn save-btn" onclick="handleSave()">SAVE</button>
+                <button class="footer-btn save-next-btn" onclick="handleSaveNext()">SAVE & NEXT</button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <span class="footer-tagline">The Cunard Experience: A World Awaits</span>
+            </div>
+            <div class="footer-buttons">
+                <button class="footer-btn cancel-btn" onclick="handleCancel()">CANCEL</button>
+                <button class="footer-btn save-btn" onclick="handleSave()">SAVE</button>
+                <button class="footer-btn save-next-btn" onclick="handleSaveNext()">SAVE & NEXT</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <h3 class="modal-title" id="modalTitle">Confirm Action</h3>
+            <p class="modal-message" id="modalMessage">Are you sure?</p>
+            <div class="modal-buttons">
+                <button class="modal-btn secondary" onclick="closeModal()">Cancel</button>
+                <button class="modal-btn primary" onclick="confirmAction()">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <script src="cunard_dashboard.js"></script>
+</body>
+</html>
