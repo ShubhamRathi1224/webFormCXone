@@ -139,6 +139,15 @@ p{
   height: fit-content;
 }
 
+.basic-details-div .short-row {
+  margin-right: 30px;
+}
+
+.basic-details-div .short-row .field {
+  justify-items: center;
+  align-content: center;
+}
+
 .basic-details-div .short-row .field:not(:last-child) {
   border-right: 1px solid #ddd;
 }
@@ -680,31 +689,31 @@ button {
 .loyalty-star {
   font-size: 25px;
   color: gold;
-  animation: glitter 1s linear 0s  normal;
+  animation: zoom-circle-in 1s linear 0s  normal, glitter 2s infinite;
 }
 
 .loyalty-silver-star {
   font-size: 25px;
   color: silver;
-  animation: glitter 1s linear 0s  normal;
+  animation: zoom-circle-in 1s linear 0s  normal, glitter 2s infinite;
 }
 
 .loyalty-gold-star {
   font-size: 25px;
   color: gold;
-  animation: glitter 1s linear 0s  normal;
+  animation: zoom-circle-in 1s linear 0s  normal, glitter 2s infinite;
 }
 
 .loyalty-platinum-star {
   font-size: 25px;
   color: #115500;
-  animation: glitter 1s linear 0s  normal;
+  animation: zoom-circle-in 1s linear 0s  normal, glitter 2s infinite;
 }
 
 
 
 /*CSS3 keyframes for glittering effect*/
-@keyframes glitter {
+@keyframes zoom-circle-in {
   0% {
     -webkit-transform: scale(0.1) rotate(0deg);
     opacity: 0;
@@ -722,6 +731,15 @@ button {
     opacity: 1;
   }
 }
+
+/* @keyframes glitter {
+  0%, 100% {
+    filter: brightness(.9) drop-shadow(0 0 2px rgba(255, 252, 235, 0.5));
+  }
+  50% {
+    filter: brightness(1.1) drop-shadow(0 0 8px rgba(255, 252, 233, 0.8));
+  }
+} */
 
 .star-value {
   position: absolute;
@@ -953,6 +971,14 @@ button {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  
+  .basic-details-div .short-row .field {
+    border-right: none !important;
+  }
+  .basic-details-div .short-row .field:first-child {
+    border-right: 1px solid #ddd !important;
+  }
+
   .cxone-tabs {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -999,6 +1025,14 @@ button {
 
   .short-row {
     grid-template-columns: 1fr
+  }
+
+  
+  .basic-details-div .short-row .field:first-child {
+    border-right: none !important;
+  }
+  .basic-details-div .short-row .field:not(:last-child) {
+    border-bottom: 1px solid #ddd;
   }
 
   
