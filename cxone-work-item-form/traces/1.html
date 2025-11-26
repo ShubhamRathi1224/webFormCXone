@@ -17,9 +17,7 @@
             <div class="card">
                 <div class="card-title">Work Item Processing</div>
                 <div class="work-item-list">
-                    <div class="work-item"><img
-                            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e74c3c'%3E%3Ccircle cx='12' cy='12' r='10' stroke='%23e74c3c' stroke-width='2' fill='none'/%3E%3Cline x1='15' y1='9' x2='9' y2='15' stroke='%23e74c3c' stroke-width='2'/%3E%3Cline x1='9' y1='9' x2='15' y2='15' stroke='%23e74c3c' stroke-width='2'/%3E%3C/svg%3E"
-                            alt="Cancel">
+                    <div class="work-item">
                         <div class="work-item-text">
                             <div class="work-item-name">Cancellation Waive Fee</div>
                             <div class="work-item-sub">Air • Package • Transfer</div>
@@ -78,24 +76,16 @@
             </div>
         </div>
         <div class="right-section">
-            <div class="action-btn" onclick="handleAction('pass')"> <img
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2328a745'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E"
-                    alt="Pass">
+            <div class="action-btn" onclick="handleAction('pass')">
                 <div class="action-btn-text">Pass Review</div>
             </div>
-            <div class="action-btn" onclick="handleAction('correction')"> <img
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffc107'%3E%3Cpath d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z'/%3E%3C/svg%3E"
-                    alt="Correction">
+            <div class="action-btn" onclick="handleAction('correction')">
                 <div class="action-btn-text">Correction Request</div>
             </div>
-            <div class="action-btn" onclick="handleAction('coaching')"> <img
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2317a2b8'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z'/%3E%3C/svg%3E"
-                    alt="Coaching">
+            <div class="action-btn" onclick="handleAction('coaching')">
                 <div class="action-btn-text">Coaching Request</div>
             </div>
-            <div class="action-btn" onclick="handleAction('exit')"> <img
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23dc3545'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z'/%3E%3C/svg%3E"
-                    alt="Exit">
+            <div class="action-btn" onclick="handleAction('exit')">
                 <div class="action-btn-text">Exit Work Queue</div>
             </div>
         </div>
@@ -107,5 +97,5 @@
                 onclick="handleFooterAction('save')">Save</button><button class="btn btn-next"
                 onclick="handleFooterAction('next')">Save and Next</button> </div>
     </div>
-    <script>        const brandConfig = { holland: { logo: "https://www.hollandamerica.com/content/dam/hal/common/site-logos/hal-logo-horizontal.svg", tagline: "Explore the World in Comfort", primaryColor: "#003d6f", }, princess: { logo: "https://www.princess.com/content/dam/princess/brand-logos/princess-cruises-logo-horizontal.svg", tagline: "Come Back New", primaryColor: "#0066b2", }, seabourn: { logo: "https://www.seabourn.com/content/dam/seabourn/logos/seabourn-logo.svg", tagline: "Ultra-Luxury Cruising", primaryColor: "#1a1a2e", }, cunard: { logo: "https://www.cunard.com/content/dam/cunard/logos/cunard-logo.svg", tagline: "The Most Famous Ocean Liners in the World", primaryColor: "#8b0000", }, }; const BRANDS = { holland: { name: "Holland America Line", tag: "Taking you to extraordinary places", theme: "holland", short: "HAL", favicon: "../assets/favicons/holland.png", }, princess: { name: "Princess Cruises", tag: "Come back new", theme: "princess", short: "PCL", favicon: "../assets/favicons/princess.png", }, seabourn: { name: "Seabourn", tag: "Elegant, ultra-luxury cruises", theme: "seabourn", short: "SBN", favicon: "../assets/favicons/seabourn.png", }, cunard: { name: "Cunard", tag: "Leaders in luxury ocean travel", theme: "cunard", short: "CUN", favicon: "../assets/favicons/cunard.png", }, }; function changeBrand(brand) { document.body.className = `theme-${brand}`; const config = brandConfig[brand]; document.getElementById("brandLogo").src = config.logo; document.getElementById("tagline").textContent = config.tagline; } function switchTab(index) { const tabs = document.querySelectorAll(".tab"); tabs.forEach((tab, i) => { tab.classList.toggle("active", i === index); }); } function handleAction(action) { alert(`Action: ${action.charAt(0).toUpperCase() + action.slice(1)}`); } function handleFooterAction(action) { alert(`Footer Action: ${action.charAt(0).toUpperCase() + action.slice(1)}`); } window.changeBrand = changeBrand; window.switchTab = switchTab; window.handleAction = handleAction; window.handleFooterAction = handleFooterAction; document.addEventListener("DOMContentLoaded", () => { setTheme(); serviceSelector.addEventListener("change", (e) => { setTheme(e.target.value); }); }); function setTheme(name = "holland") { console.log('name: ', name); document.documentElement.setAttribute("data-theme", name); serviceSelector.value = name; const brand = BRANDS[name] || Object.values(BRANDS)[0]; let link = document.querySelector("link[rel~='icon']"); if (!link) { link = document.createElement("link"); link.rel = "icon"; document.head.appendChild(link); } link.href = brand.favicon; } function setCustomer(customerId = "C-0001") { customer = SAMPLE_API_RESPONSES.find((c) => c.customerId === customerId); populateFromIVR(customer); }    </script>
+    <script>        const brandConfig = { holland: { logo: "https://www.hollandamerica.com/content/dam/hal/common/site-logos/hal-logo-horizontal.svg", tagline: "Explore the World in Comfort", primaryColor: "#003d6f", }, princess: { logo: "https://www.princess.com/content/dam/princess/brand-logos/princess-cruises-logo-horizontal.svg", tagline: "Come Back New", primaryColor: "#0066b2", }, seabourn: { logo: "https://www.seabourn.com/content/dam/seabourn/logos/seabourn-logo.svg", tagline: "Ultra-Luxury Cruising", primaryColor: "#1a1a2e", }, cunard: { logo: "https://www.cunard.com/content/dam/cunard/logos/cunard-logo.svg", tagline: "The Most Famous Ocean Liners in the World", primaryColor: "#8b0000", }, }; const BRANDS = { holland: { name: "Holland America Line", tag: "Taking you to extraordinary places", theme: "holland", short: "HAL", favicon: "../assets/favicons/holland.png", }, princess: { name: "Princess Cruises", tag: "Come back new", theme: "princess", short: "PCL", favicon: "../assets/favicons/princess.png", }, seabourn: { name: "Seabourn", tag: "Elegant, ultra-luxury cruises", theme: "seabourn", short: "SBN", favicon: "../assets/favicons/seabourn.png", }, cunard: { name: "Cunard", tag: "Leaders in luxury ocean travel", theme: "cunard", short: "CUN", favicon: "../assets/favicons/cunard.png", }, }; function changeBrand(brand) { document.body.className = `theme-$SBN`; const config = brandConfig[brand]; document.getElementById("brandLogo").src = config.logo; document.getElementById("tagline").textContent = config.tagline; } function switchTab(index) { const tabs = document.querySelectorAll(".tab"); tabs.forEach((tab, i) => { tab.classList.toggle("active", i === index); }); } function handleAction(action) { alert(`Action: ${action.charAt(0).toUpperCase() + action.slice(1)}`); } function handleFooterAction(action) { alert(`Footer Action: ${action.charAt(0).toUpperCase() + action.slice(1)}`); } window.changeBrand = changeBrand; window.switchTab = switchTab; window.handleAction = handleAction; window.handleFooterAction = handleFooterAction; document.addEventListener("DOMContentLoaded", () => { setTheme(); serviceSelector.addEventListener("change", (e) => { setTheme(e.target.value); }); }); function setTheme(name = "holland") { console.log('name: ', name); document.documentElement.setAttribute("data-theme", name); serviceSelector.value = name; const brand = BRANDS[name] || Object.values(BRANDS)[0]; let link = document.querySelector("link[rel~='icon']"); if (!link) { link = document.createElement("link"); link.rel = "icon"; document.head.appendChild(link); } link.href = brand.favicon; }    </script>
 </body>

@@ -697,3 +697,20 @@ formCode.append("        }")
 formCode.append("    </script>")
 formCode.append("</body>")
 //formCode.append("</html>")
+
+
+
+
+
+
+
+
+
+
+
+--------*************-----------------
+Want me to:
+A. Convert this into a cleaner single multi-line string?
+B. Add postmessage / CXone.sendMessage() integration?
+C. Make expandable passenger blocks instead of tabs?
+--------*************-----------------
