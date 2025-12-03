@@ -1,0 +1,2229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAL Work Item Form - Holland America Line</title>
+    <style>
+        /* ================================================
+        HOLLAND AMERICA LINE WORK ITEM FORM - CSS
+        ================================================ */
+
+        :root {
+            /* Brand Colors */
+            --color-primary: #1a4d6d;
+            --color-secondary: #0099cc;
+            --color-accent: #17a2b8;
+            --color-light-accent: #20c997;
+            --color-orange: #FF6633;
+            
+            /* Neutral Colors */
+            --color-white: #ffffff;
+            --color-light: #f0f4f8;
+            --color-gray: #999999;
+            --color-dark-gray: #666666;
+            --color-border: #ddd;
+            --color-text: #333333;
+            --color-text-muted: #666666;
+            
+            /* Background Colors */
+            --bg-primary: #f5f8fa;
+            --bg-secondary: #e8f0f6;
+            --bg-card: #ffffff;
+            --bg-section: #f0f4f8;
+            
+            /* Status Colors */
+            --color-success: #4caf50;
+            --color-warning: #ffc107;
+            --color-danger: #f44336;
+            --color-info: #2196f3;
+            
+            /* Spacing */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 12px;
+            --spacing-lg: 16px;
+            --spacing-xl: 20px;
+            --spacing-2xl: 24px;
+            --spacing-3xl: 32px;
+            
+            /* Border Radius */
+            --radius-sm: 2px;
+            --radius-md: 4px;
+            --radius-lg: 6px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 12px rgba(0, 0, 0, 0.15);
+            
+            /* Font */
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-size-sm: 11px;
+            --font-size-base: 12px;
+            --font-size-lg: 13px;
+            --font-size-xl: 14px;
+            --font-size-xxl: 18px;
+            --font-size-xxxl: 22px;
+        }
+
+        :root {
+            --color-primary: #A41E35;
+            --color-accent: #2D2A26;
+            --gradient: linear-gradient(135deg, #A41E35, #2D2A26);
+            --bg-color: #ffffff;
+            --text-color: #1b1b1b;
+            --border-color: #e5e5e5;
+            --logo-url: url('../assets/logos/cunard.svg');
+            --pad: 20px;
+            --input-height: 44px;
+            --radius: 12px;
+            --card: #ffffff;
+            --muted: #6b7280;
+        }
+
+        :root[data-theme='cunard'] {
+            --brand: #c21807;
+            --color-primary: #A41E35;
+            --color-accent: #2D2A26;
+            --gradient: linear-gradient(135deg, #A41E35, #7B1326);
+            --logo-url: url('../assets/logos/cunard.svg');
+            --accent-bg: radial-gradient(circle at top left, #A41E35 0%, #2D2A26 100%);
+
+            --primary-color: #8b0000;
+            --color-secondary: #a52a2a;
+            --accent-color: #ffd700;
+        }
+
+        :root[data-theme='holland'] {
+            --brand: #006064;
+            --color-primary: #1A2857;
+            --color-accent: #004488;
+            --gradient: linear-gradient(135deg, #1A2857, #002B6A);
+            --logo-url: url('../assets/logos/holland.svg');
+            --accent-bg: radial-gradient(circle at bottom right, #1A2857 0%, #001F4E 100%);
+
+            --primary-color: #003d6f;
+            --color-secondary: #005a9c;
+            --accent-color: #e67e22;
+        }
+
+        :root[data-theme='princess'] {
+            --brand: #0b6efd;
+            --color-primary: #00538B;
+            --color-accent: #0090D9;
+            --gradient: linear-gradient(135deg, #00538B, #0090D9);
+            --logo-url: url('../assets/logos/princess.svg');
+            --accent-bg: linear-gradient(180deg, rgba(0, 83, 139, 0.9), rgba(0, 144, 217, 0.8)),
+                url('../assets/patterns/princess-waves.svg');
+
+            --primary-color: #0066b2;
+            --color-secondary: #0080d8;
+            --accent-color: #ffd700;
+        }
+
+        :root[data-theme='seabourn'] {
+            --brand: #6b0b9e;
+            --color-primary: #E3CE66;
+            --color-accent: #9A7B2F;
+            --gradient: linear-gradient(135deg, #9A7B2F, #E3CE66);
+            --logo-url: url('../assets/logos/seabourn.svg');
+            --accent-bg: linear-gradient(180deg, #f9f7f1, #efe3b0);
+
+            /* --primary-color: #1a1a2e; */
+            --primary-color: #E3CE66;
+            --color-secondary: #16213e;
+            --accent-color: #c9a77c;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 18px 22px;
+            border-bottom: 1px solid rgba(15, 23, 42, 0.04);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+
+        .header-controls {
+            position: absolute;
+            right: 2%;
+        }
+
+        header.brand {
+            background: var(--gradient);
+            background-image: var(--gradient);
+            background-blend-mode: overlay;
+            background-size: cover;
+            color: #fff;
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            /* justify-content: space-between; */
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        header .brand-logo {
+            background-image: var(--logo-url);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 160px;
+            height: 40px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            background-size: contain;
+            background-repeat: no-repeat
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--bg-primary);
+            color: var(--color-text);
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ================================================
+        HEADER
+        ================================================ */
+
+        .app-header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #0d3a4f 100%);
+            padding: var(--spacing-xl) var(--spacing-2xl);
+            box-shadow: var(--shadow-md);
+            flex-shrink: 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+        }
+
+        .hal-logo {
+            width: 45px;
+            height: 45px;
+        }
+
+        .logo-text {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: var(--color-white);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            font-size: var(--font-size-sm);
+        }
+
+        .user-icon {
+            font-size: 20px;
+        }
+
+        .header-divider {
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-orange), transparent);
+            margin-top: var(--spacing-lg);
+        }
+
+        /* ================================================
+        MAIN CONTAINER
+        ================================================ */
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 280px 1fr 280px;
+            gap: var(--spacing-lg);
+            padding: var(--spacing-lg);
+            flex: 1;
+            max-width: 1800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ================================================
+        CARDS & SECTIONS
+        ================================================ */
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid #ccc;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            /* overflow: hidden; */
+            /* margin-bottom: var(--spacing-lg); */
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #0d3a4f 100%);
+            padding: var(--spacing-md) var(--spacing-lg);
+            font-size: var(--font-size-base);
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--color-white);
+            border-bottom: 2px solid var(--color-orange);
+        }
+
+        .card-body {
+            padding: var(--spacing-lg);
+            background: var(--bg-secondary);
+            /* height: 100%; */
+        }
+
+        .work-item-type .label {
+            font-size: var(--font-size-xxl);
+            color: var(--color-primary);
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-xs);
+            font-weight: bold;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .work-item-type .title {
+            font-size: var(--font-size-lg);
+            font-weight: bold;
+            color: var(--muted);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .sub-items {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .sub-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--color-white);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xl);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid var(--color-secondary);
+        }
+
+        .sub-item:hover {
+            background: #e8f4ff;
+            color: var(--color-secondary);
+            transform: translateX(4px);
+        }
+
+        .sub-item .icon {
+            color: var(--color-secondary);
+            font-weight: bold;
+        }
+
+        .sub-item .work-item-icon {
+            margin: 0;
+            margin-left: auto;
+        }
+
+        .work-item-icon {
+            margin-top: var(--spacing-xl);
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .employee-info {
+            font-size: var(--font-size-sm);
+        }
+
+        .employee-info p {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-xs) 0;
+            font-size: var(--font-size-xl);
+        }
+
+        .employee-info .label {
+            color: var(--color-text-muted);
+            font-weight: 500;
+        }
+
+        .employee-info .value {
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+        /* ================================================
+        LEFT PANEL
+        ================================================ */
+
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+            /* overflow-y: auto;
+            max-height: calc(100vh - 200px); */
+        }
+
+        /* ================================================
+        CENTER PANEL
+        ================================================ */
+
+        .center-panel {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+            overflow-y: auto;
+            max-height: calc(100vh - 200px);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            /* margin-top: 10px; */
+        }
+
+        .passenger-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .passenger-table thead {
+            background: var(--primary-color);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .passenger-table th {
+            padding: 12px 10px;
+            text-align: left;
+            font-weight: 600;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            white-space: nowrap;
+        }
+
+        .passenger-table th:first-child {
+            position: sticky;
+            left: 0;
+            background: var(--primary-color);
+            z-index: 11;
+            min-width: 200px;
+        }
+
+        .passenger-table td {
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            background: white;
+        }
+
+        .passenger-table td:first-child {
+            position: sticky;
+            left: 0;
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #555;
+            z-index: 9;
+            border-right: 2px solid #ddd;
+        }
+
+        .passenger-table tbody tr:hover td {
+            background: #f0f7ff;
+        }
+
+        .passenger-table tbody tr:hover td:first-child {
+            background: #e8f4ff;
+        }
+
+        .passenger-table input,
+        .passenger-table textarea {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+            background: #fafafa;
+            min-width: 100px;
+        }
+
+        .passenger-table input:focus,
+        .passenger-table textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: white;
+        }
+
+        .passenger-table textarea {
+            resize: vertical;
+            min-height: 40px;
+        }
+
+
+        .passenger-section {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .passenger-tabs {
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--bg-secondary);
+            color: var(--color-text-muted);
+            border: 2px solid #ccc;
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .tab-btn .passenger-label {
+            font-size: 10px;
+            color: var(--color-dark-gray);
+        }
+
+        .tab-btn .passenger-name {
+            font-size: var(--font-size-base);
+            color: var(--color-primary);
+            margin-top: 2px;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--color-secondary);
+            background: #e8f4ff;
+        }
+
+        .tab-btn.active {
+            background: var(--color-secondary);
+            color: var(--color-white);
+            border-color: var(--color-secondary);
+        }
+
+        .tab-btn.active .passenger-label,
+        .tab-btn.active .passenger-name {
+            color: var(--color-white);
+        }
+
+        /* Info Sections */
+
+        .info-section {
+            background: var(--bg-card);
+            border: 1px solid #ccc;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #0d3a4f 100%);
+            padding: var(--spacing-md) var(--spacing-lg);
+            font-size: var(--font-size-base);
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--color-white);
+            border-bottom: 2px solid var(--color-orange);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .section-title:hover {
+            opacity: 0.9;
+        }
+
+        .section-content {
+            padding: var(--spacing-lg);
+            background: var(--bg-section);
+            height: 100%;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+        }
+
+        .info-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-group label {
+            font-size: var(--font-size-sm);
+            font-weight: bold;
+            color: var(--color-text-muted);
+            margin-bottom: var(--spacing-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .info-group input {
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--color-white);
+            border: 1px solid #ccc;
+            border-radius: var(--radius-sm);
+            color: var(--color-text);
+            font-size: var(--font-size-sm);
+            font-family: var(--font-family);
+        }
+
+        .info-group input:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 2px rgba(0, 153, 204, 0.1);
+        }
+
+        /* Fees Grid */
+            /* Fees Grid */
+
+        .fees-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+        }
+
+        .fee-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-lg);
+            background: var(--color-white);
+            border-radius: var(--radius-md);
+            border-left: 3px solid var(--color-secondary);
+        }
+
+        .fee-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-muted);
+            font-weight: 500;
+        }
+
+        .fee-value {
+            font-size: var(--font-size-lg);
+            font-weight: bold;
+            color: var(--color-secondary);
+        }
+
+        /* Waiver Grid */
+
+        .waiver-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: var(--spacing-lg);
+        }
+
+        .waiver-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .waiver-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-muted);
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .waiver-value {
+            font-size: var(--font-size-base);
+            color: var(--color-primary);
+            font-weight: bold;
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--color-white);
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--color-secondary);
+        }
+
+        .waiver-input {
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--color-white);
+            border: 1px solid #ccc;
+            border-radius: var(--radius-sm);
+            color: var(--color-text);
+            font-size: var(--font-size-sm);
+            font-family: var(--font-family);
+        }
+
+        .waiver-input:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 2px rgba(0, 153, 204, 0.1);
+        }
+
+        /* Other Passengers */
+
+        .other-passengers {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+        }
+
+        .passenger-card {
+            background: var(--color-white);
+            border: 1px solid #ccc;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .passenger-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .passenger-header {
+            background: var(--color-secondary);
+            color: var(--color-white);
+            padding: var(--spacing-lg);
+            font-size: var(--font-size-sm);
+            font-weight: bold;
+            letter-spacing: 0.3px;
+        }
+
+        .passenger-details {
+            padding: var(--spacing-lg);
+            font-size: var(--font-size-sm);
+        }
+
+        .passenger-details p {
+            margin-bottom: var(--spacing-sm);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid #eee;
+        }
+
+        .passenger-details p:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        /* ================================================
+        RIGHT PANEL - SENIOR ACTIONS
+        ================================================ */
+
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+            /* max-height: calc(100vh - 200px);
+            overflow-y: auto; */
+        }
+
+        .action-panel {
+            /* background: var(--bg-card); */
+            /* border: 1px solid #ccc; */
+            /* border-radius: var(--radius-md); */
+            padding: var(--spacing-lg);
+            /* box-shadow: var(--shadow-md); */
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+            height: -webkit-fill-available;
+            justify-content: center;
+        }
+
+        .panel-title {
+            font-size: var(--font-size-base);
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--color-orange);
+        }
+
+        .action-btn {
+            padding: var(--spacing-lg) var(--spacing-md);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: var(--color-white);
+            color: var(--color-text);
+            border: 2px solid #ccc;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* .pass-review {
+            background: var(--color-orange);
+            color: var(--color-white);
+            border: none;
+        }
+
+        .pass-review:hover {
+            background: #ff7c47;
+        } */
+
+        .correction-request, .pass-review {
+            background: var(--color-white);
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+
+        .correction-request:hover, .pass-review:hover {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .coaching-request {
+            background: var(--color-white);
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+
+        .coaching-request:hover {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .cancel-btn {
+            background: var(--color-white);
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+
+        .cancel-btn:hover {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .exit-queue {
+            background: var(--color-white);
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+
+        .exit-queue:hover {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        /* ================================================
+        FOOTER
+        ================================================ */
+
+        .app-footer {
+            background: var(--bg-secondary);
+            padding: var(--spacing-lg) var(--spacing-2xl);
+            box-shadow: var(--shadow-md);
+            flex-shrink: 0;
+            border-top: 3px solid var(--color-accent);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .footer-tagline {
+            font-size: var(--font-size-lg);
+            color: var(--color-primary);
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .footer-buttons {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+
+        .footer-btn {
+            padding: var(--spacing-md) var(--spacing-xl);
+            border: 2px solid var(--color-primary);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            background: transparent;
+            color: var(--color-primary);
+        }
+
+        .footer-btn:hover {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .footer-btn.save-next-btn {
+            background: var(--color-secondary);
+            color: var(--color-white);
+            border-color: var(--color-secondary);
+        }
+
+        .footer-btn.save-next-btn:hover {
+            background: #007aa3;
+            border-color: #007aa3;
+        }
+
+        /* ================================================
+        MODAL
+        ================================================ */
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            position: relative;
+            background: var(--bg-card);
+            padding: var(--spacing-3xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            max-width: 450px;
+            width: 90%;
+            z-index: 1001;
+            border: 1px solid #ccc;
+        }
+
+        .modal-title {
+            font-size: var(--font-size-xl);
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-lg);
+            text-transform: uppercase;
+        }
+
+        .modal-message {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-muted);
+            margin-bottom: var(--spacing-2xl);
+            line-height: 1.6;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: var(--spacing-lg);
+            justify-content: flex-end;
+            margin-top: var(--spacing-lg);
+        }
+
+        .modal-btn {
+            padding: var(--spacing-md) var(--spacing-xl);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .modal-btn.secondary {
+            background: transparent;
+            color: var(--color-text-muted);
+            border: 1px solid #ccc;
+        }
+
+        .modal-btn.secondary:hover {
+            background: var(--bg-section);
+            border-color: var(--color-secondary);
+            color: var(--color-secondary);
+        }
+
+        .modal-btn.primary {
+            background: var(--color-secondary);
+            color: var(--color-white);
+        }
+
+        .modal-btn.primary:hover {
+            background: #007aa3;
+            transform: translateY(-2px);
+        }
+
+        /* ================================================
+        NOTIFICATION TOAST
+        ================================================ */
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-card);
+            border-left: 4px solid var(--color-secondary);
+            padding: var(--spacing-lg) var(--spacing-xl);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            min-width: 300px;
+            z-index: 2000;
+            animation: slideIn 0.3s ease-out;
+            display: none;
+        }
+
+        .notification.show {
+            display: block;
+        }
+
+        .notification.success {
+            border-left-color: var(--color-success);
+        }
+
+        .notification.error {
+            border-left-color: var(--color-danger);
+        }
+
+        .notification.warning {
+            border-left-color: var(--color-warning);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+
+
+
+
+        input[type=text],
+        input[type=email],
+        input[type=tel],
+        input[type=datetime-local],
+        select,
+        textarea {
+        width: 100%;
+        padding: 8px 10px;
+        border-radius: 8px;
+        border: 1px solid #e8f0f8;
+        font-size: 15px;
+        height: var(--input-height);
+        box-sizing: border-box;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+        outline: none;
+        border-color: var(--brand);
+        box-shadow: 0 0 0 4px rgba(11, 102, 253, 0.08);
+        }
+
+        .short-row {
+        display: grid;
+        /* grid-template-columns: repeat(3, minmax(0, 1fr)); */
+        gap: 24px 16px;
+        margin-bottom: 16px;
+        }
+
+        .field {
+        position: relative;
+        }
+
+        .field>p {
+        margin-bottom: 6px;
+        font-weight: 500;
+        font-size: 16px;
+        color: black;  
+        /* color: var(--brand); */
+        }
+
+        .field>p>span {
+        margin-bottom: 6px;
+        font-weight: 500;
+        font-size: 16px;
+        color: var(--muted);
+        }
+
+        .field>label {
+        display: block;
+        margin-top: 12px;
+        font-weight: 500;
+        font-size: 13px;
+        color: var(--muted);
+        position: absolute;
+        top: -22px;
+        left: 22px;
+        background-color: white;
+        padding: 0 4px;
+        }
+
+        .mt-22px {
+        margin-top: 22px;
+        }
+
+        /* ================================================
+        SCROLLBAR STYLES
+        ================================================ */
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-secondary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-primary);
+        }
+
+        /* ================================================
+        RESPONSIVE BREAKPOINTS
+        ================================================ */
+
+        @media (max-width: 1400px) {
+            .main-container {
+                grid-template-columns: 250px 1fr 250px;
+                gap: var(--spacing-md);
+                padding: var(--spacing-md);
+            }
+
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .fees-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .waiver-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .other-passengers {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+
+            .left-panel {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: var(--spacing-lg);
+                max-height: none;
+            }
+
+            .right-panel {
+                grid-column: 1 / -1;
+                display: flex;
+                /* flex-direction: row; */
+                flex-wrap: wrap;
+                max-height: none;
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                padding: 0;
+            }
+
+            .action-btn {
+                flex: 1;
+                min-width: 120px;
+            }
+
+            .center-panel {
+                max-height: none;
+            }
+
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .fees-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .waiver-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .other-passengers {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+
+            .logo-text {
+                font-size: var(--font-size-base);
+            }
+
+            .main-container {
+                grid-template-columns: 1fr;
+                padding: var(--spacing-md);
+            }
+
+            .left-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .right-panel {
+                grid-column: 1;
+                flex-direction: column;
+                gap: var(--spacing-lg);
+            }
+
+            .action-panel {
+                background: var(--bg-card);
+                border: 1px solid #ccc;
+                border-radius: var(--radius-md);
+                padding: var(--spacing-lg);
+                box-shadow: var(--shadow-md);
+                display: flex;
+                flex-direction: column;
+                gap: var(--spacing-lg);
+            }
+
+            .action-btn {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .passenger-tabs {
+                flex-direction: column;
+            }
+
+            .tab-btn {
+                width: 100%;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .fees-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .waiver-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .other-passengers {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+            }
+
+            .footer-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .footer-btn {
+                width: 100%;
+            }
+
+            .notification {
+                min-width: auto;
+                width: calc(100% - 40px);
+                left: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --spacing-lg: 12px;
+                --spacing-xl: 16px;
+                --font-size-sm: 10px;
+                --font-size-base: 11px;
+                --font-size-lg: 12px;
+                --font-size-xl: 13px;
+            }
+
+            .app-header {
+                padding: var(--spacing-md);
+            }
+
+            .logo-text {
+                font-size: 10px;
+                letter-spacing: 0.5px;
+            }
+
+            .card-header,
+            .section-title {
+                font-size: 10px;
+            }
+
+            .main-container {
+                padding: var(--spacing-sm);
+            }
+
+            .info-group input {
+                font-size: 11px;
+            }
+
+            .modal-content {
+                padding: var(--spacing-xl);
+            }
+
+            .passenger-card {
+                border-radius: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>       
+    <header class="brand">
+        <div class="brand">
+            <div class="brand-logo"></div>
+        </div>
+        <div class="header-controls">
+            <div>
+                <select id="serviceSelector" aria-label="Select cruise line">
+                    <option value="holland">Holland America (HAL)</option>
+                    <option value="princess">Princess Cruise (PCL)</option>
+                    <option value="seabourn">Seabourn (SBN)</option>
+                    <option value="cunard">Cunard (CUN)</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <aside class="left-panel">
+            <div class="card">
+                <div class="card-header">Work Item Details</div>
+                <div class="card-body">
+                    <div class="work-item-type">
+                        <div class="label">Cancellation Waive Fee</div>
+                        <div class="title">Sub-Items:</div>
+                    </div>
+                    <div class="sub-items">
+                        <div class="sub-item">
+                            <span class="icon">✓</span>
+                            <span>Air Cancel Fee</span>
+                            <div class="work-item-icon" title="Cancellation-related work item">✈️</div>
+                        </div>
+                        <div class="sub-item">
+                            <span class="icon">✓</span>
+                            <span>Package Cancel Fee</span>
+                            <div class="work-item-icon" title="Cancellation-related work item">🏨</div>
+                        </div>
+                        <div class="sub-item">
+                            <span class="icon">✓</span>
+                            <span>Transfer Cancel Fee</span>
+                            <div class="work-item-icon" title="Cancellation-related work item">🚗</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="section-title">Voyage Details</div>
+                <div class="section-content">
+                    <div class="sub-items">
+                        <div class="fee-item">
+                            <span class="fee-label">Voyage Number</span>
+                            <span class="fee-value">U534</span>
+                        </div>
+                        <div class="fee-item">
+                            <span class="fee-label">Booking Number</span>
+                            <span class="fee-value">3C6WXG</span>
+                        </div>
+                        <div class="fee-item">
+                            <span class="fee-label">Currency</span>
+                            <span class="fee-value">USD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <section class="center-panel">
+
+            <div class="middle-section">
+                <div class="card-header">Passenger Details</div>
+                <div class="table-container">
+                    <table class="passenger-table" id="passengerTable">
+                        <thead id="tableHeader">
+                        </thead>
+                        <tbody id="tableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <aside class="right-panel">
+
+            <div class="left-panel">
+                <div class="card">
+                    <div class="card-header">Employee Details</div>
+                    <div class="card-body">
+                        <div class="employee-info">
+                            <p><span class="label">Name:</span> <span class="value">John Smith</span></p>
+                            <p><span class="label">Team:</span> <span class="value">Devl</span></p>
+                            <p><span class="label">Role:</span> <span class="value">Reservation Specialist</span></p>
+                            <p><span class="label">User Id:</span> <span class="value">Dev</span></p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="card">
+                    <div class="card-header">Reviewer Details</div>
+                    <div class="card-body">
+                        <div class="employee-info">
+                            <p><span class="label">Name:</span> <span class="value">Will Doe</span></p>
+                            <p><span class="label">Role:</span> <span class="value">Sr. Reservation Specialist</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="action-panel">
+                
+                <button class="action-btn pass-review" id="passReviewBtn">
+                    <span>🔒 PASS REVIEW</span>
+                </button>
+    
+                <button class="action-btn correction-request" id="correctionBtn">
+                    <span>📝 CORRECTION REQUEST</span>
+                </button>
+    
+                <button class="action-btn coaching-request" id="coachingBtn">
+                    <span>📧 COACHING REQUEST</span>
+                </button>
+    
+                <button class="action-btn exit-queue" id="exitQueueBtn">
+                    <span>🚪 EXIT WORK QUEUE</span>
+                </button>
+            </div>
+
+        </aside>
+    </main>
+
+    <footer class="app-footer">
+        <div class="footer-container">
+            <div class="footer-tagline">Holland America Line - Savor the Journey</div>
+            <div class="footer-buttons">
+                <button class="footer-btn" id="saveBtn">Save</button>
+                <button class="footer-btn save-next-btn" id="saveNextBtn">Save & Next</button>
+            </div>
+        </div>
+    </footer>
+
+    <div id="passReview" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-title" id="modalTitle">Pass Review</div>
+            <div>
+                <div class="field">
+                    <p>Check/select all that apply:</p>
+                    <div class="checkbox-group subscription-toggle-group">
+                        <p class="subscription-type"><input type="checkbox" id="bookingUpdates"> Proper code used</p>
+                        <p class="subscription-type"><input type="checkbox" id="promoOffers"> Proper documentation</p>
+                        <p class="subscription-type"><input type="checkbox" id="billingAlerts"> Justified</p>
+                    </div>
+                </div>
+                <div class="field mt-22px">
+                    <label>Others</label>
+                    <select id="customerSelector" aria-label="Select cruise line">
+                        <option value="C-0001">Option 1</option>
+                        <option value="C-0002">Option 2</option>
+                        <option value="C-0002">Option 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn secondary" id="cancelModalBtn">Cancel</button>
+                <button class="modal-btn primary" id="confirmBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="correctionRequest" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-title" id="modalTitle">Correction Request</div>
+            <div class="short-row">
+                <div class="field">
+                    <div class="checkbox-group subscription-toggle-group">
+                        <p class="subscription-type"><input type="checkbox" id="missingDocumentation"> Missing Documentation</p>
+                        <p class="subscription-type"><input type="checkbox" id="incorrectCancellation"> Incorrect Cancellation</p>
+                        <p class="subscription-type"><input type="checkbox" id="otherCorrection"> Other</p>
+                    </div>
+                </div>
+                <div class="field" style="display: none;" id="otherCorrectionField">
+                    <label for="otherCorrection">Other Correction:</label>
+                    <input type="text" id="otherCorrection" />
+                </div>
+                <div class="field">
+                    <label for="nonVisilbeCorrectionMessage">Non-Visible Message:</label>
+                    <textarea id="nonVisilbeCorrectionMessage" class="cxone-textarea"
+                        placeholder="Paste transcript or chat history..."></textarea>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn secondary" id="cancelModalBtn">Cancel</button>
+                <button class="modal-btn primary" id="confirmBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="coachingEvent" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-title" id="modalTitle">Coaching Event</div>
+            <div class="short-row">
+                <div class="field">
+                    <p>Concern Item/s:</p>
+                    <div class="checkbox-group subscription-toggle-group">
+                        <p class="subscription-type"><input type="checkbox" id="lacksBookingHistoryComments"> Lacks Booking History Comments</p>
+                        <p class="subscription-type"><input type="checkbox" id="lacksCommentsInCancelWaiverScreen"> Lacks Comments in Cancel Waiver Screen</p>
+                        <p class="subscription-type"><input type="checkbox" id="lacksCommentsOnManualAdjScreen"> Lacks Comments on Manual Adj Screen</p>
+                        <p class="subscription-type"><input type="checkbox" id="lacksFCCHistoryComments"> Lacks FCC History Comments</p>
+                        <p class="subscription-type"><input type="checkbox" id="outsideOfPolicyProcedure"> Outside of Policy and/or Procedure</p>
+                        <p class="subscription-type"><input type="checkbox" id="dataEntryError"> Data Entry Error</p>
+                        <p class="subscription-type"><input type="checkbox" id="otherCoaching"> Other</p>
+                    </div>
+                </div>
+                <div class="field" style="display: none;" id="otherCoachingDetailsField">
+                    <label for="otherCoachingDetails">Other Coaching Details:</label>
+                    <input type="text" id="otherCoachingDetails" />
+                </div>
+                <div class="field">
+                    <label for="nonVisilbeCoachingMessage">Non-Visible Message:</label>
+                    <textarea id="nonVisilbeCoachingMessage" class="cxone-textarea"
+                        placeholder="Paste transcript or chat history..."></textarea>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn secondary" id="cancelModalBtn">Cancel</button>
+                <button class="modal-btn primary" id="confirmBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="exitWorkQueue" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-title" id="modalTitle">Confirm Action</div>
+            <div class="modal-message" id="modalMessage"></div>
+            <div class="modal-buttons">
+                <button class="modal-btn secondary" id="cancelModalBtn">Cancel</button>
+                <button class="modal-btn primary" id="confirmBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script type="module">
+        /* ================================================
+        HOLLAND AMERICA LINE WORK ITEM FORM - JavaScript
+        ================================================ */
+
+        import { BRANDS } from "../../data.js";
+
+        // ============================================
+        // STATE MANAGEMENT
+        // ============================================
+
+        const FormState = {
+            isDirty: false,
+            currentPassenger: 1,
+            expandedSections: {
+                voyageDetails: true,
+                cancellationFees: true,
+                waiverCancellation: true,
+                otherPassengers: true
+            },
+            formData: {
+                passenger1: {
+                    voyageDetails: {
+                        voyageNumber: '',
+                        bookingNumber: '',
+                        currency: 'USD'
+                    },
+                    waiverCancellation: {
+                        waiverReasonCode: '',
+                        waiverReasonDesc: '',
+                        cancelCode: '',
+                        refNotes: ''
+                    }
+                },
+                passenger2: {
+                    voyageDetails: {
+                        voyageNumber: '',
+                        bookingNumber: '',
+                        currency: 'USD'
+                    },
+                    waiverCancellation: {
+                        waiverReasonCode: '',
+                        waiverReasonDesc: '',
+                        cancelCode: '',
+                        refNotes: ''
+                    }
+                },
+                passenger3: {
+                    voyageDetails: {
+                        voyageNumber: '',
+                        bookingNumber: '',
+                        currency: 'USD'
+                    },
+                    waiverCancellation: {
+                        waiverReasonCode: '',
+                        waiverReasonDesc: '',
+                        cancelCode: '',
+                        refNotes: ''
+                    }
+                }
+            }
+        };
+
+        // Sample passenger data - This would come from your database
+        const passengerData = [
+            {
+                name: 'John Doe',
+                totalCancelFees: '398.04',
+                totalWaived: '398.04',
+                netCancelledFee: '0.00',
+                waiveReasonCD: 'PL',
+                waiveReasonDescription: 'POLAR ERROR',
+                cancelCode: 'D',
+                airCancelFees: '398.04',
+                packageCancelFees: '0.00',
+                transferCancelFees: '0.00',
+                ncfChargesCancelFees: '0.00',
+                nonRefundablePremium: '0.00',
+                openDate: '04/22/2025'
+            },
+            {
+                name: 'Jane Smith',
+                totalCancelFees: '275.50',
+                totalWaived: '275.50',
+                netCancelledFee: '0.00',
+                waiveReasonCD: 'PL',
+                waiveReasonDescription: 'POLAR ERROR',
+                cancelCode: 'D',
+                airCancelFees: '275.50',
+                packageCancelFees: '0.00',
+                transferCancelFees: '0.00',
+                ncfChargesCancelFees: '0.00',
+                nonRefundablePremium: '0.00',
+                openDate: '04/22/2025'
+            },
+            {
+                name: 'Bob Johnson',
+                totalCancelFees: '150.00',
+                totalWaived: '150.00',
+                netCancelledFee: '0.00',
+                waiveReasonCD: 'PL',
+                waiveReasonDescription: 'POLAR ERROR',
+                cancelCode: 'D',
+                airCancelFees: '150.00',
+                packageCancelFees: '0.00',
+                transferCancelFees: '0.00',
+                ncfChargesCancelFees: '0.00',
+                nonRefundablePremium: '0.00',
+                openDate: '04/22/2025'
+            },
+            {
+                name: 'Alice Williams',
+                totalCancelFees: '0.00',
+                totalWaived: '0.00',
+                netCancelledFee: '0.00',
+                waiveReasonCD: '',
+                waiveReasonDescription: '',
+                cancelCode: '',
+                airCancelFees: '0.00',
+                packageCancelFees: '0.00',
+                transferCancelFees: '0.00',
+                ncfChargesCancelFees: '0.00',
+                nonRefundablePremium: '0.00',
+                openDate: '04/22/2025'
+            }
+        ];
+
+        // Field configuration
+        const fieldConfig = [
+            { key: 'totalCancelFees', label: 'Total Cancel Fees', type: 'text' },
+            { key: 'totalWaived', label: 'Total Waived', type: 'text' },
+            { key: 'netCancelledFee', label: 'Net Cancelled Fee', type: 'text' },
+            { key: 'waiveReasonCD', label: 'Waive Reason CD', type: 'text' },
+            { key: 'waiveReasonDescription', label: 'Waive Reason Description', type: 'textarea' },
+            { key: 'cancelCode', label: 'Cancel Code', type: 'text' },
+            { key: 'airCancelFees', label: 'Air Cancel Fees', type: 'text' },
+            { key: 'packageCancelFees', label: 'Package Cancel Fees', type: 'text' },
+            { key: 'transferCancelFees', label: 'Transfer Cancel Fees', type: 'text' },
+            { key: 'ncfChargesCancelFees', label: 'NCF Charges Cancel Fees', type: 'text' },
+            { key: 'nonRefundablePremium', label: 'Non-Refundable Premium/Waiver', type: 'text' },
+            { key: 'openDate', label: 'Open Date', type: 'text' }
+        ];
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTheme();
+            initializeTable();
+            serviceSelector.addEventListener("change", (e) => {
+                setTheme(e.target.value);
+            });
+            initializeForm();
+            loadFormData();
+            startAutoSave();
+            attachWindowListeners();
+
+            
+            document.getElementById("otherCorrection").addEventListener("change", (e)=>toggleField(e,"otherCorrectionField"));
+            document.getElementById("otherCoaching").addEventListener("change", (e)=>toggleField(e,"otherCoachingDetailsField"));
+        });
+
+        function toggleField(e, fieldId){
+        const selected = e.target.checked; 
+        const targetEl = document.getElementById(fieldId);
+
+        if (selected) {
+            targetEl.style.display = "block"; 
+        } else {
+            targetEl.style.display = "none";
+        }
+        }
+
+        function setTheme(name = "holland") {
+        document.documentElement.setAttribute("data-theme", name);
+        serviceSelector.value = name;
+
+        const brand = BRANDS[name] || Object.values(BRANDS)[0];
+        let link = document.querySelector("link[rel~='icon']");
+        if (!link) {
+            link = document.createElement("link");
+            link.rel = "icon";
+            document.head.appendChild(link);
+        }
+        link.href = brand.favicon;
+        }
+
+        function initializeTable() {
+            const totalPassengers = passengerData.length;
+            const headerRow = document.createElement('tr');
+            headerRow.innerHTML = '<th>Field Name</th>';
+            
+            for (let i = 0; i < totalPassengers; i++) {
+                headerRow.innerHTML += `<th>${passengerData[i].name}</th>`;
+            }
+            document.getElementById('tableHeader').appendChild(headerRow);
+            const tbody = document.getElementById('tableBody');
+            fieldConfig.forEach(field => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${field.label}</td>`;
+                for (let i = 0; i < totalPassengers; i++) {
+                    const td = document.createElement('td');
+                    const value = i < passengerData.length ? (passengerData[i][field.key] || '') : '';
+                    if (field.type === 'textarea') {
+                        td.innerHTML = `<textarea readonly>${value}</textarea>`;
+                    } else {
+                        td.innerHTML = `<input type="text" value="${value}" readonly>`;
+                    }
+                    row.appendChild(td);
+                }
+                tbody.appendChild(row);
+            });
+        }
+
+        function initializeForm() {
+            attachEventListeners();
+            setupPassengerTabs();
+            setupSectionToggles();
+            setupActionButtons();
+        }
+
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+
+        function attachEventListeners() {
+            // Voyage Details inputs
+            document.querySelectorAll('.voyage-detail-input').forEach(input => {
+                input.addEventListener('change', markFormDirty);
+                input.addEventListener('blur', markFormDirty);
+            });
+
+            // Waiver inputs
+            document.querySelectorAll('.waiver-input').forEach(input => {
+                input.addEventListener('change', markFormDirty);
+                input.addEventListener('blur', markFormDirty);
+            });
+        }
+
+        function setupPassengerTabs() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const passengerNum = parseInt(e.currentTarget.dataset.passenger);
+                    switchPassenger(passengerNum);
+                });
+            });
+        }
+
+        function setupSectionToggles() {
+            const sections = document.querySelectorAll('.section-title');
+            sections.forEach(section => {
+                section.addEventListener('click', () => {
+                    const nextContent = section.nextElementSibling;
+                    if (nextContent && nextContent.classList.contains('section-content')) {
+                        nextContent.style.display = nextContent.style.display === 'none' ? 'block' : 'none';
+                        section.classList.toggle('collapsed');
+                    }
+                });
+            });
+        }
+
+        function setupActionButtons() {
+            const passReviewBtn = document.getElementById('passReviewBtn');
+            const correctionBtn = document.getElementById('correctionBtn');
+            const coachingBtn = document.getElementById('coachingBtn');
+            const exitQueueBtn = document.getElementById('exitQueueBtn');
+            const saveBtn = document.getElementById('saveBtn');
+            const saveNextBtn = document.getElementById('saveNextBtn');
+
+            if (passReviewBtn) passReviewBtn.addEventListener('click', handlePassReview);
+            if (correctionBtn) correctionBtn.addEventListener('click', handleCorrection);
+            if (coachingBtn) coachingBtn.addEventListener('click', handleCoaching);
+            if (exitQueueBtn) exitQueueBtn.addEventListener('click', handleExit);
+            if (saveBtn) saveBtn.addEventListener('click', handleSave);
+            if (saveNextBtn) saveNextBtn.addEventListener('click', handleSaveNext);
+        }
+
+        // ============================================
+        // PASSENGER MANAGEMENT
+        // ============================================
+
+        function switchPassenger(passengerNum) {
+            if (FormState.currentPassenger === passengerNum) return;
+
+            // Save current passenger data
+            collectFormData();
+
+            // Switch passenger
+            FormState.currentPassenger = passengerNum;
+
+            // Update tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (parseInt(btn.dataset.passenger) === passengerNum) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Load new passenger data
+            populateFormData();
+        }
+
+        // ============================================
+        // FORM DATA MANAGEMENT
+        // ============================================
+
+        function collectFormData() {
+            const passengerKey = `passenger${FormState.currentPassenger}`;
+            const passenger = FormState.formData[passengerKey];
+
+            // Voyage Details
+            passenger.voyageDetails.voyageNumber = document.getElementById('voyageNumber')?.value || '';
+            passenger.voyageDetails.bookingNumber = document.getElementById('bookingNumber')?.value || '';
+            passenger.voyageDetails.currency = document.getElementById('currency')?.value || 'USD';
+
+            // Waiver & Cancellation
+            passenger.waiverCancellation.waiverReasonCode = document.getElementById('waiverReasonCode')?.value || '';
+            passenger.waiverCancellation.waiverReasonDesc = document.getElementById('waiverReasonDesc')?.value || '';
+            passenger.waiverCancellation.cancelCode = document.getElementById('cancelCode')?.value || '';
+            passenger.waiverCancellation.refNotes = document.getElementById('refNotes')?.value || '';
+        }
+
+        function populateFormData() {
+            const passengerKey = `passenger${FormState.currentPassenger}`;
+            const passenger = FormState.formData[passengerKey];
+
+            // Voyage Details
+            const voyageNumberEl = document.getElementById('voyageNumber');
+            const bookingNumberEl = document.getElementById('bookingNumber');
+            const currencyEl = document.getElementById('currency');
+
+            if (voyageNumberEl) voyageNumberEl.value = passenger.voyageDetails.voyageNumber || '';
+            if (bookingNumberEl) bookingNumberEl.value = passenger.voyageDetails.bookingNumber || '';
+            if (currencyEl) currencyEl.value = passenger.voyageDetails.currency || 'USD';
+
+            // Waiver & Cancellation
+            const waiverReasonCodeEl = document.getElementById('waiverReasonCode');
+            const waiverReasonDescEl = document.getElementById('waiverReasonDesc');
+            const cancelCodeEl = document.getElementById('cancelCode');
+            const refNotesEl = document.getElementById('refNotes');
+
+            if (waiverReasonCodeEl) waiverReasonCodeEl.value = passenger.waiverCancellation.waiverReasonCode || '';
+            if (waiverReasonDescEl) waiverReasonDescEl.value = passenger.waiverCancellation.waiverReasonDesc || '';
+            if (cancelCodeEl) cancelCodeEl.value = passenger.waiverCancellation.cancelCode || '';
+            if (refNotesEl) refNotesEl.value = passenger.waiverCancellation.refNotes || '';
+
+            FormState.isDirty = false;
+        }
+
+        function loadFormData() {
+            const savedData = localStorage.getItem('hal-form-data');
+            if (savedData) {
+                try {
+                    const parsed = JSON.parse(savedData);
+                    FormState.formData = parsed;
+                    populateFormData();
+                } catch (e) {
+                    console.error('Error loading form data:', e);
+                }
+            }
+        }
+
+        function saveFormData() {
+            collectFormData();
+            localStorage.setItem('hal-form-data', JSON.stringify(FormState.formData));
+        }
+
+        // ============================================
+        // FORM VALIDATION
+        // ============================================
+
+        function validateForm() {
+            const requiredFields = [
+                { id: 'voyageNumber', name: 'Voyage Number' },
+                { id: 'bookingNumber', name: 'Booking Number' }
+            ];
+
+            const missingFields = [];
+
+            requiredFields.forEach(field => {
+                const element = document.getElementById(field.id);
+                if (!element || !element.value.trim()) {
+                    missingFields.push(field.name);
+                }
+            });
+
+            if (missingFields.length > 0) {
+                showNotification(`Please fill in all required fields: ${missingFields.join(', ')}`, 'error');
+                return false;
+            }
+
+            return true;
+        }
+
+        // ============================================
+        // AUTO-SAVE
+        // ============================================
+
+        let autoSaveInterval = null;
+
+        function startAutoSave() {
+            autoSaveInterval = setInterval(() => {
+                if (FormState.isDirty) {
+                    saveFormData();
+                    showNotification('Form saved automatically', 'info');
+                    FormState.isDirty = false;
+                }
+            }, 30000);
+        }
+
+        function markFormDirty() {
+            FormState.isDirty = true;
+        }
+
+        // ============================================
+        // ACTION HANDLERS
+        // ============================================
+
+        function handlePassReview() {
+            // if (!validateForm()) return;
+
+            showConfirmModal(
+                'passReview',
+                'Pass Review',
+                () => {
+                    saveFormData();
+                    showNotification('Work item passed for review successfully!', 'success');
+                    setTimeout(() => {
+                        localStorage.removeItem('hal-form-data');
+                        location.reload();
+                    }, 2000);
+                }
+            );
+        }
+
+        function handleCorrection() {
+            showConfirmModal(
+                'correctionRequest',
+                'Request Correction',
+                () => {
+                    saveFormData();
+                    showNotification('Correction request sent!', 'success');
+                }
+            );
+        }
+
+        function handleCoaching() {
+            showConfirmModal(
+                'coachingEvent',
+                'Coaching Request',
+                () => {
+                    saveFormData();
+                    showNotification('Coaching request submitted!', 'success');
+                }
+            );
+        }
+
+        function handleExit() {
+            showConfirmModal(
+                'exitWorkQueue',
+                'Exit Work Queue',
+                'Are you sure you want to exit the queue? Unsaved changes will be lost.',
+                () => {
+                    localStorage.removeItem('hal-form-data');
+                    showNotification('Exiting queue...', 'info');
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1500);
+                }
+            );
+        }
+
+        function handleSave() {
+            if (!validateForm()) return;
+            saveFormData();
+            showNotification('Work item saved successfully!', 'success');
+            FormState.isDirty = false;
+        }
+
+        function handleSaveNext() {
+            if (!validateForm()) return;
+            saveFormData();
+            showNotification('Work item saved! Loading next item...', 'success');
+            setTimeout(() => {
+                location.reload();
+            }, 2000);
+        }
+
+        // ============================================
+        // MODAL MANAGEMENT
+        // ============================================
+
+        function showConfirmModal(modelType, title, onConfirm, message = 'Are you sure you want to proceed?') {
+            const modal = document.getElementById(modelType);
+            const modalTitle = modal.querySelector('#modalTitle');
+            const modalMessage = modal.querySelector('#modalMessage');
+            const confirmBtn = modal.querySelector("#confirmBtn");
+            const cancelBtn = modal.querySelector("#cancelModalBtn");
+
+            modalTitle.textContent = title;
+        if(modalMessage) modalMessage.textContent = message;
+
+            modal.classList.add('active');
+
+            // Remove old listeners and add new ones
+            const newConfirmBtn = confirmBtn.cloneNode(true);
+            const newCancelBtn = cancelBtn.cloneNode(true);
+            confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
+            cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
+
+            newConfirmBtn.addEventListener('click', () => {
+                onConfirm();
+                closeModal(modelType);
+            });
+
+            newCancelBtn.addEventListener('click', ()=>closeModal(modelType));
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal(modelType);
+            });
+        }
+
+        function closeModal(modelType) {
+            const modal = document.getElementById(modelType);
+            modal.classList.remove('active');
+        }
+
+        // ============================================
+        // NOTIFICATION SYSTEM
+        // ============================================
+
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+
+        // ============================================
+        // WINDOW LISTENERS
+        // ============================================
+
+        function attachWindowListeners() {
+            window.addEventListener('beforeunload', (e) => {
+                if (FormState.isDirty) {
+                    e.preventDefault();
+                    e.returnValue = '';
+                }
+            });
+        }
+
+        // ============================================
+        // DEBUG TOOLS (Exposed to window)
+        // ============================================
+
+        const Debug = {
+            logState: () => {
+                console.log('Current Form State:', FormState);
+            },
+            fillTestData: () => {
+                FormState.formData.passenger1.voyageDetails = {
+                    voyageNumber: 'ABC123456',
+                    bookingNumber: 'ABC123456',
+                    currency: 'USD'
+                };
+                FormState.formData.passenger1.waiverCancellation = {
+                    waiverReasonCode: 'ILLNESS',
+                    waiverReasonDesc: 'COVID-19',
+                    cancelCode: 'CXL',
+                    refNotes: 'Global pandemic related cancellation'
+                };
+                populateFormData();
+                saveFormData();
+                console.log('Test data filled');
+            },
+            clearData: () => {
+                localStorage.removeItem('hal-form-data');
+                location.reload();
+            },
+            exportData: () => {
+                collectFormData();
+                const dataStr = JSON.stringify(FormState.formData, null, 2);
+                console.log(dataStr);
+                const blob = new Blob([dataStr], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'hal-form-data.json';
+                a.click();
+            },
+            importData: (jsonStr) => {
+                try {
+                    const data = JSON.parse(jsonStr);
+                    FormState.formData = data;
+                    saveFormData();
+                    location.reload();
+                    console.log('Data imported successfully');
+                } catch (e) {
+                    console.error('Error importing data:', e);
+                }
+            }
+        };
+
+        // Expose Debug to window
+        window.Debug = Debug;
+
+    </script>
+</body>
+</html>

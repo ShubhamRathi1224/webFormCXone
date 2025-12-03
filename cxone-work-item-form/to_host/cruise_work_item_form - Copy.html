@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Item Review - Cruise Line Support</title>
+    <style>
+        :root {
+            --color-primary: #A41E35;
+            --color-accent: #2D2A26;
+            --gradient: linear-gradient(135deg, #A41E35, #2D2A26);
+            --bg-color: #ffffff;
+            --text-color: #1b1b1b;
+            --border-color: #e5e5e5;
+            --logo-url: url('../assets/logos/cunard.svg');
+            --pad: 20px;
+            --input-height: 44px;
+            --radius: 12px;
+            --card: #ffffff;
+            --muted: #6b7280;
+        }
+
+        :root[data-theme='cunard'] {
+            --brand: #c21807;
+            --color-primary: #A41E35;
+            --color-accent: #2D2A26;
+            --gradient: linear-gradient(135deg, #A41E35, #7B1326);
+            --logo-url: url('../assets/logos/cunard.svg');
+            --accent-bg: radial-gradient(circle at top left, #A41E35 0%, #2D2A26 100%);
+
+            --primary-color: #8b0000;
+            --secondary-color: #a52a2a;
+            --accent-color: #ffd700;
+        }
+
+        :root[data-theme='holland'] {
+            --brand: #006064;
+            --color-primary: #1A2857;
+            --color-accent: #004488;
+            --gradient: linear-gradient(135deg, #1A2857, #002B6A);
+            --logo-url: url('../assets/logos/holland.svg');
+            --accent-bg: radial-gradient(circle at bottom right, #1A2857 0%, #001F4E 100%);
+
+            --primary-color: #003d6f;
+            --secondary-color: #005a9c;
+            --accent-color: #e67e22;
+        }
+
+        :root[data-theme='princess'] {
+            --brand: #0b6efd;
+            --color-primary: #00538B;
+            --color-accent: #0090D9;
+            --gradient: linear-gradient(135deg, #00538B, #0090D9);
+            --logo-url: url('../assets/logos/princess.svg');
+            --accent-bg: linear-gradient(180deg, rgba(0, 83, 139, 0.9), rgba(0, 144, 217, 0.8)),
+                url('../assets/patterns/princess-waves.svg');
+
+            --primary-color: #0066b2;
+            --secondary-color: #0080d8;
+            --accent-color: #ffd700;
+        }
+
+        :root[data-theme='seabourn'] {
+            --brand: #6b0b9e;
+            --color-primary: #E3CE66;
+            --color-accent: #9A7B2F;
+            --gradient: linear-gradient(135deg, #9A7B2F, #E3CE66);
+            --logo-url: url('../assets/logos/seabourn.svg');
+            --accent-bg: linear-gradient(180deg, #f9f7f1, #efe3b0);
+
+            /* --primary-color: #1a1a2e; */
+            --primary-color: #E3CE66;
+            --secondary-color: #16213e;
+            --accent-color: #c9a77c;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 18px 22px;
+            border-bottom: 1px solid rgba(15, 23, 42, 0.04);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+
+        .header-controls {
+            position: absolute;
+            right: 2%;
+        }
+
+        header.brand {
+            background: var(--gradient);
+            background-image: var(--gradient);
+            background-blend-mode: overlay;
+            background-size: cover;
+            color: #fff;
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            /* justify-content: space-between; */
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        header .brand-logo {
+            background-image: var(--logo-url);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 160px;
+            height: 40px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            background-size: contain;
+            background-repeat: no-repeat
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+        }
+
+        /* Brand Themes */
+        /* .theme-HAL {
+            --primary-color: #003d6f;
+            --secondary-color: #005a9c;
+            --accent-color: #e67e22;
+        }
+
+        .theme-PCL {
+            --primary-color: #0066b2;
+            --secondary-color: #0080d8;
+            --accent-color: #ffd700;
+        }
+
+        .theme-SBN {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #c9a77c;
+        }
+
+        .theme-CUN {
+            --primary-color: #8b0000;
+            --secondary-color: #a52a2a;
+            --accent-color: #ffd700;
+        } */
+
+        /* Header */
+        .header {
+            background: var(--primary-color);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            height: 60px;
+            object-fit: contain;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            min-height: calc(100vh - 180px);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Left Section */
+        .left-section {
+            flex: 0 0 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            color: var(--primary-color);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .work-item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .work-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .work-item img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .work-item-text {
+            flex: 1;
+        }
+
+        .work-item-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 13px;
+        }
+
+        .work-item-sub {
+            font-size: 11px;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .detail-value {
+            color: #333;
+        }
+
+        /* Middle Section */
+        .middle-section {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+
+        .passenger-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .passenger-table thead {
+            background: var(--primary-color);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .passenger-table th {
+            padding: 12px 10px;
+            text-align: left;
+            font-weight: 600;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            white-space: nowrap;
+        }
+
+        .passenger-table th:first-child {
+            position: sticky;
+            left: 0;
+            background: var(--primary-color);
+            z-index: 11;
+            min-width: 200px;
+        }
+
+        .passenger-table td {
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            background: white;
+        }
+
+        .passenger-table td:first-child {
+            position: sticky;
+            left: 0;
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #555;
+            z-index: 9;
+            border-right: 2px solid #ddd;
+        }
+
+        .passenger-table tbody tr:hover td {
+            background: #f0f7ff;
+        }
+
+        .passenger-table tbody tr:hover td:first-child {
+            background: #e8f4ff;
+        }
+
+        .passenger-table input,
+        .passenger-table textarea {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+            background: #fafafa;
+            min-width: 100px;
+        }
+
+        .passenger-table input:focus,
+        .passenger-table textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: white;
+        }
+
+        .passenger-table textarea {
+            resize: vertical;
+            min-height: 40px;
+        }
+
+        /* Right Section */
+        .right-section {
+            flex: 0 0 160px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .action-btn {
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .action-btn img {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 8px;
+        }
+
+        .action-btn-text {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tagline {
+            color: white;
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        .footer-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .btn-cancel {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-save {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .btn-next {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Brand Selector */
+        .brand-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .brand-selector select {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-section,
+            .right-section {
+                flex: 1;
+            }
+
+            .right-section {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+<body class="theme-holland">     
+    <header class="brand">
+        <div class="brand">
+            <div class="brand-logo"></div>
+        </div>
+
+        <div class="header-controls">
+            <div>
+                <select id="serviceSelector" aria-label="Select cruise line">
+                    <option value="holland">Holland America (HAL)</option>
+                    <option value="princess">Princess Cruise (PCL)</option>
+                    <option value="seabourn">Seabourn (SBN)</option>
+                    <option value="cunard">Cunard (CUN)</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="left-section">
+            <div class="card">
+                <div class="card-title">Work Item Processing</div>
+                <div class="work-item-list">
+                    <div class="work-item">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e74c3c'%3E%3Ccircle cx='12' cy='12' r='10' stroke='%23e74c3c' stroke-width='2' fill='none'/%3E%3Cline x1='15' y1='9' x2='9' y2='15' stroke='%23e74c3c' stroke-width='2'/%3E%3Cline x1='9' y1='9' x2='15' y2='15' stroke='%23e74c3c' stroke-width='2'/%3E%3C/svg%3E" alt="Cancel">
+                        <div class="work-item-text">
+                            <div class="work-item-name">Cancellation Waive Fee</div>
+                            <div class="work-item-sub">Air • Package • Transfer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Employee Details</div>
+                <div class="detail-row">
+                    <span class="detail-label">Name:</span>
+                    <span class="detail-value">Test, Agent</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Team:</span>
+                    <span class="detail-value">Test</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Role:</span>
+                    <span class="detail-value">Reservation Specialist</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">User ID:</span>
+                    <span class="detail-value">HA12345</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Reviewer Details</div>
+                <div class="detail-row">
+                    <span class="detail-label">Reviewer:</span>
+                    <span class="detail-value">Laurie Mitsui</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Role:</span>
+                    <span class="detail-value">Manager</span>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <!-- Middle Section -->
+        <div class="middle-section">
+            <h3 style="color: var(--primary-color); margin-bottom: 15px; font-size: 18px;">Passenger Details</h3>
+            <div class="table-container">
+                <table class="passenger-table">
+                    <thead>
+                        <tr>
+                            <th>Field Name</th>
+                            <th>PAX 01</th>
+                            <th>PAX 02</th>
+                            <th>PAX 03</th>
+                            <th>PAX 04</th>
+                            <th>PAX 05</th>
+                            <th>PAX 06</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Voyage</td>
+                            <td><input type="text" value="U534" readonly></td>
+                            <td><input type="text" value="U534" readonly></td>
+                            <td><input type="text" value="U534" readonly></td>
+                            <td><input type="text" value="U534" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>Booking</td>
+                            <td><input type="text" value="3C6WXG" readonly></td>
+                            <td><input type="text" value="3C6WXG" readonly></td>
+                            <td><input type="text" value="3C6WXG" readonly></td>
+                            <td><input type="text" value="3C6WXG" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>Currency</td>
+                            <td><input type="text" value="USD" readonly></td>
+                            <td><input type="text" value="USD" readonly></td>
+                            <td><input type="text" value="USD" readonly></td>
+                            <td><input type="text" value="USD" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>Total Cancel Fees</td>
+                            <td><input type="text" value="398.04" readonly></td>
+                            <td><input type="text" value="275.50" readonly></td>
+                            <td><input type="text" value="150.00" readonly></td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>Total Waived</td>
+                            <td><input type="text" value="398.04" readonly></td>
+                            <td><input type="text" value="275.50" readonly></td>
+                            <td><input type="text" value="150.00" readonly></td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>Net Cancelled Fee</td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>Waive Reason CD</td>
+                            <td><input type="text" value="PL" readonly></td>
+                            <td><input type="text" value="PL" readonly></td>
+                            <td><input type="text" value="PL" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>Waive Reason Description</td>
+                            <td><textarea readonly>POLAR ERROR</textarea></td>
+                            <td><textarea readonly>POLAR ERROR</textarea></td>
+                            <td><textarea readonly>POLAR ERROR</textarea></td>
+                            <td><textarea readonly></textarea></td>
+                            <td><textarea readonly></textarea></td>
+                            <td><textarea readonly></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Cancel Code</td>
+                            <td><input type="text" value="D" readonly></td>
+                            <td><input type="text" value="D" readonly></td>
+                            <td><input type="text" value="D" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>Air Cancel Fees</td>
+                            <td><input type="text" value="398.04" readonly></td>
+                            <td><input type="text" value="275.50" readonly></td>
+                            <td><input type="text" value="150.00" readonly></td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>Package Cancel Fees</td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>Transfer Cancel Fees</td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>NCF Charges Cancel Fees</td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>Non-Refundable Premium/Waiver</td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="0.00" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>Open Date</td>
+                            <td><input type="text" value="04/22/2025" readonly></td>
+                            <td><input type="text" value="04/22/2025" readonly></td>
+                            <td><input type="text" value="04/22/2025" readonly></td>
+                            <td><input type="text" value="04/22/2025" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                            <td><input type="text" value="" readonly></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <div class="action-btn" onclick="handleAction('pass')">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2328a745'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E" alt="Pass">
+                <div class="action-btn-text">Pass Review</div>
+            </div>
+            <div class="action-btn" onclick="handleAction('correction')">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffc107'%3E%3Cpath d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z'/%3E%3C/svg%3E" alt="Correction">
+                <div class="action-btn-text">Correction Request</div>
+            </div>
+            <div class="action-btn" onclick="handleAction('coaching')">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2317a2b8'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z'/%3E%3C/svg%3E" alt="Coaching">
+                <div class="action-btn-text">Coaching Request</div>
+            </div>
+            <div class="action-btn" onclick="handleAction('exit')">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23dc3545'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z'/%3E%3C/svg%3E" alt="Exit">
+                <div class="action-btn-text">Exit Work Queue</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="tagline" id="tagline">Explore the World in Comfort</div>
+        <div class="footer-buttons">
+            <button class="btn btn-cancel" onclick="handleFooterAction('cancel')">Cancel</button>
+            <button class="btn btn-save" onclick="handleFooterAction('save')">Save</button>
+            <button class="btn btn-next" onclick="handleFooterAction('next')">Save and Next</button>
+        </div>
+    </div>
+
+    <script>
+        import { BRANDS } from "../../data.js";
+
+        const brandConfig = {
+        holland: {
+            logo: "https://www.hollandamerica.com/content/dam/hal/common/site-logos/hal-logo-horizontal.svg",
+            tagline: "Explore the World in Comfort",
+            primaryColor: "#003d6f",
+        },
+        princess: {
+            logo: "https://www.princess.com/content/dam/princess/brand-logos/princess-cruises-logo-horizontal.svg",
+            tagline: "Come Back New",
+            primaryColor: "#0066b2",
+        },
+        seabourn: {
+            logo: "https://www.seabourn.com/content/dam/seabourn/logos/seabourn-logo.svg",
+            tagline: "Ultra-Luxury Cruising",
+            primaryColor: "#1a1a2e",
+        },
+        cunard: {
+            logo: "https://www.cunard.com/content/dam/cunard/logos/cunard-logo.svg",
+            tagline: "The Most Famous Ocean Liners in the World",
+            primaryColor: "#8b0000",
+        },
+        };
+
+        function changeBrand(brand) {
+        document.body.className = `theme-${brand}`;
+        const config = brandConfig[brand];
+        document.getElementById("brandLogo").src = config.logo;
+        document.getElementById("tagline").textContent = config.tagline;
+        }
+
+        function switchTab(index) {
+        const tabs = document.querySelectorAll(".tab");
+        tabs.forEach((tab, i) => {
+            tab.classList.toggle("active", i === index);
+        });
+        }
+
+
+        function handleAction(action) {
+        alert(`Action: ${action.charAt(0).toUpperCase() + action.slice(1)}`);
+        }
+
+        function handleFooterAction(action) {
+        alert(`Footer Action: ${action.charAt(0).toUpperCase() + action.slice(1)}`);
+        }
+
+        window.changeBrand = changeBrand;
+        window.switchTab = switchTab;
+        window.handleAction = handleAction;
+        window.handleFooterAction = handleFooterAction;
+
+
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+        setTheme();
+        serviceSelector.addEventListener("change", (e) => {
+            setTheme(e.target.value);
+        });
+        });
+
+        function setTheme(name = "holland") {
+        console.log('name: ', name);
+        document.documentElement.setAttribute("data-theme", name);
+        serviceSelector.value = name;
+
+        const brand = BRANDS[name] || Object.values(BRANDS)[0];
+        let link = document.querySelector("link[rel~='icon']");
+        if (!link) {
+            link = document.createElement("link");
+            link.rel = "icon";
+            document.head.appendChild(link);
+        }
+        link.href = brand.favicon;
+        }
+    </script>
+</body>
+</html>

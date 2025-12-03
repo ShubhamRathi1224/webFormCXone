@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAL Work Item Form - Holland America Line</title>
+    <link rel="stylesheet" href="hal_work_item_form.css">
+</head>
+<body>       
+    <header class="brand">
+        <div class="brand">
+            <div class="brand-logo"></div>
+        </div>
+        <div class="header-controls">
+            <div>
+                <select id="serviceSelector" aria-label="Select cruise line">
+                    <option value="holland">Holland America (HAL)</option>
+                    <option value="princess">Princess Cruise (PCL)</option>
+                    <option value="seabourn">Seabourn (SBN)</option>
+                    <option value="cunard">Cunard (CUN)</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <aside class="left-panel">
+            <div class="card">
+                <div class="card-header">Work Item Details</div>
+                <div class="card-body">
+                    <div class="work-item-type">
+                        <div class="label">Cancellation Waive Fee</div>
+                        <div class="title">Sub-Items:</div>
+                    </div>
+                    <div class="sub-items">
+                        <div class="sub-item">
+                            <span class="icon">✓</span>
+                            <span>Air Cancel Fee</span>
+                            <div class="work-item-icon" title="Cancellation-related work item">✈️</div>
+                        </div>
+                        <div class="sub-item">
+                            <span class="icon">✓</span>
+                            <span>Package Cancel Fee</span>
+                            <div class="work-item-icon" title="Cancellation-related work item">🏨</div>
+                        </div>
+                        <div class="sub-item">
+                            <span class="icon">✓</span>
+                            <span>Transfer Cancel Fee</span>
+                            <div class="work-item-icon" title="Cancellation-related work item">🚗</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="section-title">Voyage Details</div>
+                <div class="section-content">
+                    <div class="sub-items">
+                        <div class="fee-item">
+                            <span class="fee-label">Voyage Number</span>
+                            <span class="fee-value">U534</span>
+                        </div>
+                        <div class="fee-item">
+                            <span class="fee-label">Booking Number</span>
+                            <span class="fee-value">3C6WXG</span>
+                        </div>
+                        <div class="fee-item">
+                            <span class="fee-label">Currency</span>
+                            <span class="fee-value">USD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <section class="center-panel">
+
+            <div class="middle-section">
+                <div class="card-header">Passenger Details</div>
+                <div class="table-container">
+                    <table class="passenger-table" id="passengerTable">
+                        <thead id="tableHeader">
+                        </thead>
+                        <tbody id="tableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <aside class="right-panel">
+
+            <div class="left-panel">
+                <div class="card">
+                    <div class="card-header">Employee Details</div>
+                    <div class="card-body">
+                        <div class="employee-info">
+                            <p><span class="label">Name:</span> <span class="value">John Smith</span></p>
+                            <p><span class="label">Team:</span> <span class="value">Devl</span></p>
+                            <p><span class="label">Role:</span> <span class="value">Reservation Specialist</span></p>
+                            <p><span class="label">User Id:</span> <span class="value">Dev</span></p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="card">
+                    <div class="card-header">Reviewer Details</div>
+                    <div class="card-body">
+                        <div class="employee-info">
+                            <p><span class="label">Name:</span> <span class="value">Will Doe</span></p>
+                            <p><span class="label">Role:</span> <span class="value">Sr. Reservation Specialist</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="action-panel">
+                
+                <button class="action-btn pass-review" id="passReviewBtn">
+                    <span>🔒 PASS REVIEW</span>
+                </button>
+    
+                <button class="action-btn correction-request" id="correctionBtn">
+                    <span>📝 CORRECTION REQUEST</span>
+                </button>
+    
+                <button class="action-btn coaching-request" id="coachingBtn">
+                    <span>📧 COACHING REQUEST</span>
+                </button>
+    
+                <button class="action-btn exit-queue" id="exitQueueBtn">
+                    <span>🚪 EXIT WORK QUEUE</span>
+                </button>
+            </div>
+
+        </aside>
+    </main>
+
+    <footer class="app-footer">
+        <div class="footer-container">
+            <div class="footer-tagline">Holland America Line - Savor the Journey</div>
+            <div class="footer-buttons">
+                <button class="footer-btn" id="saveBtn">Save</button>
+                <button class="footer-btn save-next-btn" id="saveNextBtn">Save & Next</button>
+            </div>
+        </div>
+    </footer>
+
+    <div id="passReview" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-title" id="modalTitle">Pass Review</div>
+            <div>
+                <div class="field">
+                    <p>Check/select all that apply:</p>
+                    <div class="checkbox-group subscription-toggle-group">
+                        <p class="subscription-type"><input type="checkbox" id="bookingUpdates"> Proper code used</p>
+                        <p class="subscription-type"><input type="checkbox" id="promoOffers"> Proper documentation</p>
+                        <p class="subscription-type"><input type="checkbox" id="billingAlerts"> Justified</p>
+                    </div>
+                </div>
+                <div class="field mt-22px">
+                    <label>Others</label>
+                    <select id="customerSelector" aria-label="Select cruise line">
+                        <option value="C-0001">Option 1</option>
+                        <option value="C-0002">Option 2</option>
+                        <option value="C-0002">Option 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn secondary" id="cancelModalBtn">Cancel</button>
+                <button class="modal-btn primary" id="confirmBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="correctionRequest" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-title" id="modalTitle">Correction Request</div>
+            <div class="short-row">
+                <div class="field">
+                    <div class="checkbox-group subscription-toggle-group">
+                        <p class="subscription-type"><input type="checkbox" id="missingDocumentation"> Missing Documentation</p>
+                        <p class="subscription-type"><input type="checkbox" id="incorrectCancellation"> Incorrect Cancellation</p>
+                        <p class="subscription-type"><input type="checkbox" id="otherCorrection"> Other</p>
+                    </div>
+                </div>
+                <div class="field" style="display: none;" id="otherCorrectionField">
+                    <label for="otherCorrection">Other Correction:</label>
+                    <input type="text" id="otherCorrection" />
+                </div>
+                <div class="field">
+                    <label for="nonVisilbeCorrectionMessage">Non-Visible Message:</label>
+                    <textarea id="nonVisilbeCorrectionMessage" class="cxone-textarea"
+                        placeholder="Paste transcript or chat history..."></textarea>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn secondary" id="cancelModalBtn">Cancel</button>
+                <button class="modal-btn primary" id="confirmBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="coachingEvent" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-title" id="modalTitle">Coaching Event</div>
+            <div class="short-row">
+                <div class="field">
+                    <p>Concern Item/s:</p>
+                    <div class="checkbox-group subscription-toggle-group">
+                        <p class="subscription-type"><input type="checkbox" id="lacksBookingHistoryComments"> Lacks Booking History Comments</p>
+                        <p class="subscription-type"><input type="checkbox" id="lacksCommentsInCancelWaiverScreen"> Lacks Comments in Cancel Waiver Screen</p>
+                        <p class="subscription-type"><input type="checkbox" id="lacksCommentsOnManualAdjScreen"> Lacks Comments on Manual Adj Screen</p>
+                        <p class="subscription-type"><input type="checkbox" id="lacksFCCHistoryComments"> Lacks FCC History Comments</p>
+                        <p class="subscription-type"><input type="checkbox" id="outsideOfPolicyProcedure"> Outside of Policy and/or Procedure</p>
+                        <p class="subscription-type"><input type="checkbox" id="dataEntryError"> Data Entry Error</p>
+                        <p class="subscription-type"><input type="checkbox" id="otherCoaching"> Other</p>
+                    </div>
+                </div>
+                <div class="field" style="display: none;" id="otherCoachingDetailsField">
+                    <label for="otherCoachingDetails">Other Coaching Details:</label>
+                    <input type="text" id="otherCoachingDetails" />
+                </div>
+                <div class="field">
+                    <label for="nonVisilbeCoachingMessage">Non-Visible Message:</label>
+                    <textarea id="nonVisilbeCoachingMessage" class="cxone-textarea"
+                        placeholder="Paste transcript or chat history..."></textarea>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn secondary" id="cancelModalBtn">Cancel</button>
+                <button class="modal-btn primary" id="confirmBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="exitWorkQueue" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-title" id="modalTitle">Confirm Action</div>
+            <div class="modal-message" id="modalMessage"></div>
+            <div class="modal-buttons">
+                <button class="modal-btn secondary" id="cancelModalBtn">Cancel</button>
+                <button class="modal-btn primary" id="confirmBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script type="module" src="hal_work_item_form.js"></script>
+</body>
+</html>
