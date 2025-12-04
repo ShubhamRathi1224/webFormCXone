@@ -1,0 +1,105 @@
+<data>
+    <div style="
+                position: relative;
+                background: #ffffff;
+                padding: 32px;
+                border-radius: 6px;
+                box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+                max-width: 450px;
+                width: 90%;
+                z-index: 1001;
+                border: 1px solid #ccc;">
+        <div style="
+            font-size: 14px;
+            font-weight: bold;
+            color: {global:primaryColor};
+            margin-bottom: 16px;
+            text-transform: uppercase;" id="modalTitle">Coaching Event</div>
+        <div style="
+        display: grid;
+        gap: 24px 16px;
+        margin-bottom: 16px;">
+            <div style="position: relative;">
+                <p style="
+        margin-bottom: 6px;
+        font-weight: 500;
+        font-size: 16px;
+        color: black; ">Concern Item/s:</p>
+                <div class="checkbox-group subscription-toggle-group">
+                    <p class="subscription-type"><input type="checkbox" id="lacksBookingHistoryComments"> Lacks Booking
+                        History Comments</p>
+                    <p class="subscription-type"><input type="checkbox" id="lacksCommentsInCancelWaiverScreen"> Lacks
+                        Comments in Cancel Waiver Screen</p>
+                    <p class="subscription-type"><input type="checkbox" id="lacksCommentsOnManualAdjScreen"> Lacks
+                        Comments on Manual Adj Screen</p>
+                    <p class="subscription-type"><input type="checkbox" id="lacksFCCHistoryComments"> Lacks FCC History
+                        Comments</p>
+                    <p class="subscription-type"><input type="checkbox" id="outsideOfPolicyProcedure"> Outside of Policy
+                        and/or Procedure</p>
+                    <p class="subscription-type"><input type="checkbox" id="dataEntryError"> Data Entry Error</p>
+                    <p class="subscription-type"><input type="checkbox" id="otherCoaching"> Other</p>
+                </div>
+            </div>
+            <div style="position: relative;" style="display: none;" id="otherCoachingDetailsField">
+                <label style="
+        display: block;
+        margin-top: 12px;
+        font-weight: 500;
+        font-size: 13px;
+        color: #6b7280;
+        position: absolute;
+        top: -22px;
+        left: 22px;
+        background-color: white;
+        padding: 0 4px;" for="otherCoachingDetails">Other Coaching Details:</label>
+                <input type="text" id="otherCoachingDetails" />
+            </div>
+            <div style="position: relative;">
+                <label style="
+        display: block;
+        margin-top: 12px;
+        font-weight: 500;
+        font-size: 13px;
+        color: #6b7280;
+        position: absolute;
+        top: -22px;
+        left: 22px;
+        background-color: white;
+        padding: 0 4px;" for="nonVisilbeCoachingMessage">Non-Visible Message:</label>
+                <textarea id="nonVisilbeCoachingMessage" class="cxone-textarea"
+                    placeholder="Paste transcript or chat history..."></textarea>
+            </div>
+        </div>
+        <div style="
+            display: flex;
+            gap: 16px;
+            justify-content: flex-end;
+            margin-top: 16px;">
+            <button style="
+            padding: 12px 20px;
+            border: none;
+            border-radius: 2px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            background: transparent;
+            color: #666666;
+            border: 1px solid #ccc;" id="cancelModalBtn">Cancel</button>
+            <button style="
+            padding: 12px 20px;
+            border: none;
+            border-radius: 2px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.3px; 
+            background: {global:secondaryColor};
+            color: #ffffff;" id="confirmBtn">Confirm</button>
+        </div>
+    </div>
+</data>
