@@ -47,11 +47,11 @@ function setupAutocomplete() {
       div.className = "suggestion-item";
       div.style = "padding: 8px;cursor: pointer;"
       div.addEventListener("mouseenter", () => {
-        div.style = "background: #f0f0f0;";
+        div.style.background = "#f0f0f0;";
       });
 
       div.addEventListener("mouseleave", () => {
-        div.style = "background: white;";
+        div.style.background = "white;";
       });
       div.textContent = result;
       div.onclick = () => {
