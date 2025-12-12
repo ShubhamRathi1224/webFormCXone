@@ -27,6 +27,11 @@ function setupAutocomplete() {
     if (value.length === 0) return;
 
     const results = filterData(value);
+    if(results.length > 0){
+        list.style = "border: 1px solid #ccc;"
+    } else {
+        list.style = "border: none;"
+    }
 
     results.forEach((result) => {
       const div = document.createElement("div");
