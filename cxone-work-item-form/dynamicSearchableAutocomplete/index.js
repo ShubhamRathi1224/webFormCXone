@@ -28,9 +28,9 @@ function setupAutocomplete() {
 
     const results = filterData(value);
     if(results.length > 0){
-        list.style = "border: 1px solid #ccc;"
+        list.style.border = "1px solid #ccc";
     } else {
-        list.style = "border: none;"
+        list.style.border = "none";
     }
 
     results.forEach((result) => {
