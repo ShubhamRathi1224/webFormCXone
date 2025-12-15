@@ -37,7 +37,7 @@ async function loadData() {
         });
       }
     };
-    setupSubItems(uniqSubItems)
+    setupSubItems(uniqSubItems);
   } catch (error) {
     console.error("Error fetching JSON:", error);
   }

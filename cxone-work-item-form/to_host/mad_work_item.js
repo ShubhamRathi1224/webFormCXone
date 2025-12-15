@@ -24,9 +24,66 @@ async function loadData() {
     document.getElementById('voyageNumberValue').innerText = passengerData[0].voyage;
     document.getElementById('bookingNumberValue').innerText = passengerData[0].booking_id;
     document.getElementById('currencyValue').innerText = passengerData[0].currency;
+    var seen = {};
+    var uniqSubItems = [];
+    for (var i = 0; i < passengerData.length; i++) {
+      var type = passengerData[i].cancel_item_type;
+      if (!seen[type]) {
+        seen[type] = true;
+        uniqSubItems.push({
+          label: type,
+          icon: passengerData[i].icon,
+          key: "air"
+        });
+      }
+    };
+    setupSubItems(uniqSubItems);
   } catch (error) {
     console.error("Error fetching JSON:", error);
   }
+}
+
+function setupSubItems(uniqSubItems) {
+  const container = document.getElementById("subItemList");
+
+  uniqSubItems.forEach(item => {
+    const div = document.createElement("div");
+
+    div.style.cssText = `
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      background: #ffffff;
+      border-radius: 2px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-left: 3px solid ${window.global?.secondaryColor || '#0b6efd'};
+    `;
+
+    div.onmouseover = function () {
+      this.style.background = "#e8f4ff";
+      this.style.color = window.global?.secondaryColor || "#0b6efd";
+      this.style.transform = "translateX(4px)";
+    };
+
+    div.onmouseout = function () {
+      this.style.background = "#ffffff";
+      this.style.color = "black";
+      this.style.transform = "none";
+    };
+
+    div.innerHTML = `
+      <span style="color:${window.global?.secondaryColor || '#0b6efd'};font-weight:bold;">✓</span>
+      <span>${item.label}</span>
+      <div style="margin-left:auto;font-size:20px;" title="Cancellation-related work item">
+        ${item.icon}
+      </div>
+    `;
+
+    container.appendChild(div);
+  });
 }
 
 function initializeTable() {
