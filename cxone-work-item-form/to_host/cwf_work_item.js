@@ -157,7 +157,7 @@ window.onload = async () => {
 
   await loadData();
   initializeTable();
-  if(document.getElementById('wi_needUserDetails').value === 1){
+  if(document.getElementById('wi_needUserDetails').value == 1){
     document.getElementById('updateEmployeeBtn').style.display = 'block';
   } else {
     document.getElementById('updateEmployeeBtn').style.display = 'none';
