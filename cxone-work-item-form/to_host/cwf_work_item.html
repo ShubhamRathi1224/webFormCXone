@@ -15,7 +15,7 @@
             <div>
                 <div
                     style="background-image: url('../assets/logos/holland.svg'); background-size: contain; background-repeat: no-repeat; background-position: center; width: 160px; height: 40px; border-radius: 6px; display: flex; align-items: center; justify-content: center; background-color: transparent; background-size: contain; background-repeat: no-repeat;">
-                    {global:brand}
+                    {global:wi_brand}
                 </div>
             </div>
         </header>
@@ -54,6 +54,7 @@
                     </div>
                 </div>
                 <div style="background: #ffffff;border: 1px solid #ccc;border-radius: 4px;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                    <input type="text" hidden id="wi_needUserDetails" name="wi_needUserDetails" value="{wi_needUserDetails}" />
                     <div style="background: {global:linearGradient};padding: 8px;font-size: 12px;font-weight: bold;letter-spacing: 0.5px;text-transform: uppercase;color: #ffffff;border-bottom: 2px solid #FF6633;">
                         <span>Employee Details</span>
                         <button onclick="document.getElementById('wi_status').value='updateEmployee';" style="cursor: pointer;border: none;background: transparent; float: right;" id="updateEmployeeBtn">
@@ -63,18 +64,15 @@
                     <div style="padding: 8px;background: #e8f0f6;">
                         <div style="font-size: 14px;display: flex;flex-direction: column;gap: 8px;font-weight: bold;color: {global:primaryColor};">
                             <p style="margin:0;display: flex; justify-content: space-between;"><span
-                                    style="color: #666666;">Name:</span> <span>John
-                                    Smith</span></p>
+                                    style="color: #666666;">Name:</span> <span>{global:wi_issuerName}</span></p>
                             <p style="margin:0;display: flex; justify-content: space-between;"><span
-                                    style="color: #666666;">Team:</span> <span>Devl</span></p>
+                                    style="color: #666666;">Team:</span> <span>{global:wi_issuerTeam}</span></p>
                             <p style="margin:0;display: flex; justify-content: space-between;"><span
-                                    style="color: #666666;">Report To:</span> <span>Wade Smith</span></p>
+                                    style="color: #666666;">Report To:</span> <span>{global:wi_issuerReportTo}</span></p>
                             <p style="margin:0;display: flex; justify-content: space-between;"><span
-                                    style="color: #666666;">User
-                                    Id:</span> <span>Dev</span>
+                                    style="color: #666666;">User Id:</span> <span>{global:wi_issuerUserId}</span>
                             <p style="margin:0;display: flex; justify-content: space-between;"><span
-                                    style="color: #666666;">Is active:</span> <span>Yes</span>
-                            </p>
+                                    style="color: #666666;">Is active:</span> <span>{global:wi_issuerIsActive}</span></p>
                         </div>
                     </div>
                 </div>
@@ -143,7 +141,7 @@
         </main>
         <footer style="background: #e8f0f6;padding: 16px 24px;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);flex-shrink: 0;border-top: 3px solid {global:accentColor};position: sticky;top: 100%;">
             <div style="display: flex;justify-content: space-between;align-items: center;max-width: 1800px;margin: 0 auto;width: 100%;">
-                <div style="font-size: 13px;color: {global:primaryColor};font-style: italic;font-weight: 500;">{global:brand} - {global:footerTagline}</div>
+                <div style="font-size: 13px;color: {global:primaryColor};font-style: italic;font-weight: 500;">{global:wi_brand} - {global:footerTagline}</div>
             </div>
         </footer>
     </body>

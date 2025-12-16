@@ -15,7 +15,7 @@
             <div>
                 <div
                     style="background-image: url('../assets/logos/holland.svg'); background-size: contain; background-repeat: no-repeat; background-position: center; width: 160px; height: 40px; border-radius: 6px; display: flex; align-items: center; justify-content: center; background-color: transparent; background-size: contain; background-repeat: no-repeat;">
-                    {global:brand}
+                    {global:wi_brand}
                 </div>
             </div>
         </header>
@@ -51,6 +51,7 @@
                     </div>
                 </div>
                 <div style="background: #ffffff;border: 1px solid #ccc;border-radius: 4px;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                    <input type="text" hidden id="wi_needUserDetails" name="wi_needUserDetails" value="{wi_needUserDetails}" />
                     <div style="background: {global:linearGradient};padding: 8px;font-size: 12px;font-weight: bold;letter-spacing: 0.5px;text-transform: uppercase;color: #ffffff;border-bottom: 2px solid #FF6633;">
                         <span>Employee Details</span>
                         <button onclick="document.getElementById('wi_status').value='updateEmployee';" style="cursor: pointer;border: none;background: transparent; float: right;" id="updateEmployeeBtn">
@@ -139,7 +140,7 @@
 
         <footer style="background: #e8f0f6;padding: 16px 24px;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);flex-shrink: 0;border-top: 3px solid {global:accentColor};position: sticky;top: 100%;">
             <div style="display: flex;justify-content: space-between;align-items: center;max-width: 1800px;margin: 0 auto;width: 100%;">
-                <div style="font-size: 13px;color: {global:primaryColor};font-style: italic;font-weight: 500;">{global:brand} - {global:footerTagline}</div>
+                <div style="font-size: 13px;color: {global:primaryColor};font-style: italic;font-weight: 500;">{global:wi_brand} - {global:footerTagline}</div>
             </div>
         </footer>
     </body>
