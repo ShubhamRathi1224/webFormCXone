@@ -37,6 +37,11 @@ async function loadData() {
       }
     };
     setupSubItems(uniqSubItems);
+    if(document.getElementById('wi_needUserDetails').value == 1){
+      document.getElementById('updateEmployeeBtn').style.display = 'block';
+    } else {
+      document.getElementById('updateEmployeeBtn').style.display = 'none';
+    };
   } catch (error) {
     console.error("Error fetching JSON:", error);
   }
@@ -74,13 +79,13 @@ function setupSubItems(uniqSubItems) {
     };
     let iconPath = "";
     if(item.label.toLowerCase() === "cruise"){
-        iconPath = "https://aem-stage.hollandamerica.com/content/dam/nice/all/Images/cruise_fee.png";  // "./images/cruise_fee.png"
+        iconPath = "https://aem-stage.hollandamerica.com/content/dam/nice/all/images/cruise_fee.png";  // "./images/cruise_fee.png"
     } else if(item.label.toLowerCase() === "package"){
-        iconPath = "https://aem-stage.hollandamerica.com/content/dam/nice/all/Images/package_fee.png";
+        iconPath = "https://aem-stage.hollandamerica.com/content/dam/nice/all/images/package_fee.png";
     } else if(item.label.toLowerCase() === "air"){ 
-        iconPath = "https://aem-stage.hollandamerica.com/content/dam/nice/all/Images/air_fee.png";
+        iconPath = "https://aem-stage.hollandamerica.com/content/dam/nice/all/images/air_fee.png";
     } else if(item.label.toLowerCase() === "transfer") {
-        iconPath = "https://aem-stage.hollandamerica.com/content/dam/nice/all/Images/transfer_fee.png";
+        iconPath = "https://aem-stage.hollandamerica.com/content/dam/nice/all/images/transfer_fee.png";
     } 
 
     div.innerHTML = `
@@ -157,9 +162,4 @@ window.onload = async () => {
 
   await loadData();
   initializeTable();
-  if(document.getElementById('wi_needUserDetails').value == 1){
-    document.getElementById('updateEmployeeBtn').style.display = 'block';
-  } else {
-    document.getElementById('updateEmployeeBtn').style.display = 'none';
-  };
 };
