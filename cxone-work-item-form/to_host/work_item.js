@@ -72,6 +72,11 @@ async function loadData() {
     } else {
       document.getElementById('updateEmployeeBtn').style.display = 'none';
     };
+    if(document.getElementById('wi_historyAvailable').value == 1){
+      document.getElementById('historyBtn').style.display = 'block';
+    } else {
+      document.getElementById('historyBtn').style.display = 'none';
+    };
   } catch (error) {
     console.error("Error fetching JSON:", error);
   }

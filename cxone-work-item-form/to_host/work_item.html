@@ -25,7 +25,13 @@
             <input type="text" hidden id="workitemid" name="workitemid" value="{workitemid}" />
             <aside style="display: flex;flex-direction: column;gap: 8px; padding: 8px;">
                 <div style="background: #ffffff;border: 1px solid #ccc;border-radius: 4px;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                    <div style="background: {global:linearGradient};padding: 8px;font-size: 12px;font-weight: bold;letter-spacing: 0.5px;text-transform: uppercase;color: #ffffff;border-bottom: 2px solid #FF6633;">Work Item Details</div>
+                    <input type="text" hidden id="wi_historyAvailable" name="wi_historyAvailable" value="{wi_historyAvailable}" />
+                    <div style="background: {global:linearGradient};padding: 8px;font-size: 12px;font-weight: bold;letter-spacing: 0.5px;text-transform: uppercase;color: #ffffff;border-bottom: 2px solid #FF6633;">
+                        <span>Work Item Details</span>
+                        <button onclick="document.getElementById('wi_status').value='history';" style="cursor: pointer;border: none;background: transparent; float: right;" id="historyBtn">
+                            History
+                        </button>
+                    </div>
                     <div style="padding: 8px;background: #e8f0f6;">
                         <div class="work-item-type">
                             <div style="font-size: 18px;color: {global:primaryColor};text-transform: uppercase;font-weight: bold;margin-bottom: 8px;" class="label" id="workItemLabel">Cancellation Waive Fee</div>
