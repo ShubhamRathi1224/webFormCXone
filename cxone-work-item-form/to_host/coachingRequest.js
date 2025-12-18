@@ -18,11 +18,9 @@ function validateForm() {
 
   if (isValid) {
     btn.disabled = false;
-    btn.style.background = "{global:secondaryColor}";
     btn.style.cursor = "pointer";
   } else {
     btn.disabled = true;
-    btn.style.background = "#ccc";
     btn.style.cursor = "not-allowed";
   }
 }
