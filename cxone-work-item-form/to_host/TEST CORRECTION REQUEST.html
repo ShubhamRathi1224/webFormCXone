@@ -6,9 +6,9 @@
             <div style="display: grid;gap: 24px 16px;margin-bottom: 16px;">
                 <div style="position: relative;">
                     <div>
-                        <p><input type="checkbox" id="missingDocumentation" value="Missing Documentation" name="wi_coachCorrReason"> Missing Documentation
+                        <p><input type="checkbox" id="missingDocumentation" value="Missing Documentation" name="wi_coachCorrReason" onchange="validateForm()"> Missing Documentation
                         </p>
-                        <p><input type="checkbox" id="incorrectCancellation" value="Incorrect Cancellation" name="wi_coachCorrReason"> Incorrect
+                        <p><input type="checkbox" id="incorrectCancellation" value="Incorrect Cancellation" name="wi_coachCorrReason" onchange="validateForm()"> Incorrect
                             Cancellation</p>
                         <p><input type="checkbox" id="otherCorrection" value="Other Correction" name="wi_coachCorrReason" onclick="
                         document.getElementById('otherCorrectionField').hidden = !this.checked;
@@ -17,12 +17,12 @@
                 </div>
                 <div style="position: relative;" hidden id="otherCorrectionField">
                     <label style="font-size: 13px;color: #6b7280;position: absolute;top: -10px;left: 22px;background-color: white;padding: 0 4px;" for="wi_coachCorrOtherDetails">Other Correction:</label>
-                    <input type="text" name="wi_coachCorrOtherDetails" value="{wi_coachCorrOtherDetails}" style="width: 100%;height: 30px;border-radius: 4px;border: 1px solid #999999;" id="wi_coachCorrOtherDetails" maxlength="25" placeholder="Enter other correction details..."/>
+                    <input type="text" name="wi_coachCorrOtherDetails" value="{wi_coachCorrOtherDetails}" style="width: 100%;height: 30px;border-radius: 4px;border: 1px solid #999999;" id="wi_coachCorrOtherDetails" maxlength="25" placeholder="Enter other correction details..." onchange="validateForm()"/>
                 </div>
                 <div style="position: relative;">
                     <label style="font-size: 13px;color: #6b7280;position: absolute;top: -10px;left: 22px;background-color: white;padding: 0 4px;" for="wi_corrDate">Correction Date:</label>
                     <input type="hidden" name="wi_corrDate" id="wi_corrDate" value="{wi_corrDate}">
-                    <input type="date" min="{global:minToday}" onchange="document.getElementById('wi_corrDate').value=this.value;" value="{wi_corrDate}" style="width: 100%;height: 30px;border-radius: 4px;border: 1px solid #999999;" placeholder="Enter correction date..."/>
+                    <input type="date" min="{global:minToday}" onchange="document.getElementById('wi_corrDate').value=this.value;validateForm();" value="{wi_corrDate}" style="width: 100%;height: 30px;border-radius: 4px;border: 1px solid #999999;" placeholder="Enter correction date..."/>
                 </div>
                 <div style="position: relative;">
                     <label style="font-size: 13px;color: #6b7280;position: absolute;top: -10px;left: 22px;background-color: white;padding: 0 4px;" for="wi_coachCorrComments">Message To Agent:</label>
@@ -38,8 +38,9 @@
             <div style="display: flex;gap: 16px;justify-content: flex-end;margin-top: 16px;">
                 <input type="hidden" name="wi_coachCorrStatus" id="wi_coachCorrStatus">
                 <button name="submit" onclick="document.getElementById('wi_coachCorrStatus').value='cancel';" style="padding: 12px;border-radius: 4px; font-size: 11px;font-weight: bold;cursor: pointer;text-transform: uppercase;letter-spacing: 0.3px;background: transparent;color: #666666;border: 1px solid #ccc;" id="cancelModalBtn">Cancel</button>
-                <button name="submit" onclick="document.getElementById('wi_coachCorrStatus').value='confirm';" style="padding: 12px;border-radius: 4px;font-size: 11px;font-weight: bold;cursor: pointer;text-transform: uppercase;letter-spacing: 0.3px;background: {global:secondaryColor};color: #ffffff;" id="confirmBtn">Confirm</button>
+                <button name="submit" onclick="document.getElementById('wi_coachCorrStatus').value='confirm';" style="padding: 12px;border-radius: 4px;font-size: 11px;font-weight: bold;cursor: not-allowed;text-transform: uppercase;letter-spacing: 0.3px;background: #ccc;color: #ffffff;" id="confirmBtn" disabled>Confirm</button>
             </div>
         </div>
     </div>
+    <script type="module" src="https://shubhamrathi1224.github.io/webFormCXone/cxone-work-item-form/to_host/correctionRequest.js"></script>
 </data>

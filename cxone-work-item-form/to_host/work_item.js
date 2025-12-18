@@ -10,7 +10,8 @@ const cwfFieldConfig = [
     { key: 'transfer_cancel_fees', label: 'Transfer Cancel Fees' },
     { key: 'ncf_changes_cancel_fees', label: 'NCF Charges Cancel Fees' },
     { key: 'non_refundable_premium', label: 'Non-Refundable Premium/Waiver' },
-    { key: 'open_date', label: 'Open Date' }
+    { key: 'open_date', label: 'Open Date' },
+    { key: 'waiver_flag', label: 'Waiver Flag' },
 ];
 const madFieldConfig = [
   { key: "transaction_date", label: "Transaction Date" },
@@ -21,7 +22,8 @@ const madFieldConfig = [
   { key: "adjustment_amount", label: "Adjustment Amount" },
   { key: "gross_fair_prior", label: "Gross Fare (Prior)" },
   { key: "adjustment_rate", label: "Adjustment Rate" },
-  { key: "change_remarks", label: "Change Remarks" }
+  { key: "change_remarks", label: "Change Remarks" },
+  { key: "gl_code", label: "GL Code" },
 ];
 
 let fieldConfig = [];
