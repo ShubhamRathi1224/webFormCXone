@@ -30,7 +30,7 @@ function validateForm() {
     btn.style.cursor = "not-allowed";
   }
 }
-
+window.validateForm = validateForm;
 window.onload = async () => {
   validateForm();
 };

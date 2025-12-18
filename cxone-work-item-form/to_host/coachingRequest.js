@@ -26,7 +26,7 @@ function validateForm() {
     btn.style.cursor = "not-allowed";
   }
 }
-
-window.onload = async () => {
-  validateForm();
-};
+window.validateForm = validateForm;
+// window.onload = async () => {
+//   validateForm();
+// };
