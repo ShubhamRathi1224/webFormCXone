@@ -20,8 +20,9 @@ async function loadData() {
 
 function filterData(query) {
   query = query.toLowerCase();
+  const polarId = item.custom1?.split(',')[0] || "";
   return agentList
-    .filter((item) => item.agent_name.toLowerCase().includes(query))
+    .filter((item) => item.agent_name?.toLowerCase().includes(query) || polarId.includes(query))
     .slice(0, 25);
 }
 
