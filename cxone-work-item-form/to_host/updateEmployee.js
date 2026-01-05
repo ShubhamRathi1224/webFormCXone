@@ -20,10 +20,15 @@ async function loadData() {
 
 function filterData(query) {
   query = query.toLowerCase();
-  const polarId = item.custom1?.split(',')[0] || "";
   return agentList
-    .filter((item) => item.agent_name?.toLowerCase().includes(query) || polarId.includes(query))
-    .slice(0, 25);
+    .filter((item) => {
+    const agentName = item.agent_name?.toLowerCase() || "";
+    const polarId = item.custom1?.split(',')[0] || "";
+    return (
+      agentName.includes(query) ||
+      polarId.includes(query)
+    );
+  }).slice(0, 25);
 }
 
 let agentSelected = false;
