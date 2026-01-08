@@ -125,10 +125,10 @@ function setLangFlag(elementDiv, lang = "en-US", langFlag = "/assets/flags/engli
 }
 
 function setAuthChip(isAuthenticated) {
-    authChip.innerHTML =
-      `<span class="icon ${isAuthenticated ? 'check' : 'cross'}"> ${isAuthenticated ? svgCheck(): svgCross()}
-      </span><span><strong>${isAuthenticated ? 'Authenticated' : 'Unauthenticated'}</strong></span>`;
-    authChip.title = customer.authStatus ? customer.authStatus.details : '';
+  authChip.innerHTML =
+    `<span class="icon ${isAuthenticated ? 'check' : 'cross'}"> ${isAuthenticated ? svgCheck(): svgCross()}
+    </span><span><strong>${isAuthenticated ? 'Authenticated' : 'Unauthenticated'}</strong></span>`;
+  authChip.title = customer.authStatus ? customer.authStatus.details : '';
 }
 
 function svgCheck() {
@@ -230,10 +230,6 @@ function populateDeliverModes(customer) {
   });
 }
 
-function updateNextEnabled() {
-  btnNext.disabled = !intentSelector.value;
-}
-
 function populateFromIVR(payload) {
   if (!payload) return;
   let mainBasicDetails = {
@@ -285,6 +281,10 @@ function populateFromIVR(payload) {
   transcript.value = payload.transcript || "";
 
   // setBasicDetails(mainBasicDetails);
+}
+
+function updateNextEnabled() {
+  btnNext.disabled = !intentSelector.value;
 }
 
 function renderStarRating(rating) {
@@ -344,7 +344,7 @@ function handleIntentChange() {
 
 // searchable autocomplete multi-select dropdown start
 
-const input = document.getElementById("termSearch");
+const termSearchInput = document.getElementById("termSearch");
 const optionsList = document.getElementById("termOptions");
 const selectedTagsContainer = document.getElementById("selectedTags");
 
@@ -370,7 +370,7 @@ function renderOptions(filter = "") {
 function selectTerm(term) {
   selectedTerms.push(term);
   renderTags();
-  input.value = "";
+  termSearchInput.value = "";
   renderOptions();
 }
 
@@ -394,13 +394,13 @@ function removeTerm(term) {
   renderOptions();
 }
 
-input.addEventListener("focus", () => renderOptions());
-input.addEventListener("input", (e) => renderOptions(e.target.value));
+termSearchInput.addEventListener("focus", () => renderOptions());
+termSearchInput.addEventListener("input", (e) => renderOptions(e.target.value));
 
 document.addEventListener("click", (e) => {
   if (!e.target.closest("#termSearch")) {
     optionsList.style.display = "none";
-    input.value = "";
+    termSearchInput.value = "";
   }
 });
 
@@ -450,8 +450,6 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// searchable autocomplete single-select dropdown start
-
 function populateDropdown(selectId, data) {
   const select = document.getElementById(selectId);
   select.innerHTML = '<option value="" disabled>-- Select --</option>';
@@ -465,7 +463,6 @@ function populateDropdown(selectId, data) {
 
 const userWrapper = document.querySelector(".user-img-wrapper");
 const wrongUserInput = document.getElementById("wrongUser");
-const crossMark = document.querySelector(".cross-mark");
 
 userWrapper.addEventListener("click", () => {
     userWrapper.classList.toggle("wrong");

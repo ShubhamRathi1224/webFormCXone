@@ -5,7 +5,6 @@
   --bg-color: #ffffff;
   --text-color: #1b1b1b;
   --border-color: #e5e5e5;
-  --logo-url: url('../assets/logos/cunard.svg');
   --pad: 20px;
   --input-height: 44px;
   --radius: 12px;
@@ -18,7 +17,6 @@
   --color-primary: #A41E35;
   --color-accent: #2D2A26;
   --gradient: linear-gradient(135deg, #A41E35, #2D2A26);
-  --logo-url: url('../assets/logos/cunard.svg');
   --accent-bg: radial-gradient(circle at top left, #A41E35 0%, #2D2A26 100%);
 }
 
@@ -27,7 +25,6 @@
   --color-primary: #1A2857;
   --color-accent: #004488;
   --gradient: linear-gradient(135deg, #1A2857, #002B6A);
-  --logo-url: url('../assets/logos/holland.svg');
   --accent-bg: radial-gradient(circle at bottom right, #1A2857 0%, #001F4E 100%);
 }
 
@@ -36,9 +33,8 @@
   --color-primary: #00538B;
   --color-accent: #0090D9;
   --gradient: linear-gradient(135deg, #00538B, #0090D9);
-  --logo-url: url('../assets/logos/princess.svg');
   --accent-bg: linear-gradient(180deg, rgba(0, 83, 139, 0.9), rgba(0, 144, 217, 0.8)),
-    url('../assets/patterns/princess-waves.svg');
+    url('../../assets/patterns/princess-waves.svg');
 }
 
 :root[data-theme='seabourn'] {
@@ -46,7 +42,6 @@
   --color-primary: #E3CE66;
   --color-accent: #9A7B2F;
   --gradient: linear-gradient(135deg, #9A7B2F, #E3CE66);
-  --logo-url: url('../assets/logos/seabourn.svg');
   --accent-bg: linear-gradient(180deg, #f9f7f1, #efe3b0);
 }
 
@@ -87,7 +82,6 @@ header.brand {
 }
 
 header .brand-logo {
-  background-image: var(--logo-url);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

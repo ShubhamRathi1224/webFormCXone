@@ -30,18 +30,6 @@ export const BRANDS = {
   },
 };
 
-// Example: dynamic list of intents
-export const customerIntents = [
-  { value: "newBooking", label: "New Booking" },
-  { value: "modifyBooking", label: "Modify Booking" },
-  { value: "cancelBooking", label: "Cancel Booking" },
-  { value: "billingIssue", label: "Billing Issue" },
-  { value: "luggageLost", label: "Luggage Lost" },
-  { value: "shoreExcursion", label: "Shore Excursion Inquiry" },
-  { value: "onboardCredit", label: "Onboard Credit Issue" },
-  { value: "specialAssistance", label: "Special Assistance Request" },
-];
-
 export const cxOneAgents = [
   { value: "agent1", label: "Agent 1" },
   { value: "agent2", label: "Agent 2" },

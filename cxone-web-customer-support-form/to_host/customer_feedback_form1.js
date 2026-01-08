@@ -1,12 +1,65 @@
-import {
-  BRANDS,
-  cxOneAgents,
-  deliverModes,
-} from "../../data.js";
+// Cruise brand metadata
+const BRANDS = {
+  holland: {
+    name: "Holland America Line",
+    tag: "Taking you to extraordinary places",
+    theme: "holland",
+    short: "HAL",
+    favicon: "../../assets/favicons/holland.png",
+  },
+  princess: {
+    name: "Princess Cruises",
+    tag: "Come back new",
+    theme: "princess",
+    short: "PCL",
+    favicon: "../../assets/favicons/princess.png",
+  },
+  seabourn: {
+    name: "Seabourn",
+    tag: "Elegant, ultra-luxury cruises",
+    theme: "seabourn",
+    short: "SBN",
+    favicon: "../../assets/favicons/seabourn.png",
+  },
+  cunard: {
+    name: "Cunard",
+    tag: "Leaders in luxury ocean travel",
+    theme: "cunard",
+    short: "CUN",
+    favicon: "../../assets/favicons/cunard.png",
+  },
+};
+
+// Example: dynamic list of intents
+const customerIntents = [
+  { value: "newBooking", label: "New Booking" },
+  { value: "modifyBooking", label: "Modify Booking" },
+  { value: "cancelBooking", label: "Cancel Booking" },
+  { value: "billingIssue", label: "Billing Issue" },
+  { value: "luggageLost", label: "Luggage Lost" },
+  { value: "shoreExcursion", label: "Shore Excursion Inquiry" },
+  { value: "onboardCredit", label: "Onboard Credit Issue" },
+  { value: "specialAssistance", label: "Special Assistance Request" },
+];
+
+const cxOneAgents = [
+  { value: "agent1", label: "Agent 1" },
+  { value: "agent2", label: "Agent 2" },
+  { value: "agent3", label: "Agent 3" },
+  { value: "agent4", label: "Agent 4" },
+  { value: "agent5", label: "Agent 5" },
+];
+
+// Example: Deliver mode options
+const deliverModes = [
+  { value: "spoken", label: "Spoken", isTextIncluded: false },
+  { value: "text", label: "Text", isTextIncluded: true },
+  { value: "both", label: "Both Spoken and Text", isTextIncluded: true },
+];
 
 const CUSTOMER = {
   brand: "holland",
-  logo: "/assets/logos/holland.png",
+  logo: "../../assets/logos/holland.svg",
   phoneType: "Mobile",
   phoneTypeImage: "/assets/phoneTypes/mobile.png",
   phone: "+15551234567",
@@ -64,6 +117,7 @@ const CUSTOMER = {
 };
 
 // Elements
+const brandLogo = document.getElementById("brand-logo");
 const phoneTypeDiv = document.getElementById("phoneTypeDiv");
 const phoneTypeField = document.getElementById("phoneTypeField");
 const langFlagDiv = document.getElementById("langFlagDiv");
@@ -95,9 +149,14 @@ let customer = {};
   setCustomer();
 })();
 
-function setCustomer(customerId = "C-0001") {
-  customer = CUSTOMER;
+document.addEventListener("DOMContentLoaded", () => {
+  
+  // intentSelector.addEventListener("change", handleIntentChange);
+});
 
+function setCustomer() {
+  customer = CUSTOMER;
+  brandLogo.style.backgroundImage = `url(${customer.logo})`;
   setTheme(customer.brand);
   setPhoneType(phoneTypeDiv, customer.phoneType, customer.phoneTypeImage);
   setPhoneType(phoneTypeField, customer.phoneType, customer.phoneTypeImage);
@@ -126,6 +185,7 @@ function setCustomer(customerId = "C-0001") {
     setTabDetails(bookingTab, customer.voyageTypeImage, customer.voyageTypeText);
   }
 
+  populateDropdown("intentSelector", customerIntents);
   populateTransferModes(customer);
   populateDeliverModes(customer);
   populateFromIVR(customer);
@@ -134,6 +194,7 @@ function setCustomer(customerId = "C-0001") {
 
 function setTheme(name = "holland") {
   document.documentElement.setAttribute("data-theme", name);
+
   const brand = BRANDS[name] || Object.values(BRANDS)[0];
   serviceFooterName.textContent = brand.name;
   serviceFooterTagline.textContent = brand.tag;
@@ -165,10 +226,10 @@ function setLangFlag(elementDiv, lang = "en-US", langFlag = "/assets/flags/engli
 }
 
 function setAuthChip(isAuthenticated) {
-    authChip.innerHTML =
-      `<span class="icon ${isAuthenticated ? 'check' : 'cross'}"> ${isAuthenticated ? svgCheck(): svgCross()}
-      </span><span><strong>${isAuthenticated ? 'Authenticated' : 'Unauthenticated'}</strong></span>`;
-    authChip.title = customer.authStatus ? customer.authStatus.details : '';
+  authChip.innerHTML =
+    `<span class="icon ${isAuthenticated ? 'check' : 'cross'}"> ${isAuthenticated ? svgCheck(): svgCross()}
+    </span><span><strong>${isAuthenticated ? 'Authenticated' : 'Unauthenticated'}</strong></span>`;
+  authChip.title = customer.authStatus ? customer.authStatus.details : '';
 }
 
 function svgCheck() {
@@ -270,10 +331,6 @@ function populateDeliverModes(customer) {
   });
 }
 
-function updateNextEnabled() {
-  btnNext.disabled = !intentSelector.value;
-}
-
 function populateFromIVR(payload) {
   if (!payload) return;
   let mainBasicDetails = {
@@ -324,6 +381,10 @@ function populateFromIVR(payload) {
   transcript.value = payload.transcript || "";
 
   // setBasicDetails(mainBasicDetails);
+}
+
+function updateNextEnabled() {
+  btnNext.disabled = !intentSelector.value;
 }
 
 function renderStarRating(rating) {
@@ -383,7 +444,7 @@ function handleIntentChange() {
 
 // searchable autocomplete multi-select dropdown start
 
-const input = document.getElementById("termSearch");
+const termSearchInput = document.getElementById("termSearch");
 const optionsList = document.getElementById("termOptions");
 const selectedTagsContainer = document.getElementById("selectedTags");
 
@@ -409,7 +470,7 @@ function renderOptions(filter = "") {
 function selectTerm(term) {
   selectedTerms.push(term);
   renderTags();
-  input.value = "";
+  termSearchInput.value = "";
   renderOptions();
 }
 
@@ -433,13 +494,13 @@ function removeTerm(term) {
   renderOptions();
 }
 
-input.addEventListener("focus", () => renderOptions());
-input.addEventListener("input", (e) => renderOptions(e.target.value));
+termSearchInput.addEventListener("focus", () => renderOptions());
+termSearchInput.addEventListener("input", (e) => renderOptions(e.target.value));
 
 document.addEventListener("click", (e) => {
   if (!e.target.closest("#termSearch")) {
     optionsList.style.display = "none";
-    input.value = "";
+    termSearchInput.value = "";
   }
 });
 
@@ -489,8 +550,6 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// searchable autocomplete single-select dropdown start
-
 function populateDropdown(selectId, data) {
   const select = document.getElementById(selectId);
   select.innerHTML = '<option value="" disabled>-- Select --</option>';
@@ -504,7 +563,6 @@ function populateDropdown(selectId, data) {
 
 const userWrapper = document.querySelector(".user-img-wrapper");
 const wrongUserInput = document.getElementById("wrongUser");
-const crossMark = document.querySelector(".cross-mark");
 
 userWrapper.addEventListener("click", () => {
     userWrapper.classList.toggle("wrong");

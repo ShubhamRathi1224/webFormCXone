@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CXone Web Form - Modern Layout</title>
+    <link rel="stylesheet" href="customer_feedback_form1.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+</head>
+
+<body>
+    <script type="module" src="customer_feedback_form1.js"></script>
+    <div class="card">
+        <header class="brand">
+            <div class="brand">
+                <div class="brand-logo" id="brand-logo"></div>
+            </div>
+
+            <div class="header-controls">
+                <div id="phoneTypeDiv"></div>
+                <div class="auth-chip-div">
+                    <div id="authChip" class="chip auth-chip" aria-live="polite" title="ddd"></div>
+                </div>
+                <div id="langFlagDiv"></div>
+            </div>
+        </header>
+
+        <main>
+            <div class="main-container-div">
+                <div class="basic-details-div">
+                    <span id="updateInfoButton" title="update">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                        <!-- <i class="fa-solid fa-pencil"></i> -->
+                    </span>
+                    <div class="short-row">
+                        <div class="field">
+                            <p><i class="fa-regular fa-user"></i>: <span id="callerNameTextBasic">John Doe</span></p>
+                            <p><i class="fa-regular fa-address-card"></i>: <span id="ccnTextBasic">CCN-12345</span></p>
+                        </div>
+                        
+                        <div class="field">
+                            <p><i class="fa-solid fa-list-check"></i>: <span id="intentTextBasic">newBooking</span></p>
+                            <p><i class="fa-solid fa-hashtag"></i>: <span id="bookingNumberTextBasic">B-123</span></p>
+                            <p><i class="fa-regular fa-calendar"></i>: <span id="bookingDateTextBasic">2025-11-05 09:30</span></p>
+                        </div>
+                        
+                        <div class="field">
+                            <div>
+                                <img src="/assets/voyageTypes/worldCruise.png" alt="phoneTypeSmsAuth" width="80px" height="80px"/>
+                            </div>
+                            <div class="loyalty-level"></div>
+                        </div>                     
+                    </div>
+                    <div id="basicDetails"></div>
+                </div>
+                <div class="section-wise-details-div">
+                    <div class="cxone-tabs" id="cxoneTabs">
+                        <div class="cxone-tab" data-tab="customer" id="customerInfoTab">
+                            <div class="cxone-tab-icon">👥</div>
+                            <div class="cxone-tab-title">Customer</div>
+                            <div class="cxone-tab-desc">Customer Information</div>
+                        </div>
+                        <div class="cxone-tab" data-tab="travelAdvisor" id="travelAdvisorTab">
+                            <div class="cxone-tab-icon">💬</div>
+                            <div class="cxone-tab-title">Travel advisor</div>
+                            <div class="cxone-tab-desc">Travel advisor Information</div>
+                        </div>
+                        <div class="cxone-tab" data-tab="intent" id="intentTab">
+                            <div class="cxone-tab-icon">📝</div>
+                            <div class="cxone-tab-title">Contact Intent</div>
+                            <div class="cxone-tab-desc">Contact Intent & Purpose of request</div>
+                        </div>
+                        <div class="cxone-tab" data-tab="booking" id="bookingTab">
+                            <div class="cxone-tab-icon">📅</div>
+                            <div class="cxone-tab-title">Booking Details</div>
+                            <div class="cxone-tab-desc">Booking details</div>
+                        </div>
+                        <div class="cxone-tab" data-tab="pcc">
+                            <div class="cxone-tab-icon">
+                                <img src="/assets/pcc.png" alt="PCC"/>
+                            </div>
+                            <div class="cxone-tab-title">PCC</div>
+                            <div class="cxone-tab-desc">PCC</div>
+                        </div>
+                        <div class="cxone-tab" data-tab="phoneTypeSmsAuth">
+                            <div class="cxone-tab-icon">
+                                <img src="/assets/mediaType4.png" alt="phoneTypeSmsAuth"/>
+                            </div>
+                            <div class="cxone-tab-title">Phone Type and SMS authorization</div>
+                            <div class="cxone-tab-desc">Phone Type and SMS authorization</div>
+                        </div>
+                        <!-- <div class="cxone-tab" data-tab="manageSubscription">
+                            <div class="cxone-tab-icon">
+                                <img src="/assets/manageSubs3.jpg" alt="manageSubscription"/>
+                            </div>
+                            <div class="cxone-tab-title">Manage subscription</div>
+                            <div class="cxone-tab-desc">Manage subscription</div>
+                        </div> -->
+                        <div class="cxone-tab" data-tab="termsAndConditions">
+                            <div class="cxone-tab-icon">
+                                <img src="/assets/termsAndCond3.png" alt="termsAndConditions"/>
+                            </div>
+                            <div class="cxone-tab-title">Terms and conditions</div>
+                            <div class="cxone-tab-desc">Terms and conditions</div>
+                        </div>
+                    </div>
+        
+                    <div id="cxoneModal" class="cxone-modal">
+                        <div class="cxone-modal-content">
+                            <div class="cxone-modal-header">
+                                <h3 id="cxoneModalTitle" class="cxone-modal-title"></h3>
+                                <span class="cxone-close">&times;</span>
+                            </div>
+                            <div id="cxoneModalBody">
+                                <div class="cxone-form-area">
+                                    <div class="cxone-form-panel" data-tab="customer">
+                                        <div class="short-row">
+                                            <div class="field">
+                                                <p>Customer Name: <span id="callerNameText">NA</span> </p>
+                                            </div>
+                                            <div class="field">
+                                                <p>CCN/Mariner Number: <span id="ccnText">NA</span> </p>
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                    <div class="cxone-form-panel" data-tab="travelAdvisor">
+                                        <button type="button" class="tab-details-chip" id="travelAdvisorChip"></button>
+                                        <div class="short-row">
+                                            <div class="field">
+                                                <p>IATA: <span id="iataText">NA</span> </p>
+                                            </div>
+        
+                                            <div class="field">
+                                                <p>CLIA: <span id="cliaText">NA</span> </p>
+                                            </div>
+        
+                                            <div class="field">
+                                                <p>Agency Id: <span id="agencyIdText">NA</span> </p>
+                                            </div>
+        
+                                            <div class="field">
+                                                <p>Agency Name: <span id="agencyNumberText">NA</span> </p>
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                    <div class="cxone-form-panel" data-tab="intent">
+                                        <div class="short-row">
+                                            <div class="field">
+                                                <p>Intent: <span id="intentText">NA</span> </p>
+                                            </div>
+        
+                                            <div class="field">
+                                                <div class="thumb-group" id="satisfiedGroup">
+                                                    <i class="fa-solid fa-thumbs-up thumb" data-value="yes" id="thumbYes"></i>
+                                                    <i class="fa-solid fa-thumbs-down thumb" data-value="no" id="thumbNo"></i>
+                                                </div>
+                                                <input type="hidden" name="satisfied" id="satisfied" value="" />
+                                            </div>
+
+                                            <div class="field" id="wrongUserField">
+                                                <div class="user-group" id="wrongUserGroup">
+                                                    <div class="user-img-wrapper">
+                                                        <img src="/assets/directGuest1.png" class="user-img"
+                                                            alt="Wrong User" width="80px" height="80px">
+                                                        <!-- <div class="cross-mark"><i class="fa-solid fa-x"></i></div> -->
+                                                        <div class="cross-mark">✖</div>
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" name="wrongUser" id="wrongUser" value="0" />
+                                            </div>
+                                        </div>
+        
+                                        <div class="field">
+                                            <p>Transcript: <span id="transcriptText">NA</span> </p>
+                                        </div>
+                                    </div>
+        
+                                    <div class="cxone-form-panel" data-tab="booking">
+                                        <button type="button" class="tab-details-chip" id="voyageTypeChip"></button>
+                                        <div class="star-rating loyalty-level"></div>
+        
+                                        <div class="short-row">
+                                            <div class="field">
+                                                <p>Booking Number: <span id="bookingNumberText">NA</span> </p>
+                                            </div>
+        
+                                            <div class="field">
+                                                <p>Booking Date: <span id="bookingDateText">NA</span> </p>
+                                            </div>
+        
+                                            <div class="field">
+                                                <p>Booking Notes: <span id="bookingNotesText">NA</span> </p>
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                    <div class="cxone-form-panel" data-tab="pcc">
+                                        <div class="field">
+                                            <p for="transferMode">Tranfer Mode</p>
+                                            <div class="radio-group" id="transferModeGroup"></div>
+                                        </div>
+                                        <div class="short-row mt-22px">
+                                            <div class="field">
+                                                <label for="marinerNumber">Mariner Number</label>
+                                                <input type="text" id="marinerNumber"
+                                                    placeholder="Mariner Number" />
+                                            </div>
+        
+                                            <div class="field">
+                                                <label for="bookingNumber">Booking Number</label>
+                                                <input type="text" id="bookingNumber"
+                                                    placeholder="Booking Number" />
+                                            </div>
+        
+                                            <div class="field" id="pccNameField">
+                                                <label for="transferTo">PCC name</label>
+                                                <input type="text" id="transferSearch" placeholder="Search agent..." />
+                                                <div class="custom-select" id="transferDropdown">
+                                                    <div class="options-list" id="transferOptions"></div>
+                                                </div>
+                                                <input type="hidden" id="transferTo" />
+                                            </div>
+        
+                                            <div class="field">
+                                                <label for="transferNotes">Transfer Notes</label>
+                                                <textarea id="transferNotes" class="cxone-textarea"
+                                                    placeholder="Transfer notes..."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                    <div class="cxone-form-panel" data-tab="phoneTypeSmsAuth">
+                                        <div class="phoneTypeFieldDiv">
+                                            <div id="phoneTypeField"></div>
+                                            <div class="field">
+                                                <label for="phoneNumber">Phone Number</label>
+                                                <input type="text" id="phoneNumber"
+                                                    placeholder="Phone Number" />
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <p>Authorize for Preferences:</p>
+                                            <div class="checkbox-group subscription-toggle-group">
+                                                <div class="subscription-type" title="Service/Supoort/Upgrades messages">
+                                                    <img src="/assets/mediaTypes/servicered.png" alt="">
+                                                    <img src="/assets/mediaTypes/servicegreen.png" alt="">
+                                                    <!-- <span class="subscription-msg">Service/Supoort/Upgrades messages</span> -->
+                                                </div>
+                                                <div class="subscription-type" title="PCC consultant messages">
+                                                    <img src="/assets/mediaTypes/pccred.png" alt="">
+                                                    <img src="/assets/mediaTypes/pccgreen.png" alt="">
+                                                    <!-- <span class="subscription-msg">PCC consultant messages</span> -->
+                                                </div>
+                                                <div class="subscription-type" title="Marketing messages">
+                                                    <img src="/assets/mediaTypes/marketingRed.png" alt="">
+                                                    <img src="/assets/mediaTypes/marketingGreen.png" alt="">
+                                                    <!-- <span class="subscription-msg">Marketing messages</span> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                    <div class="cxone-form-panel" data-tab="termsAndConditions">
+                                        <div class="field">
+                                            <p for="deliverMode">Deliver Mode</p>
+                                            <div class="radio-group" id="deliverModeGroup"></div>
+                                        </div>
+                                        <div class="field mt-22px">
+                                            <label for="termsSelect">Terms & Conditions</label>
+                                            <input type="text" id="termSearch"
+                                                placeholder="Search or select terms..." />
+                                            <div class="select-container" id="termsSelect">
+                                                <div class="select-box" id="selectedTags">
+                                                </div>
+                                                <div class="option-list" id="termOptions"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                    <div class="cxone-form-panel" data-tab="updateCallInformation">        
+                                        <div class="short-row">
+                                            <div class="field">
+                                                <label for="callerName">Customer Name</label>
+                                                <input type="text" id="callerName" placeholder="Enter name" />
+                                            </div>
+        
+                                            <div class="field">
+                                                <label for="ccn">CCN/Mariner Number</label>
+                                                <input type="text" id="ccn" placeholder="Customer CCN" />
+                                            </div>
+                                            <div class="field">
+                                                <label for="iata">IATA</label>
+                                                <input type="text" id="iata" placeholder="IATA" />
+                                            </div>
+        
+                                            <div class="field">
+                                                <label for="clia">CLIA</label>
+                                                <input type="text" id="clia" />
+                                            </div>
+        
+                                            <div class="field">
+                                                <label for="agencyId">Agency Id</label>
+                                                <input type="text" id="agencyId" />
+                                            </div>
+        
+                                            <div class="field">
+                                                <label for="agencyName">Agency Name</label>
+                                                <input type="text" id="agencyName" />
+                                            </div>
+
+                                            <div class="field">
+                                                <label for="intentSelector">Intent</label>
+                                                <select id="intentSelector" placeholder="Select intent">
+                                                </select>
+                                            </div>
+
+                                            <div class="field">
+                                                <label for="transcript">Transcript</label>
+                                                <textarea id="transcript" class="cxone-textarea"
+                                                    placeholder="Paste transcript or chat history..."></textarea>
+                                            </div>
+
+                                            <div class="field">
+                                                <label for="bookingNumber">Booking Number</label>
+                                                <input type="text" id="bookingNumber"
+                                                    placeholder="Booking or reservation Number" />
+                                            </div>
+        
+                                            <div class="field">
+                                                <label for="bookingDate">Booking Date</label>
+                                                <input type="datetime-local" id="bookingDate" />
+                                            </div>
+        
+                                            <div class="field">
+                                                <label for="bookingNotes">Booking Notes</label>
+                                                <textarea id="bookingNotes" class="cxone-textarea"
+                                                    placeholder="Additional booking details..."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div class="controls">
+            <div class="footer-note">© <span id="copyrightYear"></span> <span
+                    id="serviceFooterName">Service Line</span> — <span id="serviceFooterTagline">We connect
+                    you</span></div>
+            <div class="control-buttons">
+                <button id="btnCancel" class="btn-ghost cxone-btn-secondary" type="button">Cancel</button>
+                <button id="btnNext" class="btn-next cxone-btn-primary" type="button">Save & Next</button>
+            </div>
+        </div>
+    </div>
+    <!-- <script type="module" src="customer_feedback_form1.js"></script> -->
+    <script>
+        const tabs = document.querySelectorAll(".cxone-tab");
+        const panels = document.querySelectorAll(".cxone-form-panel");
+        const modal = document.getElementById("cxoneModal");
+        const modalTitle = document.getElementById("cxoneModalTitle");
+        const modalBody = document.getElementById("cxoneModalBody");
+        const closeBtn = document.querySelector(".cxone-close");
+        const updateInfoBtn = document.getElementById("updateInfoButton");
+
+        function showPanel(tabName, tabTitle = 'Confirm') {
+            panels.forEach(p => {
+                p.style.display = p.dataset.tab === tabName ? 'block' : 'none';
+            });
+            const panel = document.querySelector(`.cxone-form-panel[data-tab="${tabName}"]`);
+            console.log('panel: ', panel);
+            if (panel) {
+                modal.style.display = "block";
+                modalTitle.textContent = tabTitle;
+                // const first = panel.querySelector('input, textarea, select');
+                // if (first) first.focus();
+            }
+        }
+
+        tabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                console.log('tab: ', tab);
+                const tabName = tab.getAttribute("data-tab");
+                console.log('tabName: ', tabName);
+                const descElement = tab.querySelector('.cxone-tab-desc');
+                const titleText = descElement ? descElement.textContent.trim() : '';
+                showPanel(tabName, titleText);
+            });
+        });
+
+        updateInfoBtn.addEventListener("click", () => {
+            showPanel('updateCallInformation','Update Call Information');
+        });
+
+        closeBtn.onclick = () => (modal.style.display = "none");
+        // window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+        // const initialTab = document.querySelector('.cxone-tab.selected');
+        // if (initialTab) showPanel(initialTab.dataset.tab);
+
+        const thumbs = document.querySelectorAll(".thumb");
+        const hiddenSatisfiedInput = document.getElementById("satisfied");
+        thumbs.forEach(thumb => {
+            thumb.addEventListener("click", () => {
+                thumbs.forEach(t => t.classList.remove("selected"));
+                thumb.classList.add("selected");
+                hiddenSatisfiedInput.value = thumb.dataset.value;
+            });
+        });
+    </script>
+</body>
+
+</html>

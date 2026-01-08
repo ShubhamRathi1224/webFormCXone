@@ -5,12 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CXone Web Form - Modern Layout</title>
-    <link rel="stylesheet" href="customer_form.css">
+    <link rel="stylesheet" href="customer_feedback_form.css">
 </head>
 
 <body>
     <div class="card">
-        <main>        
+        <main>
+            <div class="cxone-modal-header">
+                <h3 id="cxoneModalTitle" class="cxone-modal-title">Terms and conditions</h3>
+                <span class="cxone-close">&times;</span>
+            </div>
             <div class="cxone-form-panel" data-tab="termsAndConditions">
                 <div class="field">
                     <p for="deliverMode">Deliver Mode</p>
@@ -18,8 +22,7 @@
                 </div>
                 <div class="field mt-22px">
                     <label for="termsSelect">Terms & Conditions</label>
-                    <input type="text" id="termSearch"
-                        placeholder="Search or select terms..." />
+                    <input type="text" id="termSearch" placeholder="Search or select terms..." />
                     <div class="select-container" id="termsSelect">
                         <div class="select-box" id="selectedTags">
                         </div>
@@ -29,8 +32,8 @@
             </div>
         </main>
         <div class="controls">
-            <div class="footer-note">© <span id="copyrightYear"></span> <span
-                    id="serviceFooterName">Service Line</span> — <span id="serviceFooterTagline">We connect
+            <div class="footer-note">© <span id="copyrightYear"></span> <span id="serviceFooterName">Service Line</span>
+                — <span id="serviceFooterTagline">We connect
                     you</span></div>
             <div class="control-buttons">
                 <button id="btnCancel" class="btn-ghost cxone-btn-secondary" type="button">Cancel</button>
