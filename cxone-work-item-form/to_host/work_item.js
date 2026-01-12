@@ -134,7 +134,7 @@ function setupSubItems(uniqSubItems) {
 function initializeTable(wiType) {
     const totalPassengers = passengerData.length;
     const headerRow = document.createElement('tr');
-    headerRow.innerHTML = '<th style="position: sticky; min-width: 200px; padding: 12px 10px; text-align: left; font-weight: 600; border-right: 1px solid rgba(255, 255, 255, 0.2); white-space: nowrap;">Field Name</th>';
+    headerRow.innerHTML = '<th style="position: sticky; min-width: 200px; padding: 12px 10px; text-align: left; font-weight: 600; border-right: 1px solid rgba(255, 255, 255, 0.2); white-space: nowrap;">Guest - Type</th>';
     
     for (let i = 0; i < totalPassengers; i++) {
       const headerLabel = wiType == 'CWX' ? `${passengerData[i].customer_id} - ${passengerData[i].cancel_item_type}` : passengerData[i].customer_id;
