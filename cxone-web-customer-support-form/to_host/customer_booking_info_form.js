@@ -1,15 +1,6 @@
-import {
-  BRANDS,
-  customerIntents,
-  cxOneAgents,
-  deliverModes,
-  SAMPLE_API_RESPONSES,
-} from "../../data.js";
-
 // Elements
 const voyageTypeChip = document.getElementById("voyageTypeChip");
 const loyaltyLevelDivs = document.querySelectorAll(".loyalty-level");
-const copyrightYear = document.getElementById("copyrightYear");
 
 const CUSTOMER = {
   brand: "holland",
@@ -73,8 +64,6 @@ const CUSTOMER = {
 let customer = {};
 
 (function init() {
-  copyrightYear.textContent =
-    new Date().getFullYear();
   customer = CUSTOMER;
   if (customer.booking) {
     voyageTypeChip.textContent = `${customer.voyageTypeText}`;

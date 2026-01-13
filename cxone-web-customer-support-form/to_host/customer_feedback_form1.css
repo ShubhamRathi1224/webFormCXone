@@ -33,8 +33,7 @@
   --color-primary: #00538B;
   --color-accent: #0090D9;
   --gradient: linear-gradient(135deg, #00538B, #0090D9);
-  --accent-bg: linear-gradient(180deg, rgba(0, 83, 139, 0.9), rgba(0, 144, 217, 0.8)),
-    url('../../assets/patterns/princess-waves.svg');
+  --accent-bg: linear-gradient(180deg, rgba(0, 83, 139, 0.9), rgba(0, 144, 217, 0.8));
 }
 
 :root[data-theme='seabourn'] {

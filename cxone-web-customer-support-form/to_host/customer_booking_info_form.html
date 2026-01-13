@@ -15,7 +15,7 @@
         <main>
             <div class="cxone-modal-header">
                 <h3 id="cxoneModalTitle" class="cxone-modal-title">Booking details</h3>
-                <span class="cxone-close">&times;</span>
+                <span class="cxone-close" onclick="document.getElementById('cf_itemStatus').value='cancel';">&times;</span>
             </div>   
 
             <div class="cxone-form-panel" data-tab="booking">
@@ -24,28 +24,19 @@
 
                 <div class="short-row">
                     <div class="field">
-                        <p>Booking Number: <span id="bookingNumberText">NA</span> </p>
+                        <p>Booking Number: <span id="bookingNumberText">{global:cf_bookingNumber}</span> </p>
                     </div>
 
                     <div class="field">
-                        <p>Booking Date: <span id="bookingDateText">NA</span> </p>
+                        <p>Booking Date: <span id="bookingDateText">{global:cf_bookingDate}</span> </p>
                     </div>
 
                     <div class="field">
-                        <p>Booking Notes: <span id="bookingNotesText">NA</span> </p>
+                        <p>Booking Notes: <span id="bookingNotesText">{global:cf_bookingNotes}</span> </p>
                     </div>
                 </div>
             </div>
         </main>
-        <div class="controls">
-            <div class="footer-note">© <span id="copyrightYear"></span> <span id="serviceFooterName">Service Line</span>
-                — <span id="serviceFooterTagline">We connect
-                    you</span></div>
-            <div class="control-buttons">
-                <button id="btnCancel" class="btn-ghost cxone-btn-secondary" type="button">Cancel</button>
-                <button id="btnNext" class="btn-next cxone-btn-primary" type="button">Save & Next</button>
-            </div>
-        </div>
     </div>
     <script type="module" src="customer_booking_info_form.js"></script>
 </body>

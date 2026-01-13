@@ -1,6 +1,5 @@
 // Elements
 const travelAdvisorChip = document.getElementById("travelAdvisorChip");
-const copyrightYear = document.getElementById("copyrightYear");
 
 const CUSTOMER = {
   brand: "holland",
@@ -64,8 +63,6 @@ const CUSTOMER = {
 let customer = {};
 
 (function init() {
-  copyrightYear.textContent =
-    new Date().getFullYear();
   customer = CUSTOMER;
   travelAdvisorChip.textContent = `🏢 Travel Advisor: ${customer.travelAdvisor}`;
 })();

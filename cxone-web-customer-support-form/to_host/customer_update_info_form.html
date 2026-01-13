@@ -14,77 +14,74 @@
         <main>
             <div class="cxone-modal-header">
                 <h3 id="cxoneModalTitle" class="cxone-modal-title">Update Call Information</h3>
-                <span class="cxone-close">&times;</span>
+                <span class="cxone-close" onclick="document.getElementById('cf_itemStatus').value='cancel';">&times;</span>
             </div>   
 
             <div class="cxone-form-panel" data-tab="updateCallInformation">
                 <div class="short-row">
                     <div class="field">
                         <label for="callerName">Customer Name</label>
-                        <input type="text" id="callerName" placeholder="Enter name" />
+                        <input type="text" id="callerName" placeholder="Enter name" value="{global:cf_customerName}" />
                     </div>
 
                     <div class="field">
                         <label for="ccn">CCN/Mariner Number</label>
-                        <input type="text" id="ccn" placeholder="Customer CCN" />
+                        <input type="text" id="ccn" placeholder="Customer CCN" value="{global:cf_ccnNumber}" />
                     </div>
                     <div class="field">
                         <label for="iata">IATA</label>
-                        <input type="text" id="iata" placeholder="IATA" />
+                        <input type="text" id="iata" placeholder="IATA" value="{global:cf_iataNumber}" />
                     </div>
 
                     <div class="field">
                         <label for="clia">CLIA</label>
-                        <input type="text" id="clia" />
+                        <input type="text" id="clia" value="{global:cf_cliaNumber}" />
                     </div>
 
                     <div class="field">
                         <label for="agencyId">Agency Id</label>
-                        <input type="text" id="agencyId" />
+                        <input type="text" id="agencyId" value="{global:cf_agencyId}" />
                     </div>
 
                     <div class="field">
                         <label for="agencyName">Agency Name</label>
-                        <input type="text" id="agencyName" />
+                        <input type="text" id="agencyName" value="{global:cf_agencyName}" />
                     </div>
 
                     <div class="field">
                         <label for="intentSelector">Intent</label>
-                        <select id="intentSelector" placeholder="Select intent">
+                        <select id="intentSelector" placeholder="Select intent" value="{global:cf_intent}">
                         </select>
                     </div>
 
                     <div class="field">
                         <label for="transcript">Transcript</label>
                         <textarea id="transcript" class="cxone-textarea"
-                            placeholder="Paste transcript or chat history..."></textarea>
+                            placeholder="Paste transcript or chat history..." value="{global:cf_transcript}"></textarea>
                     </div>
 
                     <div class="field">
                         <label for="bookingNumber">Booking Number</label>
-                        <input type="text" id="bookingNumber" placeholder="Booking or reservation Number" />
+                        <input type="text" id="bookingNumber" placeholder="Booking or reservation Number" value="{global:cf_bookingNumber}" />
                     </div>
 
                     <div class="field">
                         <label for="bookingDate">Booking Date</label>
-                        <input type="datetime-local" id="bookingDate" />
+                        <input type="datetime-local" id="bookingDate" value="{global:cf_bookingDate}" />
                     </div>
 
                     <div class="field">
                         <label for="bookingNotes">Booking Notes</label>
                         <textarea id="bookingNotes" class="cxone-textarea"
-                            placeholder="Additional booking details..."></textarea>
+                            placeholder="Additional booking details..." value="{global:cf_bookingNotes}"></textarea>
                     </div>
                 </div>
             </div>
         </main>
         <div class="controls">
-            <div class="footer-note">© <span id="copyrightYear"></span> <span id="serviceFooterName">Service Line</span>
-                — <span id="serviceFooterTagline">We connect
-                    you</span></div>
             <div class="control-buttons">
-                <button id="btnCancel" class="btn-ghost cxone-btn-secondary" type="button">Cancel</button>
-                <button id="btnNext" class="btn-next cxone-btn-primary" type="button">Save & Next</button>
+                <button id="btnCancel" class="btn-ghost cxone-btn-secondary" type="button" onclick="document.getElementById('cf_itemStatus').value='cancel';">Cancel</button>
+                <button id="btnNext" class="btn-next cxone-btn-primary" type="button" onclick="document.getElementById('cf_itemStatus').value='confirm';">Confirm</button>
             </div>
         </div>
     </div>

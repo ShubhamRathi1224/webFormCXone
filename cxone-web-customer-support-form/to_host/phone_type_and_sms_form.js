@@ -1,6 +1,5 @@
 // Elements
 const phoneTypeField = document.getElementById("phoneTypeField");
-const copyrightYear = document.getElementById("copyrightYear");
 
 const CUSTOMER = {
   brand: "holland",
@@ -64,7 +63,6 @@ const CUSTOMER = {
 let customer = {};
 
 (function init() {
-  copyrightYear.textContent = new Date().getFullYear();
   customer = CUSTOMER;
   setPhoneType(phoneTypeField, customer.phoneType, customer.phoneTypeImage);
 })();

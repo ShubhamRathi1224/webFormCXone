@@ -6,12 +6,7 @@ const cxOneAgents = [
   { value: "agent5", label: "Agent 5" },
 ];
 
-// Elements
-const copyrightYear = document.getElementById("copyrightYear");
-
 (function init() {
-  copyrightYear.textContent =
-    new Date().getFullYear();
   populateTransferModes();
 })();
 

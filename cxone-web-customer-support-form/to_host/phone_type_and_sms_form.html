@@ -13,14 +13,14 @@
         <main>
             <div class="cxone-modal-header">
                 <h3 id="cxoneModalTitle" class="cxone-modal-title">Phone Type and SMS authorization</h3>
-                <span class="cxone-close">&times;</span>
+                <span class="cxone-close" onclick="document.getElementById('cf_itemStatus').value='cancel';">&times;</span>
             </div>
             <div class="cxone-form-panel" data-tab="phoneTypeSmsAuth">
                 <div class="phoneTypeFieldDiv">
                     <div id="phoneTypeField"></div>
                     <div class="field">
                         <label for="phoneNumber">Phone Number</label>
-                        <input type="text" id="phoneNumber" placeholder="Phone Number" />
+                        <input type="text" id="phoneNumber" placeholder="Phone Number" value="{global:cf_phoneNumber}" />
                     </div>
                 </div>
                 <div class="field">
@@ -46,12 +46,9 @@
             </div>
         </main>
         <div class="controls">
-            <div class="footer-note">© <span id="copyrightYear"></span> <span id="serviceFooterName">Service Line</span>
-                — <span id="serviceFooterTagline">We connect
-                    you</span></div>
             <div class="control-buttons">
-                <button id="btnCancel" class="btn-ghost cxone-btn-secondary" type="button">Cancel</button>
-                <button id="btnNext" class="btn-next cxone-btn-primary" type="button">Save & Next</button>
+                <button id="btnCancel" class="btn-ghost cxone-btn-secondary" type="button" onclick="document.getElementById('cf_itemStatus').value='cancel';">Cancel</button>
+                <button id="btnNext" class="btn-next cxone-btn-primary" type="button" onclick="document.getElementById('cf_itemStatus').value='confirm';">Confirm</button>
             </div>
         </div>
     </div>

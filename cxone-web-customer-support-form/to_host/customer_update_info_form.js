@@ -10,13 +10,7 @@ export const customerIntents = [
   { value: "specialAssistance", label: "Special Assistance Request" },
 ];
 
-// Elements
-const copyrightYear = document.getElementById("copyrightYear");
-
 (function init() {
-  copyrightYear.textContent =
-    new Date().getFullYear();
-
   populateDropdown("intentSelector", customerIntents);
 })();
 

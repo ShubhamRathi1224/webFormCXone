@@ -13,28 +13,19 @@
         <main>
             <div class="cxone-modal-header">
                 <h3 id="cxoneModalTitle" class="cxone-modal-title">Customer Information</h3>
-                <span class="cxone-close">&times;</span>
+                <span class="cxone-close" onclick="document.getElementById('cf_itemStatus').value='cancel';">&times;</span>
             </div>   
             <div class="cxone-form-panel" data-tab="customer">
                 <div class="short-row">
                     <div class="field">
-                        <p>Customer Name: <span id="callerNameText">NA</span> </p>
+                        <p>Customer Name: <span id="callerNameText">{global:cf_customerName}</span> </p>
                     </div>
                     <div class="field">
-                        <p>CCN/Mariner Number: <span id="ccnText">NA</span> </p>
+                        <p>CCN/Mariner Number: <span id="ccnText">{global:cf_ccnNumber}</span> </p>
                     </div>
                 </div>
             </div>
         </main>
-        <div class="controls">
-            <div class="footer-note">© <span id="copyrightYear"></span> <span id="serviceFooterName">Service Line</span>
-                — <span id="serviceFooterTagline">We connect
-                    you</span></div>
-            <div class="control-buttons">
-                <button id="btnCancel" class="btn-ghost cxone-btn-secondary" type="button">Cancel</button>
-                <button id="btnNext" class="btn-next cxone-btn-primary" type="button">Save & Next</button>
-            </div>
-        </div>
     </div>
     <script type="module" src="customer_info_form.js"></script>
 </body>

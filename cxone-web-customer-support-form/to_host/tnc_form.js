@@ -5,9 +5,6 @@ const deliverModes = [
   { value: "both", label: "Both Spoken and Text", isTextIncluded: true },
 ];
 
-// Elements
-const copyrightYear = document.getElementById("copyrightYear");
-
 const CUSTOMER = {
   brand: "holland",
   logo: "../../assets/logos/holland.svg",
@@ -70,7 +67,6 @@ const CUSTOMER = {
 let customer = {};
 
 (function init() {
-  copyrightYear.textContent = new Date().getFullYear();
   customer = CUSTOMER;
   populateDeliverModes(customer);
 })();
