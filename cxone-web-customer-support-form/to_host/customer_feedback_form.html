@@ -30,10 +30,10 @@
             <main>
                 <div class="main-container-div">
                     <div class="basic-details-div">
-                        <span id="updateInfoButton" title="update" onclick="document.getElementById('cf_item_type').value='updateCust';">
+                        <button id="updateInfoButton" title="update" onclick="document.getElementById('cf_item_type').value='updateCust';">
                             <i class="fa-regular fa-pen-to-square"></i>
                             <!-- <i class="fa-solid fa-pencil"></i> -->
-                        </span>
+                        </button>
                         <div class="short-row">
                             <div class="field">
                                 <p><i class="fa-regular fa-user"></i>: <span id="callerNameTextBasic">{global:cf_customerName}</span></p>
@@ -48,7 +48,7 @@
                             
                             <div class="field">
                                 <div>
-                                    <img src="/cxone-web-customer-support-form/to_host/images/voyageTypes/worldCruise.png" alt="phoneTypeSmsAuth" width="80px" height="80px"/>
+                                    <img src="/cxone-web-customer-support-form/to_host/images/voyageTypes/worldCruise.png" alt="voyageType" width="80px" height="80px"/>
                                 </div>
                                 <div class="loyalty-level"></div>
                             </div>                     
@@ -57,47 +57,48 @@
                     </div>
                     <div class="section-wise-details-div">
                         <div class="cxone-tabs" id="cxoneTabs">
-                            <div class="cxone-tab" data-tab="customer" id="customerInfoTab" onclick="document.getElementById('cf_item_type').value='custInfo';">
+                        <input type="hidden" name="cf_item_type" id="cf_item_type">
+                            <button class="cxone-tab" data-tab="customer" id="customerInfoTab" onclick="document.getElementById('cf_item_type').value='custInfo';">
                                 <div class="cxone-tab-icon">👥</div>
                                 <div class="cxone-tab-title">Customer</div>
                                 <div class="cxone-tab-desc">Customer Information</div>
-                            </div>
-                            <div class="cxone-tab" data-tab="travelAdvisor" id="travelAdvisorTab" onclick="document.getElementById('cf_item_type').value='taInfo';">
+                            </button>
+                            <button class="cxone-tab" data-tab="travelAdvisor" id="travelAdvisorTab" onclick="document.getElementById('cf_item_type').value='taInfo';">
                                 <div class="cxone-tab-icon">💬</div>
                                 <div class="cxone-tab-title">Travel advisor</div>
                                 <div class="cxone-tab-desc">Travel advisor Information</div>
-                            </div>
-                            <div class="cxone-tab" data-tab="intent" id="intentTab" onclick="document.getElementById('cf_item_type').value='intAndPur';">
+                            </button>
+                            <button class="cxone-tab" data-tab="intent" id="intentTab" onclick="document.getElementById('cf_item_type').value='intAndPur';">
                                 <div class="cxone-tab-icon">📝</div>
                                 <div class="cxone-tab-title">Contact Intent</div>
                                 <div class="cxone-tab-desc">Contact Intent & Purpose of request</div>
-                            </div>
-                            <div class="cxone-tab" data-tab="booking" id="bookingTab" onclick="document.getElementById('cf_item_type').value='bookingInfo';">
+                            </button>
+                            <button class="cxone-tab" data-tab="booking" id="bookingTab" onclick="document.getElementById('cf_item_type').value='bookingInfo';">
                                 <div class="cxone-tab-icon">📅</div>
                                 <div class="cxone-tab-title">Booking Details</div>
                                 <div class="cxone-tab-desc">Booking details</div>
-                            </div>
-                            <div class="cxone-tab" data-tab="pcc" id="pccTab" onclick="document.getElementById('cf_item_type').value='pcc';">
+                            </button>
+                            <button class="cxone-tab" data-tab="pcc" id="pccTab" onclick="document.getElementById('cf_item_type').value='pcc';">
                                 <div class="cxone-tab-icon">
                                     <img src="/cxone-web-customer-support-form/to_host/images/pcc.png" alt="PCC"/>
                                 </div>
                                 <div class="cxone-tab-title">PCC</div>
                                 <div class="cxone-tab-desc">PCC</div>
-                            </div>
-                            <div class="cxone-tab" data-tab="phoneTypeSmsAuth" id="phoneTypeSmsAuthTab" onclick="document.getElementById('cf_item_type').value='phAndSMS';">
+                            </button>
+                            <button class="cxone-tab" data-tab="phoneTypeSmsAuth" id="phoneTypeSmsAuthTab" onclick="document.getElementById('cf_item_type').value='phAndSMS';">
                                 <div class="cxone-tab-icon">
                                     <img src="/cxone-web-customer-support-form/to_host/images/mediaType.png" alt="phoneTypeSmsAuth"/>
                                 </div>
                                 <div class="cxone-tab-title">Phone Type and SMS authorization</div>
                                 <div class="cxone-tab-desc">Phone Type and SMS authorization</div>
-                            </div>
-                            <div class="cxone-tab" data-tab="termsAndConditions" id="termsAndConditionsTab" onclick="document.getElementById('cf_item_type').value='tnc';">
+                            </button>
+                            <button class="cxone-tab" data-tab="termsAndConditions" id="termsAndConditionsTab" onclick="document.getElementById('cf_item_type').value='tnc';">
                                 <div class="cxone-tab-icon">
                                     <img src="/cxone-web-customer-support-form/to_host/images/termsAndCond.png" alt="termsAndConditions"/>
                                 </div>
                                 <div class="cxone-tab-title">Terms and conditions</div>
                                 <div class="cxone-tab-desc">Terms and conditions</div>
-                            </div>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -106,13 +107,14 @@
                 <div class="footer-note">© <span id="copyrightYear"></span> <span
                         id="serviceFooterName">{global:api_brand}</span> — <span id="serviceFooterTagline">{global:footerTagline}</span></div>
                 <div class="control-buttons">
+                    <input type="hidden" name="cf_itemStatus" id="cf_itemStatus">
                     <button id="btnCancel" class="btn-ghost cxone-btn-secondary" type="button" onclick="document.getElementById('cf_itemStatus').value='cancel';">Cancel</button>
                     <button id="btnNext" class="btn-next cxone-btn-primary" type="button" onclick="document.getElementById('cf_itemStatus').value='confirm';">Confirm</button>
                 </div>
             </div>
         </div>
-        <script type="module" src="customer_feedback_form.js"></script>
     </body>
+    <script type="module" src="customer_feedback_form.js"></script>
     
     </html>
 </data>

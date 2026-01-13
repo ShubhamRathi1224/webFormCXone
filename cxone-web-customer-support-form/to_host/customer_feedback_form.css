@@ -479,7 +479,7 @@ main {
   flex:1
 }
 
-button {
+.w-120 {
   min-width: 120px
 }
 
@@ -573,6 +573,7 @@ button {
 .cxone-tab-desc {
   font-size: 0.92rem;
   color: #b0b8c9;
+  font-weight: 500;
 }
 
 .cxone-form-area {

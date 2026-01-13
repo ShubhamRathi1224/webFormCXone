@@ -479,7 +479,7 @@ main {
   flex:1
 }
 
-button {
+.w-120 {
   min-width: 120px
 }
 

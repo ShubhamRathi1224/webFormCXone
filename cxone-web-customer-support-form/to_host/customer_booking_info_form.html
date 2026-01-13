@@ -13,9 +13,12 @@
 <body>
     <div class="card">
         <main>
+            <input type="hidden" name="cf_itemStatus" id="cf_itemStatus">
             <div class="cxone-modal-header">
                 <h3 id="cxoneModalTitle" class="cxone-modal-title">Booking details</h3>
-                <span class="cxone-close" onclick="document.getElementById('cf_itemStatus').value='cancel';">&times;</span>
+                <button class="cxone-close" style="padding: 6px 12px;font-size: 12px;font-weight: bold;cursor: pointer;background: transparent;border: 1px solid #cccccc;border-radius: 4px;color: #666666;" onclick="document.getElementById('cf_itemStatus').value='cancel';">
+                Close
+                </button>
             </div>   
 
             <div class="cxone-form-panel" data-tab="booking">
@@ -38,7 +41,7 @@
             </div>
         </main>
     </div>
-    <script type="module" src="customer_booking_info_form.js"></script>
 </body>
+<script type="module" src="customer_booking_info_form.js"></script>
 
 </html>
