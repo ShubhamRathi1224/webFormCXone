@@ -9,37 +9,39 @@
 </head>
 
 <body>
-    <div class="card">
-        <main>
-            <input type="hidden" name="cf_itemStatus" id="cf_itemStatus">
-            <div class="cxone-modal-header">
-                <h3 id="cxoneModalTitle" class="cxone-modal-title">Travel advisor Information</h3>
-                <button class="cxone-close" style="padding: 6px 12px;font-size: 12px;font-weight: bold;cursor: pointer;background: transparent;border: 1px solid #cccccc;border-radius: 4px;color: #666666;" onclick="document.getElementById('cf_itemStatus').value='cancel';">
-                Close
-                </button>
-            </div>   
+    <div style="position: fixed;inset: 0;background: rgba(0,0,0,0.45);display: flex;align-items: center;justify-content: center;z-index: 9999;">
+        <div style="background: #ffffff;border-radius: 6px;padding: 20px;box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
+            <main>
+                <input type="hidden" name="cf_itemStatus" id="cf_itemStatus">
+                <div class="cxone-modal-header">
+                    <h3 id="cxoneModalTitle" class="cxone-modal-title">Travel advisor Information</h3>
+                    <button class="cxone-close" style="padding: 6px 12px;font-size: 12px;font-weight: bold;cursor: pointer;background: transparent;border: 1px solid #cccccc;border-radius: 4px;color: #666666;" onclick="document.getElementById('cf_itemStatus').value='cancel';">
+                    Close
+                    </button>
+                </div>   
 
-            <div class="cxone-form-panel" data-tab="travelAdvisor">
-                <button type="button" class="tab-details-chip" id="travelAdvisorChip"></button>
-                <div class="short-row">
-                    <div class="field">
-                        <p>IATA: <span id="iataText">{global:cf_iataNumber}</span> </p>
-                    </div>
+                <div class="cxone-form-panel" data-tab="travelAdvisor">
+                    <button type="button" class="tab-details-chip" id="travelAdvisorChip"></button>
+                    <div class="short-row">
+                        <div class="field">
+                            <p>IATA: <span id="iataText">{global:cf_iataNumber}</span> </p>
+                        </div>
 
-                    <div class="field">
-                        <p>CLIA: <span id="cliaText">{global:cf_cliaNumber}</span> </p>
-                    </div>
+                        <div class="field">
+                            <p>CLIA: <span id="cliaText">{global:cf_cliaNumber}</span> </p>
+                        </div>
 
-                    <div class="field">
-                        <p>Agency Id: <span id="agencyIdText">{global:cf_agencyId}</span> </p>
-                    </div>
+                        <div class="field">
+                            <p>Agency Id: <span id="agencyIdText">{global:cf_agencyId}</span> </p>
+                        </div>
 
-                    <div class="field">
-                        <p>Agency Name: <span id="agencyNumberText">{global:cf_agencyName}</span> </p>
+                        <div class="field">
+                            <p>Agency Name: <span id="agencyNumberText">{global:cf_agencyName}</span> </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
 </body>
 <script type="module" src="customer_travel_advisor_form.js"></script>

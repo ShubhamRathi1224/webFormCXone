@@ -11,51 +11,53 @@
 </head>
 
 <body>
-    <div class="card">
-        <main>
-            <input type="hidden" name="cf_itemStatus" id="cf_itemStatus">
-            <div class="cxone-modal-header">
-                <h3 id="cxoneModalTitle" class="cxone-modal-title">Contact Intent & Purpose of request</h3>
-                <button class="cxone-close" style="padding: 6px 12px;font-size: 12px;font-weight: bold;cursor: pointer;background: transparent;border: 1px solid #cccccc;border-radius: 4px;color: #666666;" onclick="document.getElementById('cf_itemStatus').value='cancel';">
-                Close
-                </button>
-            </div>   
+    <div style="position: fixed;inset: 0;background: rgba(0,0,0,0.45);display: flex;align-items: center;justify-content: center;z-index: 9999;">
+        <div style="background: #ffffff;border-radius: 6px;padding: 20px;box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
+            <main>
+                <input type="hidden" name="cf_itemStatus" id="cf_itemStatus">
+                <div class="cxone-modal-header">
+                    <h3 id="cxoneModalTitle" class="cxone-modal-title">Contact Intent & Purpose of request</h3>
+                    <button class="cxone-close" style="padding: 6px 12px;font-size: 12px;font-weight: bold;cursor: pointer;background: transparent;border: 1px solid #cccccc;border-radius: 4px;color: #666666;" onclick="document.getElementById('cf_itemStatus').value='cancel';">
+                    Close
+                    </button>
+                </div>   
 
-            <div class="cxone-form-panel" data-tab="intent">
-                <div class="short-row">
-                    <div class="field">
-                        <p>Intent: <span id="intentText">{global:cf_intent}</span> </p>
-                    </div>
-
-                    <div class="field">
-                        <div class="thumb-group" id="satisfiedGroup">
-                            <i class="fa-solid fa-thumbs-up thumb" data-value="yes" id="thumbYes"></i>
-                            <i class="fa-solid fa-thumbs-down thumb" data-value="no" id="thumbNo"></i>
+                <div class="cxone-form-panel" data-tab="intent">
+                    <div class="short-row">
+                        <div class="field">
+                            <p>Intent: <span id="intentText">{global:cf_intent}</span> </p>
                         </div>
-                        <input type="hidden" name="satisfied" id="satisfied" value="" />
-                    </div>
 
-                    <div class="field" id="wrongUserField">
-                        <div class="user-group" id="wrongUserGroup">
-                            <div class="user-img-wrapper">
-                                <img src="/assets/user.png" alt="Wrong User" width="80px" height="80px">
-                                <!-- <div class="cross-mark"><i class="fa-solid fa-x"></i></div> -->
-                                <div class="cross-mark">✖</div>
+                        <div class="field">
+                            <div class="thumb-group" id="satisfiedGroup">
+                                <i class="fa-solid fa-thumbs-up thumb" data-value="yes" id="thumbYes"></i>
+                                <i class="fa-solid fa-thumbs-down thumb" data-value="no" id="thumbNo"></i>
                             </div>
+                            <input type="hidden" name="satisfied" id="satisfied" value="" />
                         </div>
-                        <input type="hidden" name="wrongUser" id="wrongUser" value="0" />
+
+                        <div class="field" id="wrongUserField">
+                            <div class="user-group" id="wrongUserGroup">
+                                <div class="user-img-wrapper">
+                                    <img src="/assets/user.png" alt="Wrong User" width="80px" height="80px">
+                                    <!-- <div class="cross-mark"><i class="fa-solid fa-x"></i></div> -->
+                                    <div class="cross-mark">✖</div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="wrongUser" id="wrongUser" value="0" />
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <p>Transcript: <span id="transcriptText">{global:cf_transcript}</span> </p>
                     </div>
                 </div>
-
-                <div class="field">
-                    <p>Transcript: <span id="transcriptText">{global:cf_transcript}</span> </p>
+            </main>
+            <div class="controls">
+                <div class="control-buttons">
+                    <button id="btnCancel" class="btn-ghost cxone-btn-secondary" type="button" onclick="document.getElementById('cf_itemStatus').value='cancel';">Cancel</button>
+                    <button id="btnNext" class="btn-next cxone-btn-primary" type="button" onclick="document.getElementById('cf_itemStatus').value='confirm';">Confirm</button>
                 </div>
-            </div>
-        </main>
-        <div class="controls">
-            <div class="control-buttons">
-                <button id="btnCancel" class="btn-ghost cxone-btn-secondary" type="button" onclick="document.getElementById('cf_itemStatus').value='cancel';">Cancel</button>
-                <button id="btnNext" class="btn-next cxone-btn-primary" type="button" onclick="document.getElementById('cf_itemStatus').value='confirm';">Confirm</button>
             </div>
         </div>
     </div>

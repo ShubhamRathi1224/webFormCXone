@@ -9,52 +9,54 @@
 </head>
 
 <body>
-    <div class="card">
-        <main>
-            <input type="hidden" name="cf_itemStatus" id="cf_itemStatus">
-            <div class="cxone-modal-header">
-                <h3 id="cxoneModalTitle" class="cxone-modal-title">PCC</h3>
-                <button class="cxone-close" style="padding: 6px 12px;font-size: 12px;font-weight: bold;cursor: pointer;background: transparent;border: 1px solid #cccccc;border-radius: 4px;color: #666666;" onclick="document.getElementById('cf_itemStatus').value='cancel';">
-                Close
-                </button>
-            </div>   
+    <div style="position: fixed;inset: 0;background: rgba(0,0,0,0.45);display: flex;align-items: center;justify-content: center;z-index: 9999;">
+        <div style="background: #ffffff;border-radius: 6px;padding: 20px;box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
+            <main>
+                <input type="hidden" name="cf_itemStatus" id="cf_itemStatus">
+                <div class="cxone-modal-header">
+                    <h3 id="cxoneModalTitle" class="cxone-modal-title">PCC</h3>
+                    <button class="cxone-close" style="padding: 6px 12px;font-size: 12px;font-weight: bold;cursor: pointer;background: transparent;border: 1px solid #cccccc;border-radius: 4px;color: #666666;" onclick="document.getElementById('cf_itemStatus').value='cancel';">
+                    Close
+                    </button>
+                </div>   
 
-            <div class="cxone-form-panel" data-tab="pcc">
-                <div class="field">
-                    <p for="transferMode">Tranfer Mode</p>
-                    <div class="radio-group" id="transferModeGroup"></div>
-                </div>
-                <div class="short-row mt-22px">
+                <div class="cxone-form-panel" data-tab="pcc">
                     <div class="field">
-                        <label for="marinerNumber">Mariner Number</label>
-                        <input type="text" id="marinerNumber" placeholder="Mariner Number" value="{global:cf_marinerNumber}" />
+                        <p for="transferMode">Tranfer Mode</p>
+                        <div class="radio-group" id="transferModeGroup"></div>
                     </div>
-
-                    <div class="field">
-                        <label for="bookingNumber">Booking Number</label>
-                        <input type="text" id="bookingNumber" placeholder="Booking Number" value="{global:cf_bookingNumber}" />
-                    </div>
-
-                    <div class="field" id="pccNameField">
-                        <label for="transferTo">PCC name</label>
-                        <input type="text" id="transferSearch" placeholder="Search agent..." />
-                        <div class="custom-select" id="transferDropdown">
-                            <div class="options-list" id="transferOptions"></div>
+                    <div class="short-row mt-22px">
+                        <div class="field">
+                            <label for="marinerNumber">Mariner Number</label>
+                            <input type="text" id="marinerNumber" placeholder="Mariner Number" value="{global:cf_marinerNumber}" />
                         </div>
-                        <input type="hidden" id="transferTo" />
-                    </div>
 
-                    <div class="field">
-                        <label for="transferNotes">Transfer Notes</label>
-                        <textarea id="transferNotes" class="cxone-textarea" placeholder="Transfer notes..."></textarea>
+                        <div class="field">
+                            <label for="bookingNumber">Booking Number</label>
+                            <input type="text" id="bookingNumber" placeholder="Booking Number" value="{global:cf_bookingNumber}" />
+                        </div>
+
+                        <div class="field" id="pccNameField">
+                            <label for="transferTo">PCC name</label>
+                            <input type="text" id="transferSearch" placeholder="Search agent..." />
+                            <div class="custom-select" id="transferDropdown">
+                                <div class="options-list" id="transferOptions"></div>
+                            </div>
+                            <input type="hidden" id="transferTo" />
+                        </div>
+
+                        <div class="field">
+                            <label for="transferNotes">Transfer Notes</label>
+                            <textarea id="transferNotes" class="cxone-textarea" placeholder="Transfer notes..."></textarea>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </main>
-        <div class="controls">
-            <div class="control-buttons">
-                <button id="btnCancel" class="btn-ghost cxone-btn-secondary" type="button" onclick="document.getElementById('cf_itemStatus').value='cancel';">Cancel</button>
-                <button id="btnNext" class="btn-next cxone-btn-primary" type="button" onclick="document.getElementById('cf_itemStatus').value='confirm';">Confirm</button>
+            </main>
+            <div class="controls">
+                <div class="control-buttons">
+                    <button id="btnCancel" class="btn-ghost cxone-btn-secondary" type="button" onclick="document.getElementById('cf_itemStatus').value='cancel';">Cancel</button>
+                    <button id="btnNext" class="btn-next cxone-btn-primary" type="button" onclick="document.getElementById('cf_itemStatus').value='confirm';">Confirm</button>
+                </div>
             </div>
         </div>
     </div>

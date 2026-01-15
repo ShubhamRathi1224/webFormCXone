@@ -9,49 +9,51 @@
 </head>
 
 <body>
-    <div class="card">
-        <main>
-            <input type="hidden" name="cf_itemStatus" id="cf_itemStatus">
-            <div class="cxone-modal-header">
-                <h3 id="cxoneModalTitle" class="cxone-modal-title">Phone Type and SMS authorization</h3>
-                <button class="cxone-close" style="padding: 6px 12px;font-size: 12px;font-weight: bold;cursor: pointer;background: transparent;border: 1px solid #cccccc;border-radius: 4px;color: #666666;" onclick="document.getElementById('cf_itemStatus').value='cancel';">
-                Close
-                </button>
-            </div>
-            <div class="cxone-form-panel" data-tab="phoneTypeSmsAuth">
-                <div class="phoneTypeFieldDiv">
-                    <div id="phoneTypeField"></div>
+    <div style="position: fixed;inset: 0;background: rgba(0,0,0,0.45);display: flex;align-items: center;justify-content: center;z-index: 9999;">
+        <div style="background: #ffffff;border-radius: 6px;padding: 20px;box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
+            <main>
+                <input type="hidden" name="cf_itemStatus" id="cf_itemStatus">
+                <div class="cxone-modal-header">
+                    <h3 id="cxoneModalTitle" class="cxone-modal-title">Phone Type and SMS authorization</h3>
+                    <button class="cxone-close" style="padding: 6px 12px;font-size: 12px;font-weight: bold;cursor: pointer;background: transparent;border: 1px solid #cccccc;border-radius: 4px;color: #666666;" onclick="document.getElementById('cf_itemStatus').value='cancel';">
+                    Close
+                    </button>
+                </div>
+                <div class="cxone-form-panel" data-tab="phoneTypeSmsAuth">
+                    <div class="phoneTypeFieldDiv">
+                        <div id="phoneTypeField"></div>
+                        <div class="field">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input type="text" id="phoneNumber" placeholder="Phone Number" value="{global:cf_phoneNumber}" />
+                        </div>
+                    </div>
                     <div class="field">
-                        <label for="phoneNumber">Phone Number</label>
-                        <input type="text" id="phoneNumber" placeholder="Phone Number" value="{global:cf_phoneNumber}" />
-                    </div>
-                </div>
-                <div class="field">
-                    <p>Authorize for Preferences:</p>
-                    <div class="checkbox-group subscription-toggle-group">
-                        <div class="subscription-type" title="Service/Supoort/Upgrades messages">
-                            <img src="/assets/mediaTypes/servicered.png" alt="">
-                            <img src="/assets/mediaTypes/servicegreen.png" alt="">
-                            <!-- <span class="subscription-msg">Service/Supoort/Upgrades messages</span> -->
-                        </div>
-                        <div class="subscription-type" title="PCC consultant messages">
-                            <img src="/assets/mediaTypes/pccred.png" alt="">
-                            <img src="/assets/mediaTypes/pccgreen.png" alt="">
-                            <!-- <span class="subscription-msg">PCC consultant messages</span> -->
-                        </div>
-                        <div class="subscription-type" title="Marketing messages">
-                            <img src="/assets/mediaTypes/marketingRed.png" alt="">
-                            <img src="/assets/mediaTypes/marketingGreen.png" alt="">
-                            <!-- <span class="subscription-msg">Marketing messages</span> -->
+                        <p>Authorize for Preferences:</p>
+                        <div class="checkbox-group subscription-toggle-group">
+                            <div class="subscription-type" title="Service/Supoort/Upgrades messages">
+                                <img src="/assets/mediaTypes/servicered.png" alt="">
+                                <img src="/assets/mediaTypes/servicegreen.png" alt="">
+                                <!-- <span class="subscription-msg">Service/Supoort/Upgrades messages</span> -->
+                            </div>
+                            <div class="subscription-type" title="PCC consultant messages">
+                                <img src="/assets/mediaTypes/pccred.png" alt="">
+                                <img src="/assets/mediaTypes/pccgreen.png" alt="">
+                                <!-- <span class="subscription-msg">PCC consultant messages</span> -->
+                            </div>
+                            <div class="subscription-type" title="Marketing messages">
+                                <img src="/assets/mediaTypes/marketingRed.png" alt="">
+                                <img src="/assets/mediaTypes/marketingGreen.png" alt="">
+                                <!-- <span class="subscription-msg">Marketing messages</span> -->
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
-        <div class="controls">
-            <div class="control-buttons">
-                <button id="btnCancel" class="btn-ghost cxone-btn-secondary" type="button" onclick="document.getElementById('cf_itemStatus').value='cancel';">Cancel</button>
-                <button id="btnNext" class="btn-next cxone-btn-primary" type="button" onclick="document.getElementById('cf_itemStatus').value='confirm';">Confirm</button>
+            </main>
+            <div class="controls">
+                <div class="control-buttons">
+                    <button id="btnCancel" class="btn-ghost cxone-btn-secondary" type="button" onclick="document.getElementById('cf_itemStatus').value='cancel';">Cancel</button>
+                    <button id="btnNext" class="btn-next cxone-btn-primary" type="button" onclick="document.getElementById('cf_itemStatus').value='confirm';">Confirm</button>
+                </div>
             </div>
         </div>
     </div>
