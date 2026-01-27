@@ -1,31 +1,19 @@
 // Cruise brand metadata
 const BRANDS = {
   holland: {
-    name: "Holland America Line",
-    tag: "Taking you to extraordinary places",
     theme: "holland",
-    short: "HAL",
     favicon: "../../assets/favicons/holland.png",
   },
   princess: {
-    name: "Princess Cruises",
-    tag: "Come back new",
     theme: "princess",
-    short: "PCL",
     favicon: "../../assets/favicons/princess.png",
   },
   seabourn: {
-    name: "Seabourn",
-    tag: "Elegant, ultra-luxury cruises",
     theme: "seabourn",
-    short: "SBN",
     favicon: "../../assets/favicons/seabourn.png",
   },
   cunard: {
-    name: "Cunard",
-    tag: "Leaders in luxury ocean travel",
     theme: "cunard",
-    short: "CUN",
     favicon: "../../assets/favicons/cunard.png",
   },
 };
@@ -66,8 +54,8 @@ const deliverModes = [
 ];
 
 const CUSTOMER = {
-  brand: "holland",
-  logo: "../../assets/logos/holland.svg",
+  brand: "seabourn",
+  logo: "../../assets/logos/seabourn.svg",
   phoneType: "Mobile",
   phoneTypeImage: "/cxone-web-customer-support-form/to_host/images/phoneTypes/mobile.png",
   phone: "+15551234567",
@@ -143,10 +131,7 @@ const bookingNotes = document.getElementById("bookingNotes");
 const transcript = document.getElementById("transcript");
 const btnNext = document.getElementById("btnNext");
 const btnCancel = document.getElementById("btnCancel");
-const serviceFooterName = document.getElementById("serviceFooterName");
-const serviceFooterTagline = document.getElementById("serviceFooterTagline");
 const copyrightYear = document.getElementById("copyrightYear");
-const basicDetails = document.getElementById('basicDetails');
 const loyaltyLevelDivs = document.querySelectorAll(".loyalty-level");
 
 let customer = {};
@@ -204,8 +189,6 @@ function setTheme(name = "holland") {
   document.documentElement.setAttribute("data-theme", name);
 
   const brand = BRANDS[name] || Object.values(BRANDS)[0];
-  serviceFooterName.textContent = brand.name;
-  serviceFooterTagline.textContent = brand.tag;
   let link = document.querySelector("link[rel~='icon']");
   if (!link) {
     link = document.createElement("link");
@@ -235,7 +218,7 @@ function setLangFlag(elementDiv, lang = "en-US", langFlag = "/cxone-web-customer
 
 function setAuthChip(isAuthenticated) {
   authChip.innerHTML =
-    `<span class="icon ${isAuthenticated ? 'check' : 'cross'}"> ${isAuthenticated ? svgCheck(): svgCross()}
+    `<span class="auth-icon ${isAuthenticated ? 'check' : 'cross'}"> ${isAuthenticated ? svgCheck(): svgCross()}
     </span><span><strong>${isAuthenticated ? 'Authenticated' : 'Unauthenticated'}</strong></span>`;
   authChip.title = customer.authStatus ? customer.authStatus.details : '';
 }
@@ -258,7 +241,6 @@ function setTabDetails(selectedTab, src = "/cxone-web-customer-support-form/to_h
   img.width = 200;
   img.width = "-webkit-fill-available";
   img.height = 200;
-  img.style.objectFit = "contain";
   iconDiv.appendChild(img);
 }
 
@@ -399,8 +381,6 @@ function populateFromIVR(payload) {
     bookingNotes.value = payload.booking.bookingNotes;
   }
   transcript.value = payload.transcript || "";
-
-  // setBasicDetails(mainBasicDetails);
 }
 
 function updateNextEnabled() {
@@ -415,47 +395,9 @@ function renderStarRating(rating) {
     for (let i = 0; i < validRating; i++) {
       const star = document.createElement('i');
       star.className = `fa-solid fa-star ${starClass}`;
-      // star.className = `fa-solid fa-star loyalty-star`;
       loyalty.appendChild(star);
     }
   })
-}
-
-function setBasicDetails(mainBasicDetails){
-  const fieldLabels = {
-    callerName: 'Customer Name',
-    ccn: 'CCN',
-    travelAdvisor: 'Travel Advisor',
-    intent: 'Intent',
-    bookingNumber: 'Booking Number',
-    bookingDate: 'Booking Date',
-    loyalty: 'Loyalty',
-    voyageType: 'Voyage Type'
-  }
-  const fieldIcons = {
-    callerName: '<i class="fa-regular fa-user"></i>',
-    ccn: '<i class="fa-regular fa-address-card"></i>',
-    travelAdvisor: '<i class="fa-solid fa-user-tie"></i>',
-    intent: '<i class="fa-solid fa-list-check"></i>',
-    bookingNumber: '<i class="fa-solid fa-hashtag"></i>',
-    bookingDate: '<i class="fa-regular fa-calendar"></i>',
-    loyalty: '<i class="fa-regular fa-star"></i>',
-    voyageType: '<i class="fa-solid fa-ship"></i>'
-  }
-
-  const htmlContent = Object.keys(mainBasicDetails)
-    .map(key => `
-      <div class="field">
-        <p>${fieldIcons[key]}: <span id="${key}TextBasic">${mainBasicDetails[key] || 'NA'}</span></p>
-      </div>
-    `)
-    .join('');
-    // basicDetails.innerHTML = htmlContent;
-    basicDetails.innerHTML = `
-      <div class="short-row">
-        ${htmlContent}
-      </div>
-    `
 }
 
 function handleIntentChange() {
@@ -500,6 +442,7 @@ function renderTnCTags() {
     const tag = document.createElement("span");
     tag.className = "tag";
     tag.textContent = term.label;
+    tag.style.cssText = `background: ${window.global?.primaryColor};`;
     const icon = document.createElement("i");
     icon.className = "fa fa-times";
     icon.onclick = () => removeTerm(term);
@@ -576,7 +519,7 @@ userWrapper.addEventListener("click", () => {
     wrongUserInput.value = userWrapper.classList.contains("wrong") ? "1" : "0";
 });
 
-document.querySelectorAll(".subscription-type").forEach(type => {
+document.querySelectorAll(".sms-auth-type").forEach(type => {
     type.addEventListener("click", () => {
         const isActive = type.classList.toggle("active");
         type.dataset.title = isActive 

@@ -6,41 +6,6 @@ const deliverModes = [
 ];
 
 const CUSTOMER = {
-  brand: "holland",
-  logo: "../../assets/logos/holland.svg",
-  phoneType: "Mobile",
-  phoneTypeImage: "/assets/phoneTypes/mobile.png",
-  phone: "+15551234567",
-  email: "sample@email.com",
-  customerId: "C-0001",
-  callerName: "John Doe",
-  ccn: "CCN-12345",
-  loyalty: "5-Star Platinum",
-  loyaltyLevel: "5",
-  callerType: "D",
-  callerImage: "/assets/icons/guest.png",
-  intent: "newBooking",
-  intentImage: "/assets/intents/newBooking.png",
-  booking: {
-    number: "B-123",
-    date: "2025-11-05 09:30",
-
-    bookingNotes: "Sample notes for the agent.",
-  },
-  voyageType: "WC",
-  voyageTypeText: "World Cruise",
-  voyageTypeImage: "/assets/voyageTypes/worldCruise.png",
-  mediaType: "Voice",
-  authenticated: true,
-  authStatus: {
-    authenticated: true,
-    status: "AI authenticated",
-    details: "Customer authenticated via security questions.",
-  },
-  lang: "en-US",
-  langFlag: "/assets/flags/english.png",
-  transcript: "I want to do a new booking for next month.",
-  transferTo: "Support Queue",
   routeEmail: true,
   routeSMS: false,
   routeChat: true,
@@ -133,17 +98,18 @@ function renderOptions(filter = "") {
 
 function selectTerm(term) {
   selectedTerms.push(term);
-  renderTags();
+  renderTnCTags();
   termSearchInput.value = "";
   renderOptions();
 }
 
-function renderTags() {
+function renderTnCTags() {
   selectedTnCTagsDiv.innerHTML = "";
   selectedTerms.forEach((term) => {
     const tag = document.createElement("span");
     tag.className = "tag";
     tag.textContent = term.label;
+    tag.style.cssText = `background: ${window.global?.primaryColor};`;
     const icon = document.createElement("i");
     icon.className = "fa fa-times";
     icon.onclick = () => removeTerm(term);
@@ -154,7 +120,7 @@ function renderTags() {
 
 function removeTerm(term) {
   selectedTerms = selectedTerms.filter((t) => t.label !== term.label);
-  renderTags();
+  renderTnCTags();
   renderOptions();
 }
 

@@ -16,14 +16,14 @@
             <main>
                 <input type="hidden" name="cf_itemStatus" id="cf_itemStatus">
                 <div class="cxone-modal-header">
-                    <h3 id="cxoneModalTitle" class="cxone-modal-title">Booking details</h3>
-                    <button class="cxone-close" style="padding: 6px 12px;font-size: 12px;font-weight: bold;cursor: pointer;background: transparent;border: 1px solid #cccccc;border-radius: 4px;color: #666666;" onclick="document.getElementById('cf_itemStatus').value='cancel';">
+                    <h3 id="cxoneModalTitle" class="cxone-modal-title" style="color: {global:primaryColor};">Booking details</h3>
+                    <button class="cxone-close" onclick="document.getElementById('cf_itemStatus').value='cancel';">
                     Close
                     </button>
                 </div>   
 
                 <div class="cxone-form-panel" data-tab="booking">
-                    <button type="button" class="tab-details-chip" id="voyageTypeChip"></button>
+                    <span class="tab-details-chip" id="voyageTypeChip" style="background: {global:linearGradient};"></span>
                     <div class="star-rating loyalty-level"></div>
 
                     <div class="short-row">

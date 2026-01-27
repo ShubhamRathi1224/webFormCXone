@@ -16,8 +16,8 @@
                 <input type="hidden" name="lang" id="lang" value="{lang}">
                 <input type="hidden" name="cf_itemStatus" id="cf_itemStatus">
                 <div class="cxone-modal-header">
-                    <h3 id="cxoneModalTitle" class="cxone-modal-title">PCC</h3>
-                    <button class="cxone-close" style="padding: 6px 12px;font-size: 12px;font-weight: bold;cursor: pointer;background: transparent;border: 1px solid #cccccc;border-radius: 4px;color: #666666;" onclick="document.getElementById('cf_itemStatus').value='cancel';">
+                    <h3 id="cxoneModalTitle" class="cxone-modal-title" style="color: {global:primaryColor};">PCC</h3>
+                    <button class="cxone-close" onclick="document.getElementById('cf_itemStatus').value='cancel';">
                     Close
                     </button>
                 </div>   
@@ -65,11 +65,9 @@
                     </div>
                 </div>
             </main>
-            <div class="controls">
-                <div class="control-buttons">
-                    <button id="btnCancel" class="btn-ghost cxone-btn-secondary" type="button" onclick="document.getElementById('cf_itemStatus').value='cancel';">Cancel</button>
-                    <button id="btnNext" class="btn-next cxone-btn-primary" type="button" onclick="document.getElementById('cf_itemStatus').value='confirm';">Confirm</button>
-                </div>
+            <div class="modal-controls">
+                <button id="btnCancel" style="color: {global:secondaryColor}; border-color: {global:secondaryColor};" class="btn-cancel cxone-btn-secondary" onmouseover="this.style.background='{global:secondaryColor}';this.style.color='#ffffff';" onmouseout="this.style.background='#ffffff';this.style.color='{global:secondaryColor}';" onclick="document.getElementById('cf_itemStatus').value='cancel';">Cancel</button>
+                <button id="btnNext" style="color: {global:primaryColor}; border-color: {global:primaryColor};" class="btn-next cxone-btn-primary" onmouseover="this.style.background='{global:primaryColor}';this.style.color='#ffffff';" onmouseout="this.style.background='#ffffff';this.style.color='{global:primaryColor}';" onclick="document.getElementById('cf_itemStatus').value='confirm';">Confirm</button>
             </div>
         </div>
     </div>

@@ -12,15 +12,15 @@
 
 <body>
     <div class="card">
-        <header class="brand">
+        <header class="brand" style="background: {global:linearGradient};">
             <div class="brand">
                 <div class="brand-logo" id="brand-logo"></div>
             </div>
 
             <div class="header-controls">
                 <div id="phoneTypeDiv"></div>
-                <div class="auth-chip-div">
-                    <div id="authChip" class="chip auth-chip" aria-live="polite" title="ddd"></div>
+            <div class="auth-chip-container">
+                <div id="authChip" class="auth-chip" aria-live="polite" title="authentication status"></div>
                 </div>
                 <div id="langFlagDiv"></div>
             </div>
@@ -29,7 +29,7 @@
         <main>
             <div class="main-container-div">
                 <div class="basic-details-div">
-                    <span id="updateInfoButton" title="update">
+                    <span id="updateInfoButton" style="color: {global:primaryColor};" title="update">
                         <i class="fa-regular fa-pen-to-square"></i>
                         <!-- <i class="fa-solid fa-pencil"></i> -->
                     </span>
@@ -52,7 +52,6 @@
                             <div class="loyalty-level"></div>
                         </div>                     
                     </div>
-                    <div id="basicDetails"></div>
                 </div>
                 <div class="section-wise-details-div">
                     <div class="cxone-tabs" id="cxoneTabs">
@@ -109,7 +108,7 @@
                     <div id="cxoneModal" class="cxone-modal">
                         <div class="cxone-modal-content">
                             <div class="cxone-modal-header">
-                                <h3 id="cxoneModalTitle" class="cxone-modal-title"></h3>
+                                <h3 id="cxoneModalTitle" style="color: {global:primaryColor};" class="cxone-modal-title"></h3>
                                 <span class="cxone-close">&times;</span>
                             </div>
                             <div id="cxoneModalBody">
@@ -126,7 +125,7 @@
                                     </div>
         
                                     <div class="cxone-form-panel" data-tab="travelAdvisor">
-                                        <button type="button" class="tab-details-chip" id="travelAdvisorChip"></button>
+                                        <span class="tab-details-chip" id="travelAdvisorChip" style="background: {global:linearGradient};"></span>
                                         <div class="short-row">
                                             <div class="field">
                                                 <p>IATA: <span id="iataText">NA</span> </p>
@@ -179,7 +178,7 @@
                                     </div>
         
                                     <div class="cxone-form-panel" data-tab="booking">
-                                        <button type="button" class="tab-details-chip" id="voyageTypeChip"></button>
+                                        <span class="tab-details-chip" id="voyageTypeChip" style="background: {global:linearGradient};"></span>
                                         <div class="star-rating loyalty-level"></div>
         
                                         <div class="short-row">
@@ -243,18 +242,18 @@
                                         </div>
                                         <div class="field">
                                             <p>Authorize for Preferences:</p>
-                                            <div class="checkbox-group subscription-toggle-group">
-                                                <div class="subscription-type" title="Service/Supoort/Upgrades messages">
+                                        <div class="checkbox-group sms-auth-toggle-group">
+                                            <div class="sms-auth-type" title="Service/Supoort/Upgrades messages">
                                                     <img src="/cxone-web-customer-support-form/to_host/images/mediaTypes/servicered.png" alt="">
                                                     <img src="/cxone-web-customer-support-form/to_host/images/mediaTypes/servicegreen.png" alt="">
                                                     <!-- <span class="subscription-msg">Service/Supoort/Upgrades messages</span> -->
                                                 </div>
-                                                <div class="subscription-type" title="PCC consultant messages">
+                                            <div class="sms-auth-type" title="PCC consultant messages">
                                                     <img src="/cxone-web-customer-support-form/to_host/images/mediaTypes/pccred.png" alt="">
                                                     <img src="/cxone-web-customer-support-form/to_host/images/mediaTypes/pccgreen.png" alt="">
                                                     <!-- <span class="subscription-msg">PCC consultant messages</span> -->
                                                 </div>
-                                                <div class="subscription-type" title="Marketing messages">
+                                            <div class="sms-auth-type" title="Marketing messages">
                                                     <img src="/cxone-web-customer-support-form/to_host/images/mediaTypes/marketingRed.png" alt="">
                                                     <img src="/cxone-web-customer-support-form/to_host/images/mediaTypes/marketingGreen.png" alt="">
                                                     <!-- <span class="subscription-msg">Marketing messages</span> -->
@@ -348,12 +347,12 @@
                 </div>
             </div>
         </main>
-        <div class="controls">
+        <div class="controls" style="border-color: {global:accentColor};">
             <div class="footer-note">© <span id="copyrightYear"></span> <span
                     id="serviceFooterName">{global:wi_brand}</span> — <span id="serviceFooterTagline">{global:footerTagline}</span></div>
             <div class="control-buttons">
-                <button id="btnCancel" class="btn-ghost cxone-btn-secondary" type="button">Cancel</button>
-                <button id="btnNext" class="btn-next cxone-btn-primary" type="button">Save & Next</button>
+                <button id="btnCancel" style="color: {global:secondaryColor}; border-color: {global:secondaryColor};" class="btn-cancel cxone-btn-secondary" onmouseover="this.style.background='{global:secondaryColor}';this.style.color='#ffffff';" onmouseout="this.style.background='#ffffff';this.style.color='{global:secondaryColor}';">Cancel</button>
+                <button id="btnNext" style="color: {global:primaryColor}; border-color: {global:primaryColor};" class="btn-next cxone-btn-primary" onmouseover="this.style.background='{global:primaryColor}';this.style.color='#ffffff';" onmouseout="this.style.background='#ffffff';this.style.color='{global:primaryColor}';">Save & Next</button>
             </div>
         </div>
     </div>

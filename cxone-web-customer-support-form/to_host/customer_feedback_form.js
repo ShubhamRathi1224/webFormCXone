@@ -1,31 +1,19 @@
 // Cruise brand metadata
 const BRANDS = {
   holland: {
-    name: "Holland America Line",
-    tag: "Taking you to extraordinary places",
     theme: "holland",
-    short: "HAL",
     favicon: "../../assets/favicons/holland.png",
   },
   princess: {
-    name: "Princess Cruises",
-    tag: "Come back new",
     theme: "princess",
-    short: "PCL",
     favicon: "../../assets/favicons/princess.png",
   },
   seabourn: {
-    name: "Seabourn",
-    tag: "Elegant, ultra-luxury cruises",
     theme: "seabourn",
-    short: "SBN",
     favicon: "../../assets/favicons/seabourn.png",
   },
   cunard: {
-    name: "Cunard",
-    tag: "Leaders in luxury ocean travel",
     theme: "cunard",
-    short: "CUN",
     favicon: "../../assets/favicons/cunard.png",
   },
 };
@@ -66,27 +54,6 @@ const CUSTOMER = {
   langFlag: "/cxone-web-customer-support-form/to_host/images/flags/english.png",
   transcript: "I want to do a new booking for next month.",
   transferTo: "Support Queue",
-  routeEmail: true,
-  routeSMS: false,
-  routeChat: true,
-  termsAndConditions: [
-    { value: "cancelPolicy", label: "Accept Cancellation Policy" },
-    { value: "refundTerms", label: "Agree to Refund Terms" },
-    { value: "privacyGDPR", label: "Acknowledge Privacy Policy (GDPR)" },
-    { value: "promoConsent", label: "Consent to Promotional Communication" },
-    { value: "liabilityWaiver", label: "Accept Liability Waiver" },
-    {
-      value: "insurancePolicy",
-      label: "Acknowledge Travel Insurance Policy",
-    },
-    { value: "behaviorPolicy", label: "Accept Onboard Behavior Policy" },
-    { value: "paymentAuth", label: "Agree to Payment Authorization" },
-    { value: "contractTerms", label: "Accept Cruise Contract Terms" },
-    {
-      value: "healthSafety",
-      label: "Consent to Health and Safety Protocols",
-    },
-  ],
 };
 
 // Elements
@@ -98,8 +65,6 @@ const customerInfoTab = document.getElementById("customerInfoTab");
 const travelAdvisorTab = document.getElementById("travelAdvisorTab");
 const intentTab = document.getElementById("intentTab");
 const bookingTab = document.getElementById("bookingTab");
-const serviceFooterName = document.getElementById("serviceFooterName");
-const serviceFooterTagline = document.getElementById("serviceFooterTagline");
 const loyaltyLevelDivs = document.querySelectorAll(".loyalty-level");
 const copyrightYear = document.getElementById("copyrightYear");
 
@@ -113,7 +78,7 @@ let customer = {};
 
 function setCustomer(customerId = "C-0001") {
   customer = CUSTOMER;
-  brandLogo.style.backgroundImage = `url(${customer.logo})`;
+  // brandLogo.style.backgroundImage = `url(${customer.logo})`;
 
   setTheme(customer.brand);
   setPhoneType(phoneTypeDiv, customer.phoneType, customer.phoneTypeImage);
@@ -146,8 +111,6 @@ function setCustomer(customerId = "C-0001") {
 function setTheme(name = "holland") {
   document.documentElement.setAttribute("data-theme", name);
   const brand = BRANDS[name] || Object.values(BRANDS)[0];
-  serviceFooterName.textContent = brand.name;
-  serviceFooterTagline.textContent = brand.tag;
   let link = document.querySelector("link[rel~='icon']");
   if (!link) {
     link = document.createElement("link");
@@ -177,7 +140,7 @@ function setLangFlag(elementDiv, lang = "en-US", langFlag = "/cxone-web-customer
 
 function setAuthChip(isAuthenticated) {
     authChip.innerHTML =
-      `<span class="icon ${isAuthenticated ? 'check' : 'cross'}"> ${isAuthenticated ? svgCheck(): svgCross()}
+      `<span class="auth-icon ${isAuthenticated ? 'check' : 'cross'}"> ${isAuthenticated ? svgCheck(): svgCross()}
       </span><span><strong>${isAuthenticated ? 'Authenticated' : 'Unauthenticated'}</strong></span>`;
     authChip.title = customer.authStatus ? customer.authStatus.details : '';
 }
@@ -212,7 +175,6 @@ function renderStarRating(rating) {
     for (let i = 0; i < validRating; i++) {
       const star = document.createElement('i');
       star.className = `fa-solid fa-star ${starClass}`;
-      // star.className = `fa-solid fa-star loyalty-star`;
       loyalty.appendChild(star);
     }
   })

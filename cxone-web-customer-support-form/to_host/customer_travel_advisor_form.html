@@ -14,14 +14,14 @@
             <main>
                 <input type="hidden" name="cf_itemStatus" id="cf_itemStatus">
                 <div class="cxone-modal-header">
-                    <h3 id="cxoneModalTitle" class="cxone-modal-title">Travel advisor Information</h3>
-                    <button class="cxone-close" style="padding: 6px 12px;font-size: 12px;font-weight: bold;cursor: pointer;background: transparent;border: 1px solid #cccccc;border-radius: 4px;color: #666666;" onclick="document.getElementById('cf_itemStatus').value='cancel';">
+                    <h3 id="cxoneModalTitle" class="cxone-modal-title" style="color: {global:primaryColor};">Travel advisor Information</h3>
+                    <button class="cxone-close" onclick="document.getElementById('cf_itemStatus').value='cancel';">
                     Close
                     </button>
                 </div>   
 
                 <div class="cxone-form-panel" data-tab="travelAdvisor">
-                    <button type="button" class="tab-details-chip" id="travelAdvisorChip"></button>
+                    <span class="tab-details-chip" id="travelAdvisorChip" style="background: {global:linearGradient};"></span>
                     <div class="short-row">
                         <div class="field">
                             <p>IATA: <span id="iataText">{global:cf_iataNumber}</span> </p>
