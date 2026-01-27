@@ -1,14 +1,14 @@
 const cwfFieldConfig = [
     { key: 'total_cancel_fees', label: 'Total Cancel Fees' },
     { key: 'total_waived', label: 'Total Waived' },
-    { key: 'net_cancel_fee', label: 'Net Cancelled Fee' },
+    { key: 'net_cancel_fee', label: 'Net Cancel Fee' },
     { key: 'waive_reason_code', label: 'Waive Reason CD' },
     { key: 'waive_reason_description', label: 'Waive Reason Description' },
     { key: 'waiver_flag', label: 'Waiver Flag' },
     { key: 'cancel_code', label: 'Cancel Code' },
     { key: 'cancel_fees', label: 'Cancel Fees' },
     { key: 'transfer_cancel_fees', label: 'Transfer Cancel Fees' },
-    { key: 'ncf_changes_cancel_fees', label: 'NCF Charges Cancel Fees' },
+    { key: 'ncf_changes_cancel_fees', label: 'NCF Changes Cancel Fees' },
     { key: 'non_refundable_premium', label: 'Non-Refundable Premium/Waiver' },
     { key: 'open_date', label: 'Open Date' },
     { key: 'cancel_date', label: 'Cancel Date' },
@@ -161,6 +161,20 @@ function initializeTable(wiType) {
             }
             td.innerHTML = value;
             td.style = "padding: 10px;border: 1px solid #e0e0e0;background: white;"
+            // // Apply background colors based on cancel_item_type for CWF work items
+            // if(wiType == 'CWF'){
+            //   if(passengerData[i].cancel_item_type.toLowerCase() == "cruise"){
+            //     td.style.background = "steelblue";
+            //   } else if(passengerData[i].cancel_item_type.toLowerCase() == "package"){
+            //     td.style.background = "rosybrown";
+            //   } else if(passengerData[i].cancel_item_type.toLowerCase() == "air"){
+            //     td.style.background = "deepskyblue";
+            //   } else if(passengerData[i].cancel_item_type.toLowerCase() == "transfer") {
+            //     td.style.background = "slategrey";
+            //   } else {
+            //     td.style.background = "#f0f8ff";
+            //   }
+            // }
             row.appendChild(td);
         }
         tbody.appendChild(row);
