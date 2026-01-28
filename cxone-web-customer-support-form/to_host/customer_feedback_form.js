@@ -1,60 +1,40 @@
 // Cruise brand metadata
 const BRANDS = {
-  holland: {
-    theme: "holland",
+  hal: {
     favicon: "../../assets/favicons/holland.png",
   },
-  princess: {
-    theme: "princess",
+  pcl: {
     favicon: "../../assets/favicons/princess.png",
   },
-  seabourn: {
-    theme: "seabourn",
+  sbn: {
     favicon: "../../assets/favicons/seabourn.png",
   },
-  cunard: {
-    theme: "cunard",
+  cun: {
     favicon: "../../assets/favicons/cunard.png",
   },
 };
 
 const CUSTOMER = {
-  brand: "holland",
-  logo: "../../assets/logos/holland.svg",
-  phoneType: "Mobile",
-  phoneTypeImage: "/cxone-web-customer-support-form/to_host/images/phoneTypes/mobile.png",
-  phone: "+15551234567",
-  email: "sample@email.com",
-  customerId: "C-0001",
-  callerName: "John Doe",
-  ccn: "CCN-12345",
   loyalty: "5-Star Platinum",
   loyaltyLevel: "5",
-  callerType: "D",
-  callerImage: "/cxone-web-customer-support-form/to_host/images/user.png",
-  intent: "newBooking",
-  intentImage: "/cxone-web-customer-support-form/to_host/images/intents/newBooking.png",
-  booking: {
-    number: "B-123",
-    date: "2025-11-05 09:30",
-
-    bookingNotes: "Sample notes for the agent.",
-  },
-  voyageType: "WC",
-  voyageTypeText: "World Cruise",
-  voyageTypeImage: "/cxone-web-customer-support-form/to_host/images/voyageTypes/worldCruise.png",
   mediaType: "Voice",
-  authenticated: true,
   authStatus: {
-    authenticated: true,
     status: "AI authenticated",
     details: "Customer authenticated via security questions.",
   },
-  lang: "en-US",
-  langFlag: "/cxone-web-customer-support-form/to_host/images/flags/english.png",
-  transcript: "I want to do a new booking for next month.",
-  transferTo: "Support Queue",
+  travelAdvisor: "Cosco Travels",
+  travelAdvisorImage: "/cxone-web-customer-support-form/to_host/images/travelAdvisors/cosco.png",
 };
+
+// images
+const directGuestImage = "/cxone-web-customer-support-form/to_host/images/directGuest.png";
+const germanFlagImage = "/cxone-web-customer-support-form/to_host/images/flags/german.png";
+const dutchFlagImage = "/cxone-web-customer-support-form/to_host/images/flags/dutch.png";
+const englishFlagImage = "/cxone-web-customer-support-form/to_host/images/flags/english.png";
+const mobilePhoneImage = "/cxone-web-customer-support-form/to_host/images/phoneTypes/mobile.png";
+const landlinePhoneImage = "/cxone-web-customer-support-form/to_host/images/phoneTypes/landline.png";
+const intentsImages = "/cxone-web-customer-support-form/to_host/images/intents/";
+const voyageTypesImages = "/cxone-web-customer-support-form/to_host/images/voyageTypes/";
 
 // Elements
 const brandLogo = document.getElementById("brand-logo");
@@ -76,19 +56,19 @@ let customer = {};
   setCustomer();
 })();
 
-function setCustomer(customerId = "C-0001") {
+function setCustomer() {
   customer = CUSTOMER;
   // brandLogo.style.backgroundImage = `url(${customer.logo})`;
 
-  setTheme(customer.brand);
-  setPhoneType(phoneTypeDiv, customer.phoneType, customer.phoneTypeImage);
-  setLangFlag(langFlagDiv, customer.lang, customer.langFlag);
-  setAuthChip(customer.authenticated);
+  setTheme();
+  setPhoneType();
+  setLangFlag();
+  setAuthChip();
 
-  if (customer.callerType == "D") {
+  if (document.getElementById("callerType").value == "D") {
     customerInfoTab.style.display = "block";
     travelAdvisorTab.style.display = "none";
-    setTabDetails(customerInfoTab, "/cxone-web-customer-support-form/to_host/images/directGuest.png", "Direct Guest");
+    setTabDetails(customerInfoTab, directGuestImage, "Direct Guest");
   } else {
     travelAdvisorTab.style.display = "block";
     customerInfoTab.style.display = "none";
@@ -98,47 +78,59 @@ function setCustomer(customerId = "C-0001") {
       customer.travelAdvisor
     );
   }
-  if (customer.intent) {
-    setTabDetails(intentTab, customer.intentImage, customer.intent);
+  const intent =  document.getElementById("intent").value || 'isNewBooking';
+  if (intent) {
+    const intentImage  = `${intentsImages}${intent}.png`;
+    setTabDetails(intentTab, intentImage, intent);
   }
-  if (customer.booking) {
-    setTabDetails(bookingTab, customer.voyageTypeImage, customer.voyageTypeText);
+  const voyageType =  document.getElementById("voyageType").value || 'BC'; // BC/CB/GV/WC/TBD(Inter something)
+  if (voyageType) {
+    const voyageTypeImage  = `${voyageTypesImages}${voyageType.toLowerCase()}.png`;
+    document.getElementById("voyageTypeBasic").src = voyageTypeImage;
+    setTabDetails(bookingTab, voyageTypeImage, voyageType);
   }
 
   renderStarRating(customer.loyaltyLevel)
 }
 
-function setTheme(name = "holland") {
-  document.documentElement.setAttribute("data-theme", name);
-  const brand = BRANDS[name] || Object.values(BRANDS)[0];
+function setTheme() {
+  const brandName = document.getElementById("brand").value.toLowerCase() || "hal";
+  document.documentElement.setAttribute("data-theme", brandName);
+  const brandConfig = BRANDS[brandName] || Object.values(BRANDS)[0];
   let link = document.querySelector("link[rel~='icon']");
   if (!link) {
     link = document.createElement("link");
     link.rel = "icon";
     document.head.appendChild(link);
   }
-  link.href = brand.favicon;
+  link.href = brandConfig.favicon;
 }
 
-function setPhoneType(elementDiv, phoneType = "Mobile", phoneTypeImage = "/cxone-web-customer-support-form/to_host/images/phoneTypes/mobile.png") {
-  if (!elementDiv) return;
-  elementDiv.innerHTML = "";
+function setPhoneType() {
+  const isMobile = document.getElementById("isMobile").value == 1 ;
+  const altText = isMobile ? "Mobile" : "Landline";
+  const voiceTypeImage = isMobile ? mobilePhoneImage : landlinePhoneImage;
+  if (!phoneTypeDiv) return;
+  phoneTypeDiv.innerHTML = "";
   const img = document.createElement("img");
-  img.src = phoneTypeImage;
-  img.alt = `${phoneType} image`;
-  elementDiv.appendChild(img);
+  img.src = voiceTypeImage;
+  img.alt = `${altText} image`;
+  phoneTypeDiv.appendChild(img);
 }
 
-function setLangFlag(elementDiv, lang = "en-US", langFlag = "/cxone-web-customer-support-form/to_host/images/flags/english.png") {
-  if (!elementDiv) return;
-  elementDiv.innerHTML = "";
+function setLangFlag() {
+  const lang = document.getElementById("lang").value;
+  const langFlag = lang.startsWith('de') ?  germanFlagImage : lang.startsWith('nl') ?  dutchFlagImage : englishFlagImage;
+  if (!langFlagDiv) return;
+  langFlagDiv.innerHTML = "";
   const img = document.createElement("img");
   img.src = langFlag;
   img.alt = `${lang} image`;
-  elementDiv.appendChild(img);
+  langFlagDiv.appendChild(img);
 }
 
-function setAuthChip(isAuthenticated) {
+function setAuthChip() {
+  const isAuthenticated = document.getElementById("authenticated").value.toLowerCase() == 'yes' ;
     authChip.innerHTML =
       `<span class="auth-icon ${isAuthenticated ? 'check' : 'cross'}"> ${isAuthenticated ? svgCheck(): svgCross()}
       </span><span><strong>${isAuthenticated ? 'Authenticated' : 'Unauthenticated'}</strong></span>`;
@@ -152,7 +144,7 @@ function svgCross() {
   return '<i class="fa-solid fa-xmark"></i>';
 }
 
-function setTabDetails(selectedTab, src = "/cxone-web-customer-support-form/to_host/images/directGuest.png", alt = 'Direct Guest') {
+function setTabDetails(selectedTab, src = directGuestImage, alt = 'Direct Guest') {
   const titleDiv = selectedTab.querySelector(".cxone-tab-title");
   titleDiv.textContent = alt;
   const iconDiv = selectedTab.querySelector(".cxone-tab-icon");

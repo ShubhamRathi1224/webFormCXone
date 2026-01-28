@@ -109,7 +109,7 @@ function renderTnCTags() {
     const tag = document.createElement("span");
     tag.className = "tag";
     tag.textContent = term.label;
-    tag.style.cssText = `background: ${window.global?.primaryColor};`;
+    tag.style.cssText = `background: ${document.getElementById("primaryColor").value};`;
     const icon = document.createElement("i");
     icon.className = "fa fa-times";
     icon.onclick = () => removeTerm(term);

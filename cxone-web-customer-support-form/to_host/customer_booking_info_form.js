@@ -3,25 +3,16 @@ const voyageTypeChip = document.getElementById("voyageTypeChip");
 const loyaltyLevelDivs = document.querySelectorAll(".loyalty-level");
 
 const CUSTOMER = {  
-  ccn: "CCN-12345",
   loyalty: "5-Star Platinum",
-  loyaltyLevel: "5",
-  booking: {
-    number: "B-123",
-    date: "2025-11-05 09:30",
-    bookingNotes: "Sample notes for the agent.",
-  },
-  voyageType: "WC",
-  voyageTypeText: "World Cruise",
-  voyageTypeImage: "/assets/voyageTypes/worldCruise.png",
+  loyaltyLevel: "5"
 };
 
 let customer = {};
 
 (function init() {
   customer = CUSTOMER;
-  if (customer.booking) {
-    voyageTypeChip.textContent = `${customer.voyageTypeText}`;
+  if (document.getElementById("voyageType").value) {
+    voyageTypeChip.textContent = `🚢 Voyage Type: ${document.getElementById("voyageType").value}`;
   }
 })();
 

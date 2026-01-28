@@ -1,6 +1,4 @@
 
-let customer = {};
-
 (function init() {
   const thumbs = document.querySelectorAll(".thumb");
   const hiddenSatisfiedInput = document.getElementById("satisfied");

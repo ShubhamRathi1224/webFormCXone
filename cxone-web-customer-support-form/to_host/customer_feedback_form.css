@@ -9,19 +9,19 @@
   --muted: #6b7280;
 }
 
-:root[data-theme='cunard'] {
+:root[data-theme='cun'] {
   --color-primary: #8b0000;
 }
 
-:root[data-theme='holland'] {
+:root[data-theme='hal'] {
   --color-primary: #003d6f;
 }
 
-:root[data-theme='princess'] {
+:root[data-theme='pcl'] {
   --color-primary: #0066b2;
 }
 
-:root[data-theme='seabourn'] {
+:root[data-theme='sbn'] {
   --color-primary: #E3CE66;
 }
 

@@ -15,6 +15,7 @@
         <div style="background: #ffffff;border-radius: 6px;padding: 20px;box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
             <main>
                 <input type="hidden" name="cf_itemStatus" id="cf_itemStatus">
+                <input type="hidden" name="voyageType" id="voyageType" value="{voyageType}">
                 <div class="cxone-modal-header">
                     <h3 id="cxoneModalTitle" class="cxone-modal-title" style="color: {global:primaryColor};">Booking details</h3>
                     <button class="cxone-close" onclick="document.getElementById('cf_itemStatus').value='cancel';">
@@ -28,15 +29,15 @@
 
                     <div class="short-row">
                         <div class="field">
-                            <p>Booking Number: <span id="bookingNumberText">{global:cf_bookingNumber}</span> </p>
+                            <p>Booking Number: <span id="bookingNumberText">{global:bookingNumber}</span> </p>
                         </div>
 
                         <div class="field">
-                            <p>Booking Date: <span id="bookingDateText">{global:cf_bookingDate}</span> </p>
+                            <p>Booking Date: <span id="bookingDateText">{global:bookingDate}</span> </p>
                         </div>
 
                         <div class="field">
-                            <p>Booking Notes: <span id="bookingNotesText">{global:cf_bookingNotes}</span> </p>
+                            <p>Booking Notes: <span id="bookingNotesText">{global:bookingNotes}</span> </p>
                         </div>
                     </div>
                 </div>
